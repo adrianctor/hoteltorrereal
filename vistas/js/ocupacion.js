@@ -373,18 +373,29 @@ $(".formularioEditarReserva").on("click", "#btnCheckIn", function () {
     contentType: false,
     processData: false,
     success: function (respuesta) {
-      Swal.fire({
-        icon: "success",
-        title: "Exito",
-        text: "¡Se ha realizado el checkin correctamente!",
-        showConfirmButton: true,
-        confirmButtonText: "Cerrar",
-        heightAuto: true
-      }).then(function (result) {
-        if (result.value) {
-          window.location = "ocupacion";
-        }
-      });
+      if (respuesta == "true") {
+        Swal.fire({
+          icon: "success",
+          title: "Exito",
+          text: "¡Se ha realizado el checkin correctamente!",
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+          heightAuto: true
+        }).then(function (result) {
+          if (result.value) {
+            window.location = "ocupacion";
+          }
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error en el checkin",
+          text: "¡No se ha podido realizar el checkin!",
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+          heightAuto: true
+        });
+      }
     },
     error: function () {
       Swal.fire({

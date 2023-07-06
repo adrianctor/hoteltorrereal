@@ -42,27 +42,27 @@ class ControladorReservas
                                 });
 				            </script>';
                 } else {
-                    echo '<script>
+                    echo "<script>
                             Swal.fire({
-                                icon: "error",
-                                title: "Error de ingreso",
-                                text: "¡Revisa la información de la reserva (BD)!",
+                                icon: 'error',
+                                title: 'Error de ingreso',
+                                text: '¡Error en la base de datos!',
                                 showConfirmButton: true,
-                                confirmButtonText: "Cerrar",
+                                confirmButtonText: 'Cerrar',
                                 heightAuto: true
                             }).then(function(result){
                                 if(result.value){
-                                    window.location = "ocupacion";
+                                    window.location = 'ocupacion';
                                 }
                             });
-				        </script>';
+				        </script>";
                 }
             } else {
                 echo '<script>
                             Swal.fire({
                                 icon: "error",
                                 title: "Error de ingreso",
-                                text: "¡Revisa la información de la reserva (BD)!",
+                                text: "¡Revisa los datos de la reserva!",
                                 showConfirmButton: true,
                                 confirmButtonText: "Cerrar",
                                 heightAuto: true
