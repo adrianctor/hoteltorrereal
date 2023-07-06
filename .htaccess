@@ -1,0 +1,7 @@
+
+# HTID:18361592: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
+php_value display_errors 1
+# DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:18361592:
+Options all -Indexes
+RewriteEngine On
+RewriteRule ^([-a-zA-Z0-9/]+)$ index.php?ruta=$1
