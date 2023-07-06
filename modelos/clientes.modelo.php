@@ -5,13 +5,13 @@ class ModeloClientes
     static public function mdlMostrarClientes($prmTabla, $prmItem, $prmValor)
     {
         if ($prmItem != null) {
-            $stmt = Conexion::conectar()->prepare("SELECT cliId, cliTipoId, cliIdentificacion, cliDigitoVerificacion, cliPrimerNombre, cliSegundoNombre, cliPrimerApellido, cliSegundoApellido, cliRegimen,cliTipoPersona, direccion.dirId, direccion.dirDireccion, direccion.dirPais, direccion.dirDepartamento, direccion.dirCiudad, cliTelefono,cliCorreo FROM $prmTabla INNER JOIN DIRECCION ON $prmTabla.DIRID = DIRECCION.DIRID WHERE $prmItem = :$prmItem ORDER BY cliId DESC");
+            $stmt = Conexion::conectar()->prepare("SELECT cliId, cliTipoId, cliIdentificacion, cliDigitoVerificacion, cliPrimerNombre, cliSegundoNombre, cliPrimerApellido, cliSegundoApellido, cliRegimen,cliTipoPersona, direccion.dirId, direccion.dirDireccion, direccion.dirPais, direccion.dirDepartamento, direccion.dirCiudad, cliTelefono,cliCorreo FROM $prmTabla INNER JOIN direccion ON $prmTabla.dirId = direccion.dirId WHERE $prmItem = :$prmItem ORDER BY cliId DESC");
             $stmt->bindParam(":" . $prmItem, $prmValor, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetch();
             $stmt = null;
         } else {
-            $stmt = Conexion::conectar()->prepare("SELECT cliId, cliTipoId, cliIdentificacion, cliPrimerNombre, cliSegundoNombre, cliPrimerApellido, cliSegundoApellido, cliRegimen,cliTipoPersona, direccion.dirId, direccion.dirDireccion, direccion.dirPais, direccion.dirDepartamento, direccion.dirCiudad, cliTelefono,cliCorreo FROM $prmTabla INNER JOIN DIRECCION ON $prmTabla.DIRID = DIRECCION.DIRID");
+            $stmt = Conexion::conectar()->prepare("SELECT cliId, cliTipoId, cliIdentificacion, cliPrimerNombre, cliSegundoNombre, cliPrimerApellido, cliSegundoApellido, cliRegimen,cliTipoPersona, direccion.dirId, direccion.dirDireccion, direccion.dirPais, direccion.dirDepartamento, direccion.dirCiudad, cliTelefono,cliCorreo FROM $prmTabla INNER JOIN direccion ON $prmTabla.dirId = direccion.dirId");
             $stmt->execute();
             $error = $stmt->errorInfo();
             return $stmt->fetchAll();
@@ -153,7 +153,7 @@ class ModeloClientes
     }
     static public function mdlObtenerIdDireccion()
     {
-        $stmt = Conexion::conectar()->prepare("SELECT MAX(DIRID) FROM DIRECCION");
+        $stmt = Conexion::conectar()->prepare("SELECT MAX(dirId) FROM direccion");
         if ($stmt->execute()) {
             return $stmt->fetch();
         } else {
@@ -175,7 +175,7 @@ class ModeloClientes
         if ($respuestadir) {
 
             $stmt = Conexion::conectar()->prepare("INSERT INTO $prmTabla(cliId, cliTipoId, cliIdentificacion, cliDigitoVerificacion,cliPrimerNombre,cliSegundoNombre,cliPrimerApellido,cliSegundoApellido,cliRegimen,cliTipoPersona,dirId,cliTelefono,cliCorreo,cliNacionalidad) VALUES (:cliId, :cliTipoId, :cliIdentificacion, :cliDigitoVerificacion, :cliPrimerNombre, :cliSegundoNombre, :cliPrimerApellido, :cliSegundoApellido, :cliRegimen, :cliTipoPersona, :dirId, :cliTelefono, :cliCorreo, :cliNacionalidad)");
-            $prmDatos["dirId"] = $respuestadir["MAX(DIRID)"];
+            $prmDatos["dirId"] = $respuestadir["MAX(dirId)"];
             $stmt->bindParam(":cliId", $prmDatos["cliId"], PDO::PARAM_INT);
             $stmt->bindParam(":cliTipoId", $prmDatos["cliTipoId"], PDO::PARAM_STR);
             $stmt->bindParam(":cliIdentificacion", $prmDatos["cliIdentificacion"], PDO::PARAM_STR);
@@ -215,7 +215,7 @@ class ModeloClientes
         $respuestadir = ModeloClientes::mdlEditarDireccion($tabla, $datos);
         //$respuestadir = ModeloClientes::mdlObtenerIdDireccion();
         if ($respuestadir) {
-            $stmt = Conexion::conectar()->prepare("UPDATE $prmTabla SET cliTipoId = :cliTipoId, cliIdentificacion = :cliIdentificacion, cliDigitoVerificacion = :cliDigitoVerificacion, cliPrimerNombre = :cliPrimerNombre,cliSegundoNombre = :cliSegundoNombre,cliPrimerApellido = :cliPrimerApellido,cliSegundoApellido = :cliSegundoApellido,cliRegimen = :cliRegimen,cliTipoPersona = :cliTipoPersona,dirId = :dirId,cliTelefono = :cliTelefono,cliCorreo = :cliCorreo WHERE cliId = :cliId");
+            $stmt = Conexion::conectar()->prepare("UPDATE $prmTabla SET cliTipoId = :cliTipoId, cliIdentificacion = :cliIdentificacion, cliDigitoVerificacion = :cliDigitoVerificacion, cliPrimerNombre = :cliPrimerNombre,cliSegundoNombre = :cliSegundoNombre,cliPrimerApellido = :cliPrimerApellido,cliSegundoApellido = :cliSegundoApellido,cliRegimen = :cliRegimen,cliTipoPersona = :cliTipoPersona, dirId = :dirId,cliTelefono = :cliTelefono,cliCorreo = :cliCorreo WHERE cliId = :cliId");
             $stmt->bindParam(":cliId", $prmDatos["cliId"], PDO::PARAM_INT);
             $stmt->bindParam(":cliTipoId", $prmDatos["cliTipoId"], PDO::PARAM_STR);
             $stmt->bindParam(":cliIdentificacion", $prmDatos["cliIdentificacion"], PDO::PARAM_STR);

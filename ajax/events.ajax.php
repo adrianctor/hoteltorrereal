@@ -9,20 +9,20 @@
             $respuesta = ControladorReservas::ctrMostrarReservas($item, $valor);
             $varDatosJSON = '[';
             foreach ($respuesta as $reserva){
-                $dateini=date_create($reserva['RESFECHAINGRESO'], new DateTimeZone("America/Bogota"));
-                $datefin=date_create($reserva['RESFECHASALIDA'], new DateTimeZone("America/Bogota"));
+                $dateini=date_create($reserva['resFechaIngreso'], new DateTimeZone("America/Bogota"));
+                $datefin=date_create($reserva['resFechaSalida'], new DateTimeZone("America/Bogota"));
                 $datefin->modify('-1 day');
-                $varDatosJSON .= '{ "id": "'.$reserva['RESID'].'", "resourceId": "'.$reserva['HABID'].'", "start":"'.date_format($dateini,"Y-m-d\TH:i:s").'","end":"'.date_format($datefin,"Y-m-d\TH:i:s").'","title":"'.$reserva['CLIPRIMERNOMBRE'].' '.$reserva["CLIPRIMERAPELLIDO"];
-                if($reserva['RESESTADO']=="RESERVA"){
+                $varDatosJSON .= '{ "id": "'.$reserva['resId'].'", "resourceId": "'.$reserva['habId'].'", "start":"'.date_format($dateini,"Y-m-d\TH:i:s").'","end":"'.date_format($datefin,"Y-m-d\TH:i:s").'","title":"'.$reserva['cliPrimerNombre'].' '.$reserva["cliPrimerApellido"];
+                if($reserva['resEstado']=="RESERVA"){
                     $varDatosJSON .= '","color":"orange';
                 }
-                elseif($reserva['RESESTADO']=="CHECKIN"){
+                elseif($reserva['resEstado']=="CHECKIN"){
                     $varDatosJSON .= '","color":"forestgreen';
                 }
-                elseif($reserva['RESESTADO']=="CHECKOUT"){
+                elseif($reserva['resEstado']=="CHECKOUT"){
                     $varDatosJSON .= '","color":"crimson';
                 }
-                $varDatosJSON .='","cliId":"'.$reserva['CLIID'];
+                $varDatosJSON .='","cliId":"'.$reserva['cliId'];
                 $datefin->modify('+1 day');
                 $varDatosJSON .='","endDate":"'.date_format($datefin,"Y-m-d\TH:i:s");
                 $varDatosJSON = $varDatosJSON.'" },';

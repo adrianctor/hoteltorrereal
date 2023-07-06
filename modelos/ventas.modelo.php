@@ -15,8 +15,6 @@ require_once "conexion.php";
                 $stmt -> execute();
                 return $stmt -> fetchAll();
             }
-            $stmt -> close();
-            $stmt = null;
         }
         static public function mdlIngresarVenta($prmTabla, $prmDatos){
             $stmt = Conexion::conectar() -> prepare("INSERT INTO $prmTabla(cliId, cliNombre, cliTelefono, cliFecha) VALUES (:cliId, :cliNombre, :cliTelefono, :cliFecha)");
@@ -29,8 +27,6 @@ require_once "conexion.php";
             }else{
                 return "falso";
             }
-            $stmt->close();
-            $stmt = null;
         }
         static public function mdlEditarVenta($tabla, $datos){
             $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET cliNombre = :cliNombre, cliTelefono = :cliTelefono, cliFecha = :cliFecha WHERE cliId = :cliId");
@@ -43,8 +39,6 @@ require_once "conexion.php";
             }else{
                 return "falso";
             }
-            $stmt->close();
-            $stmt = null;
         }
         static public function mdlBorrarVenta($prmTabla,$prmDatos){
             $stmt = Conexion::conectar() -> prepare("DELETE FROM $prmTabla WHERE cliId = :cliId");
@@ -54,8 +48,6 @@ require_once "conexion.php";
             }else{
                 return "falso";
             }
-            $stmt->close();
-            $stmt = null;
         }
         static public function mdlActualizarVenta($tabla, $item1, $valor1, $valor){
             try{
@@ -67,8 +59,6 @@ require_once "conexion.php";
                 }else{
                     return "falso";
                 }
-                $stmt -> close();
-                $stmt = null;
             }
             catch(PDOException $e){
                 echo $e->getMessage();

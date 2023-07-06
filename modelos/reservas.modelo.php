@@ -5,20 +5,20 @@ class ModeloReservas
     static public function mdlMostrarReservas($prmTabla, $prmItem, $prmValor)
     {
         if ($prmItem != null) {
-            $stmt = Conexion::conectar()->prepare("SELECT reserva.resId, habitacion.habId, habNombre, cliIdentificacion, cliPrimerNombre, cliPrimerApellido, cliTelefono, cliCorreo, dirDireccion, resFechaIngreso, resFechaSalida, resEstado, resTarifa, resObservacion FROM $prmTabla INNER JOIN CLIENTE ON CLIENTE.CLIID = $prmTabla.CLIID INNER JOIN DIRECCION ON DIRECCION.DIRID = CLIENTE.DIRID INNER JOIN HABITACION ON HABITACION.HABID = $prmTabla.HABID WHERE $prmItem = :$prmItem ORDER BY resId ASC");
+            $stmt = Conexion::conectar()->prepare("SELECT reserva.resId, habitacion.habId, habNombre, cliIdentificacion, cliPrimerNombre, cliPrimerApellido, cliTelefono, cliCorreo, dirDireccion, resFechaIngreso, resFechaSalida, resEstado, resTarifa, resObservacion FROM $prmTabla INNER JOIN cliente ON cliente.cliId = $prmTabla.cliId INNER JOIN direccion ON direccion.dirId = cliente.dirId INNER JOIN habitacion ON habitacion.habId = $prmTabla.habId WHERE $prmItem = :$prmItem ORDER BY resId ASC");
             $stmt->bindParam(":" . $prmItem, $prmValor, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetch();
         } else {
-            $item1 = "RESID";
-            $item2 = "HABID";
-            $item3 = "RESFECHAINGRESO";
-            $item4 = "RESFECHASALIDA";
-            $tabla2 = "CLIENTE";
-            $item5 = "CLIPRIMERNOMBRE";
-            $item8 = "CLIPRIMERAPELLIDO";
-            $item6 = "RESESTADO";
-            $item7 = "CLIID";
+            $item1 = "resId";
+            $item2 = "habId";
+            $item3 = "resFechaIngreso";
+            $item4 = "resFechaSalida";
+            $tabla2 = "cliente";
+            $item5 = "cliPrimerNombre";
+            $item8 = "cliPrimerApellido";
+            $item6 = "resEstado";
+            $item7 = "cliId";
             $stmt = Conexion::conectar()->prepare("SELECT $prmTabla.$item1, $prmTabla.$item2,$prmTabla.$item3,$prmTabla.$item4, $tabla2.$item5, $tabla2.$item8,$prmTabla.$item6,$tabla2.$item7 FROM $prmTabla INNER JOIN $tabla2 ON $prmTabla.$item7 = $tabla2.$item7");
             $stmt->execute();
             return $stmt->fetchAll();

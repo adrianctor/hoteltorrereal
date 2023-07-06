@@ -9,8 +9,6 @@ class ModeloAlojamientos{
         }else{
             return "falso";
         }
-        $stmt->close();
-        $stmt = null;
     }
     static public function mdlMostrarAlojamiento($prmTabla,$prmItem,$prmValor){
         if ($prmItem != null){

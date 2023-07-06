@@ -13,8 +13,6 @@ require_once "conexion.php";
                 $stmt -> execute();
                 return $stmt -> fetchAll();
             }
-            $stmt -> close();
-            $stmt = null;
         }
 
         public static function mdlCrearHabitacion($tabla, $datos){
@@ -27,8 +25,6 @@ require_once "conexion.php";
             }else{
                 return "falso";
             }
-            $stmt->close();
-            $stmt = null;
         }
 
         static public function mdlEditarHabitacion($tabla, $datos){
@@ -43,8 +39,6 @@ require_once "conexion.php";
             }else{
                 return "falso";
             }
-            $stmt->close();
-            $stmt = null;
         }
 
         static public function mdlEliminarHabitacion($tabla, $datos){
@@ -55,12 +49,10 @@ require_once "conexion.php";
             }else{
                 return "falso";
             }
-            $stmt -> close();
-            $stmt = null;
         }
 
         static public function mdlConsultarUltimoId($tabla){
-            $stmt = Conexion::conectar()->prepare("SELECT MAX(HABID) FROM $tabla");
+            $stmt = Conexion::conectar()->prepare("SELECT MAX(habId) FROM $tabla");
             $stmt -> execute();
             return $stmt -> fetch();
         }
