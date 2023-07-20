@@ -1,8 +1,8 @@
 <?php
     class ControladorVentas{
         static public function ctrMostrarVentas($prmItem, $prmValor){
-            $tabla = "cliente";
-            $respuesta = ModeloClientes::mdlMostrarClientes($tabla, $prmItem, $prmValor);
+            $tabla = "factura";
+            $respuesta = ModeloVentas::mdlMostrarVentas($tabla, $prmItem, $prmValor);
             return $respuesta;
         }
         static public function ctrCrearVenta(){

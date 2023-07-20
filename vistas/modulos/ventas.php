@@ -10,7 +10,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
-              <li class="breadcrumb-item active">Clientes</li>
+              <li class="breadcrumb-item active">Ventas</li>
             </ol>
           </div>
         </div>
@@ -21,21 +21,23 @@
       <!-- Default box -->
       <div class="card" style="margin-top: 7px;">
         <div class="card-header">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#mdlAgregarCliente"> Agregar cliente</button>
+          <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#mdlAgregarCliente"> Agregar cliente</button> -->
         </div>
         <div class="card-body">
 
-          <table id="tablaClientes" class="table table-striped table-bordered table-hover dataTable dtr-inline" role="grid" style="width:100%">
+          <table id="tablaVentas" class="table table-striped table-bordered table-hover dataTable dtr-inline" role="grid" style="width:100%">
             <thead>
               <tr>
                 <th>Tipo</th>
-                <th>Identificacion</th>
-                <th>Nombre completo</th>
-                <th>Régimen</th>
-                <th>Tipo de persona</th>
-                <th>Dirección</th>
-                <th>Telefono</th>
-                <th>Correo Electrónico</th>
+                <th>Ref</th>
+                <th>Cliente</th>
+                <th>Creacion</th>
+                <th>Vencimiento</th>
+                <th>Total</th>
+                <th>Cobrado</th>
+                <th>Por cobrar</th>
+                <th>DIAN</th>
+                <th>Estado</th>
                 <th>Acciones</th>
               </tr>
             </thead>

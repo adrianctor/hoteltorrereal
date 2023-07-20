@@ -83,6 +83,7 @@ class ControladorReservas
                 $datos = array(
                     "resId"=>$_POST["editarResId"],
                     "resFechaSalida" => $_POST["editarResFechaSalida"],
+                    "resFechaIngreso" => $_POST["editarResFechaIngreso"],
                     "resTarifa" => $_POST["editarResTarifa"],
                     "resObservacion" => $_POST["editarResObservacion"]
                 );

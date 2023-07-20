@@ -91,7 +91,7 @@
                   <span class="input-group-addon">
                     <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
                   </span>
-                  <input type="text" class="form-control datetimepicker-input" id="fechaIngreso" data-toggle="datetimepicker" data-target="#fechaIngreso" disabled />
+                  <input type="text" class="form-control datetimepicker-input" id="fechaIngreso" data-toggle="datetimepicker" data-target="#fechaIngreso"/>
                   <input type="hidden" name="nuevaFechaEntrada" id="nuevaFechaEntrada">
                 </div>
               </div>
@@ -228,7 +228,8 @@
                       <span class="input-group-addon">
                         <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
                       </span>
-                      <input type="text" class="form-control datetimepicker-input" id="editarResFechaIngreso" data-toggle="datetimepicker" data-target="#editarResFechaIngreso" disabled />
+                      <input type="text" class="form-control datetimepicker-input" id="editarFechaIngreso" data-toggle="datetimepicker" data-target="#editarFechaIngreso" disabled />
+                      <input type="hidden" name="editarResFechaIngreso" id="editarResFechaIngreso">
                     </div>
                   </div>
                 </div>
@@ -264,24 +265,124 @@
                 </div>
               </div>
 
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
+                  </span>
+                  <input type="number" class="form-control input-lg" id="editarResPagado" name="editarResPagado" placeholder="Cantidad pagada" autocomplete="off" disabled>
+                </div>
+              </div>
+
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             <button type="submit" class="btn btn-primary" id="btnEditarReserva">Editar</button>
+            <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
             <button type="button" class="btn btn-primary" id="btnCheckIn">Check in</button>
             <button type="button" class="btn btn-primary" id="btnCheckOut">Check Out</button>
-            <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
+            <button type="button" class="btn btn-primary" id="btnPagar">Pagar</button>
+
           </div>
           <?php
           $editarReserva = new ControladorReservas();
-          $editarReserva -> ctrEditarReserva();
+          $editarReserva->ctrEditarReserva();
           ?>
         </form>
       </div>
     </div>
   </div>
+
+  <div id="mdlAgregarPago" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pagar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="box-body">
+            <form class="formularioPago" role="form" method="post" enctype="multipart/form-data">
+              <!-- Text -->
+              <!-- <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
+                  </span>
+                  <select class="nuevaHabitacion" id="nuevaHab" name="nuevaHabitacion" multiple="multiple" data-placeholder="Seleccione la/s habitación/es" style="width:94%;margin-left:10px;"></select>
+                  <input type="hidden" id="clienteId" name="clienteId">
+                </div>
+              </div> -->
+
+              <!-- Number -->
+              <!-- <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="nav-icon fa fa-user-tag" style="margin-right: 5px;margin-top: 10px;"></i>
+                  </span>
+                  <select class="form-control selectCliente nuevaIdentificacionOc" id="nuevaIdentificacionOc" name="nuevaIdentificacionOc" required>
+                  </select>
+                </div>
+              </div> -->
+              <div class="row">
+                <div class="col">
+                  <!-- Text -->
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
+                      </span>
+                      <select name="nuevoTipoPago" class="form-control nuevoTipoPago" id="nuevoTipoPago" required>
+                        <option value="cash">Efectivo</option>
+                        <option value="credit-card">Tarjeta crédito</option>
+                        <option value="debit-card">Tarjeta débito</option>
+                        <option value="transfer">Transferencia</option>
+                      </select>
+                      <input type="hidden" id="pagoResId" name="pagoResId">
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Text -->
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
+                      </span>
+                      <input type="number" class="form-control input-lg" id="nuevoTotalPago" name="nuevoTotalPago" placeholder="Ingrese el valor a pagar" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
+                      </span>
+                      <input type="text" class="form-control input-lg" id="nuevaObservacionPago" name="nuevaObservacionPago" placeholder="Ingrese la observación">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Pagar</button>
+        </div>
+        <?php
+        $crearPago = new ControladorPagos();
+        $crearPago->ctrIngresarPago();
+        ?>
+        </form>
+      </div>
+    </div>
+  </div>
   <?php
-    $borrarReserva = new ControladorReservas();
-    $borrarReserva -> ctrBorrarReserva();
+  $borrarReserva = new ControladorReservas();
+  $borrarReserva->ctrBorrarReserva();
   ?>

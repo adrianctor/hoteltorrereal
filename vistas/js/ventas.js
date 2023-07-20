@@ -19,71 +19,71 @@ $(document).ready(function(){
     //         down: "fa fa-arrow-down"
     //     }
     // })
-    // var tabla = $('#tablaClientes').DataTable({
-    //     "responsive": true,
-    //     "lengthChange": false,
-    //     "autoWidth": true,
-    //     "initComplete": function() {
-    //         tabla.buttons().container().appendTo('#tablaClientes_wrapper .col-md-6:eq(0)');
-    //         $("#tablaClientes").show();
-    //     },
-    //     "buttons": [
-    //         {
-    //             extend: 'copy',
-    //             text: 'Copiar'
-    //         },
-    //         "excel",
-    //         "pdf",
-    //         {
-    //             extend: 'print',
-    //             text: 'Imprimir'
-    //         },
-    //         {
-    //             extend: 'colvis',
-    //             text: 'Columnas'
-    //         }
-    //     ],
-    //     "ajax": "ajax/datatable-clientes.ajax.php",
-    //      "columns":[
-    //          {"data":"cliTipoId"},
-    //          {"data":"cliId"},
-    //          {"data":"cliNombre"},
-    //          {"data":"cliRegimen"},
-    //          {"data":"cliTipoPersona"},
-    //          {"data":"cliDireccion"},
-    //          {"data":"cliTelefono"},
-    //          {"data":"cliCorreo"},
-    //          {"data":"cliBotones"}
-    //      ],
-    //     "deferRender": true,
-    //     "retrieve": true,
-    //     "processing": true,
-    //     "language": {
-    //         "sProcessing":     "Procesando...",
-    //         "Print": "Imprimir",
-    //         "sLengthMenu":     "Mostrar _MENU_ registros",
-    //         "sZeroRecords":    "No se encontraron resultados",
-    //         "sEmptyTable":     "Ningún dato disponible en esta tabla",
-    //         "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-    //         "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
-    //         "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-    //         "sInfoPostFix":    "",
-    //         "sSearch":         "Buscar:",
-    //         "sUrl":            "",
-    //         "sInfoThousands":  ",",
-    //         "sLoadingRecords": "Cargando...",
-    //         "oPaginate": {
-    //             "sFirst":    "Primero",
-    //             "sLast":     "Último",
-    //             "sNext":     "Siguiente",
-    //             "sPrevious": "Anterior"
-    //         },
-    //         "oAria": {
-    //             "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-    //             "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-    //         }
-    //     }
-    // })
+    var tabla = $('#tablaVentas').DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": true,
+        "initComplete": function() {
+            tabla.buttons().container().appendTo('#tablaVentas_wrapper .col-md-6:eq(0)');
+            $("#tablaVentas").show();
+        },
+        "buttons": [
+            {
+                extend: 'copy',
+                text: 'Copiar'
+            },
+            "excel",
+            "pdf",
+            {
+                extend: 'print',
+                text: 'Imprimir'
+            },
+            {
+                extend: 'colvis',
+                text: 'Columnas'
+            }
+        ],
+        "ajax": "ajax/datatable-ventas.ajax.php",
+         "columns":[
+             {"data":"cliTipoId"},
+             {"data":"cliId"},
+             {"data":"cliNombre"},
+             {"data":"cliRegimen"},
+             {"data":"cliTipoPersona"},
+             {"data":"cliDireccion"},
+             {"data":"cliTelefono"},
+             {"data":"cliCorreo"},
+             {"data":"cliBotones"}
+         ],
+        "deferRender": true,
+        "retrieve": true,
+        "processing": true,
+        "language": {
+            "sProcessing":     "Procesando...",
+            "Print": "Imprimir",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        }
+    })
     // $("#tablaClientes tbody").on("click","button.btnEditarCliente", function(){
     //     var idCliente = $(this).attr("idCliente");
     //     var datos = new FormData();

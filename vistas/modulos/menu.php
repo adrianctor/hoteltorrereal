@@ -128,13 +128,13 @@
               <li class="nav-item">
                 <a href="ventas" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Administrar</p>
+                  <p>Facturas</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="https://app.alegra.com/invoice" target="_blank" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Crear</p>
+                  <p>Facturación electrónica</p>
                 </a>
               </li>
             </ul>

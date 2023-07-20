@@ -12,7 +12,13 @@
                 $dateini=date_create($reserva['resFechaIngreso'], new DateTimeZone("America/Bogota"));
                 $datefin=date_create($reserva['resFechaSalida'], new DateTimeZone("America/Bogota"));
                 $datefin->modify('-1 day');
-                $varDatosJSON .= '{ "id": "'.$reserva['resId'].'", "resourceId": "'.$reserva['habId'].'", "start":"'.date_format($dateini,"Y-m-d\TH:i:s").'","end":"'.date_format($datefin,"Y-m-d\TH:i:s").'","title":"'.$reserva['cliPrimerNombre'].' '.$reserva["cliPrimerApellido"];
+                $varDatosJSON .= '{ "id": "'.$reserva['resId'].'", "resourceId": "'.$reserva['habId'].'", "start":"'.date_format($dateini,"Y-m-d\TH:i:s").'","end":"'.date_format($datefin,"Y-m-d\TH:i:s").'","title":"';
+                
+                if((int)$reserva["pagado"]>=(int)$reserva["resTotal"]){
+                    $varDatosJSON .='(PAGO) ';
+                }
+                $varDatosJSON.=$reserva['cliPrimerNombre'].' '.$reserva["cliPrimerApellido"];
+                
                 if($reserva['resEstado']=="RESERVA"){
                     $varDatosJSON .= '","color":"orange';
                 }

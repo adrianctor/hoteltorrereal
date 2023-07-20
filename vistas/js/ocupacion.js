@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
         varFechaFinal.setDate(varFechaFinal.getDate() + 1);
         varFechaFinal.setHours(14);
         varAhora.setDate(varAhora.getDate() - 1);
+        //if(varFechaInicial.getHours()>=0 &&varFechaInicial.getHours()<=14){
+
+        //}
         if (varAhora.getDate() <= varFechaInicial.getDate() && (varAhora.getHours() <= 14 || varAhora.getDate() + 1 <= varFechaInicial.getDate())) {
           var select = $("#nuevaHab");
           var idHabitacion = "All"
@@ -134,13 +137,15 @@ document.addEventListener('DOMContentLoaded', function () {
         $("#editarResDir").val("");
         $("#editarResId").val("");
         $("#editarResTarifa").val("");
-        $("#editarResFechaIngreso").datetimepicker("date", new Date("0001-01-01 00:00:00"));
+        $("#editarFechaIngreso").datetimepicker("date", new Date("0001-01-01 00:00:00"));
         $("#editarFechaSalida").datetimepicker("date", new Date("0001-01-01 00:00:00"));
         $("#editarResObservacion").val("");
         $('#btnCheckOut').attr('disabled', false);
         $('#btnCheckIn').attr('disabled', false);
         $('#btnEditarReserva').attr('disabled', false);
         $('#btnEliminar').attr('disabled', false);
+        $('#btnPagar').attr('disabled', false);
+        $("#editarResPagado").val("");
         var resId = info.event._def.publicId;
         var datos = new FormData();
         datos.append("resId", resId);
@@ -169,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $("#editarResCorr").val(respuesta["cliCorreo"]);
             $("#editarResDir").val(respuesta["dirDireccion"]);
             $("#editarResTarifa").val(respuesta["resTarifa"]);
-            $("#editarResFechaIngreso").datetimepicker("date", new Date(respuesta["resFechaIngreso"]));
+            $("#editarFechaIngreso").datetimepicker("date", new Date(respuesta["resFechaIngreso"]));
             $("#editarFechaSalida").datetimepicker("date", new Date(respuesta["resFechaSalida"]));
             $("#editarResObservacion").val(respuesta["resObservacion"]);
             if (respuesta["resEstado"] === "RESERVA") {
@@ -185,6 +190,10 @@ document.addEventListener('DOMContentLoaded', function () {
               $('#btnCheckIn').attr('disabled', true);
               $('#btnEliminar').attr('disabled', true);
             }
+            if(parseInt(respuesta["pagado"])>= parseInt(respuesta["resTotal"])){
+              $('#btnPagar').attr('disabled', true);
+            }
+            $("#editarResPagado").val(respuesta["pagado"]);
           }
         });
       },
@@ -331,7 +340,13 @@ $(".formularioReserva").submit(function (event) {
   $("#nuevaFechaSalida").val(sal);
 
   var fechaEntrada = new Date($("#fechaIngreso").val());
+  if(fechaEntrada.getHours()>=0 && fechaEntrada.getHours()<=6){
+    
+  }
   fechaEntrada.setHours(fechaEntrada.getHours() - 5);
+  if(fechaEntrada.getHours() < 5){
+
+  }
   var ent = fechaEntrada.toISOString().replace("T", " ").slice(0, 19);
   $("#nuevaFechaEntrada").val(ent);
 
@@ -339,8 +354,21 @@ $(".formularioReserva").submit(function (event) {
 });
 
 
+$(".formularioPago").submit(function (event) {
+  event.preventDefault();
+  var resId = $("#editarResId").val();
+  $("#pagoResId").val(resId);
+  this.submit();
+});
 $(".formularioEditarReserva").submit(function (event) {
   event.preventDefault();
+
+  var fechaEnt = $("#editarFechaIngreso").val();
+  var fechaEntrada = new Date(fechaEnt);
+  fechaEntrada.setHours(fechaEntrada.getHours() - 5);
+  var ent = fechaEntrada.toISOString().replace("T", " ").slice(0, 19);
+  $("#editarResFechaIngreso").val(ent);
+
   var fecha = $("#editarFechaSalida").val();
   var fechaSalida = new Date(fecha);
   fechaSalida.setHours(fechaSalida.getHours() - 5);
@@ -350,7 +378,7 @@ $(".formularioEditarReserva").submit(function (event) {
   this.submit();
 });
 
-$('#editarResFechaIngreso').datetimepicker({
+$('#editarFechaIngreso').datetimepicker({
   locale: 'es',
   format: 'DD MMMM YYYY, h:mm a'
 });
@@ -358,7 +386,6 @@ $('#editarFechaSalida').datetimepicker({
   locale: 'es',
   format: 'DD MMMM YYYY, h:mm a'
 });
-
 
 $(".formularioEditarReserva").on("click", "#btnCheckIn", function () {
   var resId = $("#editarResId").val();
@@ -480,4 +507,14 @@ $(".formularioEditarReserva").on("click", "#btnEliminar", function () {
       )
     }
   });
+});
+
+$(".formularioEditarReserva").on("click", "#btnPagar", function () {
+  $("#mdlAgregarPago").modal();
+});
+
+$('.pagoTipo').select2({
+  theme: 'bootstrap4',
+  dropdownParent: $('#mdlAgregarPago'),
+  placeholder: 'Seleccione el tipo de pago',
 });
