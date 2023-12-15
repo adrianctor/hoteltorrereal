@@ -45,15 +45,15 @@ $(document).ready(function(){
         ],
         "ajax": "ajax/datatable-ventas.ajax.php",
          "columns":[
-             {"data":"cliTipoId"},
-             {"data":"cliId"},
+             {"data":"facReferencia"},
              {"data":"cliNombre"},
-             {"data":"cliRegimen"},
-             {"data":"cliTipoPersona"},
-             {"data":"cliDireccion"},
-             {"data":"cliTelefono"},
-             {"data":"cliCorreo"},
-             {"data":"cliBotones"}
+             {"data":"cliIdentificacion"},
+             {"data":"facFecha"},
+             {"data":"facVencimiento"},
+             {"data":"facTotal"},
+             {"data":"facCobrado"},
+             {"data":"facEstado"},
+             {"data":"facBotones"}
          ],
         "deferRender": true,
         "retrieve": true,

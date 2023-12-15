@@ -28,8 +28,8 @@
           <table id="tablaVentas" class="table table-striped table-bordered table-hover dataTable dtr-inline" role="grid" style="width:100%">
             <thead>
               <tr>
-                <th>Tipo</th>
                 <th>Ref</th>
+                <th>Identificacion</th>
                 <th>Cliente</th>
                 <th>Creacion</th>
                 <th>Vencimiento</th>
