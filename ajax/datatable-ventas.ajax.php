@@ -91,6 +91,7 @@ class tablaVentas
             ]
         }';
         curl_close($curl);
+        error_log(json_encode($varDatosJSON));
         echo $varDatosJSON;
 
 
