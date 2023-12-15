@@ -30,7 +30,7 @@ class tablaVentas
         $datos = json_decode($response);
         // $maximo = ceil(($datos->metadata->total/30));
         $maximo = ceil(($datos->metadata->total/30))-30;
-        for ($j=0; $j < $maximo; $j++) {
+        for ($j=0; $j < 5; $j++) {
             curl_setopt_array($curl, [
                 CURLOPT_URL => "https://api.alegra.com/api/v1/invoices?start=".($j*30)."&order_direction=ASC&order_field=id",
                 CURLOPT_RETURNTRANSFER => true,
@@ -79,7 +79,7 @@ class tablaVentas
             ]
         }';
         curl_close($curl);
-        error_log(json_encode($varDatosJSON));
+        //error_log(json_encode($varDatosJSON));
         echo $varDatosJSON;
 
 
