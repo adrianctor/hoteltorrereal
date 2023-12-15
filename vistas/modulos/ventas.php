@@ -29,14 +29,12 @@
             <thead>
               <tr>
                 <th>Ref</th>
-                <th>Identificacion</th>
                 <th>Cliente</th>
+                <th>Identificacion</th>
                 <th>Creacion</th>
                 <th>Vencimiento</th>
                 <th>Total</th>
                 <th>Cobrado</th>
-                <th>Por cobrar</th>
-                <th>DIAN</th>
                 <th>Estado</th>
                 <th>Acciones</th>
               </tr>
