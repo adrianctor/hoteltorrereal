@@ -68,7 +68,8 @@
                   <div class="form-group">
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>
+                          <i class="far fa-id-card" style="margin-right: 10px;margin-top: 10px;"></i>
+                        <!--<i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>-->
                       </span>
                       <select class="form-control input-lg nuevoTipo" name="nuevoTipo" required>
                         <option value="RC">Registro civil</option>
@@ -91,7 +92,8 @@
                   <div class="form-group">
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <i class="nav-icon fa fa-user-tag" style="margin-right: 5px;margin-top: 10px;"></i>
+                          <i class="fas fa-id-card-alt" style="margin-right: 5px;margin-top: 10px;"></i>
+                        <!--<i class="nav-icon fa fa-user-tag" style="margin-right: 5px;margin-top: 10px;"></i>-->
                       </span>
                       <input type="text" class="form-control input-lg nuevaIdentificacion" name="nuevaIdentificacion" placeholder="Ingresar identificación *" autocomplete="off" min="1" required>
                     </div>

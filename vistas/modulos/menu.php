@@ -75,10 +75,7 @@
               </li> <!-- Item solo -->';
             }
           ?>
-          
-          <?php
-            if($_SESSION["varPerfil"]=="Administrador"){
-              echo '
+
               <li class="nav-item">
                 <a href="habitaciones" class="nav-link">
                   <i class="nav-icon fab fa-product-hunt"></i>
@@ -86,9 +83,7 @@
                     Habitaciones
                   </p>
                 </a>
-              </li> <!-- Item solo -->';
-            }
-          ?>
+              </li> <!-- Item solo -->
           
 
           <li class="nav-item">

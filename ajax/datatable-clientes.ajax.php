@@ -149,7 +149,7 @@ class tablaClientes
         $valor = null;
         $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
         foreach ($clientes as $value) {
-            $varBotones = "<div class='btn-group'><button class='btn btn-warning btnEditarCliente' dirId='" . $value["dirId"] . "' idCliente='" . $value["cliId"] . "' data-toggle='modal' data-target='#mdlEditarCliente'><i class='fa fa-pencil-alt' style='color: white;'></i></button><button class='btn btn-danger btnEliminarCliente' dirId='" . $value["dirId"] . "' idCliente='" . $value["cliId"] . "' ><i class='fa fa-times'></i></button></div>";
+            $varBotones = "<div class='btn-group'><button class='btn btn-warning btnEditarCliente' dirId='".$value["dirId"]."' idCliente='". $value["cliId"]."' data-toggle='modal' data-target='#mdlEditarCliente'><i class='fa fa-pencil-alt' style='color: white;'></i></button><button class='btn btn-danger btnEliminarCliente' dirId='".$value["dirId"]."' idCliente='". $value["cliId"]."'><i class='fa fa-times'></i></button></div>";
             $varTipoId = $value["cliTipoId"];
             $varId = $value["cliIdentificacion"];
             $varNombre = $value["cliPrimerNombre"];

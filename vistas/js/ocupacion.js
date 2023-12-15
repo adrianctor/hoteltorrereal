@@ -340,7 +340,9 @@ $(".formularioReserva").submit(function (event) {
   $("#nuevaFechaSalida").val(sal);
 
   var fechaEntrada = new Date($("#fechaIngreso").val());
-  // if(fechaEntrada.getHours()>=0 && fechaEntrada.getHours()<=6){}
+  if(fechaEntrada.getHours()>=0 && fechaEntrada.getHours()<=6){
+    
+  }
   fechaEntrada.setHours(fechaEntrada.getHours() - 5);
   if(fechaEntrada.getHours() < 5){
 
