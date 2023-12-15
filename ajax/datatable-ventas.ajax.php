@@ -28,7 +28,8 @@ class tablaVentas
         $response = curl_exec($curl);
         
         $datos = json_decode($response);
-        $maximo = ceil(($datos->metadata->total/30));
+        // $maximo = ceil(($datos->metadata->total/30));
+        $maximo = ceil(($datos->metadata->total/30))-30;
         for ($j=0; $j < $maximo; $j++) {
             curl_setopt_array($curl, [
                 CURLOPT_URL => "https://api.alegra.com/api/v1/invoices?start=".($j*30)."&order_direction=ASC&order_field=id",
@@ -48,20 +49,7 @@ class tablaVentas
             $datos = json_decode($response);
             foreach ($datos as $value) { 
                 if($value->numberTemplate->isElectronic=="true"){
-                    // $datos = array(
-                    //     "facReferencia"=>$value->numberTemplate->prefix." ".$value->numberTemplate->number,
-                    //     "cliNombre"=>$value->client->name,
-                    //     "cliIdentificacion"=>$value->client->identificationObject->number,
-                    //     "facFecha"=>$value->datetime,
-                    //     "facVencimiento"=>$value->dueDate,
-                    //     "facTotal"=>$value->total,
-                    //     "facCobrado"=>$value->totalPaid,
-                    //     "facEstado"=>$value->status
-                    // );
-                    // $tabla = "cliente";
-                    // if(intval($value->id) >=18){
-                    // $respuestaBD = ModeloClientes::mdlIngresarCliente($tabla,$datos);
-                    // }
+                    
                     $varBotones = "<div class='btn-group'><button class='btn btn-warning btnEditarCliente' idCliente='".$value->id."' data-toggle='modal' data-target='#mdlEditarCliente'><i class='fa fa-pencil-alt' style='color: white;'></i></button><button class='btn btn-danger btnEliminarCliente' idCliente='".$value->id."' ><i class='fa fa-times'></i></button></div>";
                     $varReferencia = $value->numberTemplate->prefix."".$value->numberTemplate->number;
                     $varNombre = $value->client->name;
