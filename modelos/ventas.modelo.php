@@ -3,7 +3,7 @@ require_once "conexion.php";
     class ModeloVentas{
         static public function mdlMostrarVentas($prmTabla, $prmItem, $prmValor){
             if($prmItem != null){
-                $stmt = Conexion::conectar()->prepare("SELECT * FROM $prmTabla WHERE $prmItem = :$prmItem ORDER BY cliId DESC");
+                $stmt = Conexion::conectar()->prepare("SELECT * FROM $prmTabla WHERE $prmItem = :$prmItem ORDER BY facId DESC");
                 $stmt -> bindParam(":".$prmItem, $prmValor, PDO::PARAM_INT);
                 $stmt -> execute();
                 //echo "SELECT * FROM ".$prmTabla." WHERE ".$prmItem." = ".$prmValor." ORDER BY cliId DESC";
