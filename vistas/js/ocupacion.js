@@ -327,30 +327,52 @@ $('.nuevaHabitacion').select2({
   dropdownParent: $('#mdlAgregarReserva'),
   placeholder: 'Seleccione las habitaciones',
 });
+
 $(".formularioReserva").submit(function (event) {
-  event.preventDefault();
-  const selectedOptions = $("#nuevaHab").select2("data");
-  if (selectedOptions.length === 0) {
     event.preventDefault();
-    alert("Debes seleccionar al menos una habitación.");
-  }
-  var fechaSalida = new Date($("#fechaSalida").val());
-  fechaSalida.setHours(fechaSalida.getHours() - 5);
-  var sal = fechaSalida.toISOString().replace("T", " ").slice(0, 19);
-  $("#nuevaFechaSalida").val(sal);
+    var fechaActual = moment();
 
-  var fechaEntrada = new Date($("#fechaIngreso").val());
-  if(fechaEntrada.getHours()>=0 && fechaEntrada.getHours()<=6){
+    const selectedOptions = $("#nuevaHab").select2("data");
+    if (selectedOptions.length === 0 || selectedOptions.length > 1) {
+      alert("Debes seleccionar almenos y solo una habitación.");
+      return;
+    }
+
+    var fechaSalida = moment($("#fechaSalida").val(), "DD MMMM YYYY, h:mm a");
+    var fechaEntrada = moment($("#fechaIngreso").val(), "DD MMMM YYYY, h:mm a");
+    if (!fechaSalida.isValid() || fechaSalida.isBefore(fechaEntrada) || fechaSalida.isBefore(fechaActual)){
+      alert("La fecha de salida no es válida.");
+      return;
+    }
+    fechaSalida.subtract(5, 'hours');
+    var sal = fechaSalida.toISOString().replace("T", " ").slice(0, 19);
+    $("#nuevaFechaSalida").val(sal);
+
+    // var fechaEntrada = new Date($("#fechaIngreso").val());
+    // if(fechaEntrada.getHours()>=0 && fechaEntrada.getHours()<=6){}
+    // fechaEntrada.setHours(fechaEntrada.getHours() - 5);
+    // if(fechaEntrada.getHours() < 5){}
     
-  }
-  fechaEntrada.setHours(fechaEntrada.getHours() - 5);
-  if(fechaEntrada.getHours() < 5){
+    if (fechaActual.hours() >= 0 
+        && fechaActual.hours() <= 5 
+        && (
+          fechaEntrada.isAfter(fechaActual,"day")
+        )
+      ) {
+      // Si la hora actual está entre 12 am y 6 am, permitir la fecha de entrada con un día anterior
+      fechaEntrada.subtract(1, 'days');
+    } else {
+      // Si es después de las 6 am, validar que la fecha de entrada sea después de la actual
+      if (!fechaEntrada.isValid() || fechaEntrada.isBefore(fechaActual, "day")) {
+        alert("La fecha de entrada no es válida.");
+        return;
+      }
+    }
+    fechaEntrada.subtract(5, 'hours');
+    var ent = fechaEntrada.toISOString().replace("T", " ").slice(0, 19);
+    $("#nuevaFechaEntrada").val(ent);
 
-  }
-  var ent = fechaEntrada.toISOString().replace("T", " ").slice(0, 19);
-  $("#nuevaFechaEntrada").val(ent);
-
-  this.submit();
+    this.submit();
 });
 
 
@@ -362,18 +384,28 @@ $(".formularioPago").submit(function (event) {
 });
 $(".formularioEditarReserva").submit(function (event) {
   event.preventDefault();
+  var fechaActual = moment();
 
-  var fechaEnt = $("#editarFechaIngreso").val();
-  var fechaEntrada = new Date(fechaEnt);
-  fechaEntrada.setHours(fechaEntrada.getHours() - 5);
+  var fechaEntrada = moment($("#editarFechaIngreso").val(), "DD MMMM YYYY, h:mm a");
+  var fechaSalida = moment($("#editarFechaSalida").val(), "DD MMMM YYYY, h:mm a");
+  if (!fechaEntrada.isValid()||fechaEntrada.isAfter(fechaSalida)) {
+    alert("La fecha de entrada no es válida.");
+    return;
+  }
+  fechaEntrada.subtract(5, 'hours');
   var ent = fechaEntrada.toISOString().replace("T", " ").slice(0, 19);
   $("#editarResFechaIngreso").val(ent);
-
-  var fecha = $("#editarFechaSalida").val();
-  var fechaSalida = new Date(fecha);
-  fechaSalida.setHours(fechaSalida.getHours() - 5);
+  
+  if (!fechaSalida.isValid() || fechaSalida.isBefore(fechaEntrada) || fechaSalida.isBefore(fechaActual)) {
+    alert("La fecha de salida no es válida.");
+    return;
+  }
+  fechaSalida.subtract(5, 'hours');
   var sal = fechaSalida.toISOString().replace("T", " ").slice(0, 19);
   $("#editarResFechaSalida").val(sal);
+
+  $("#editarResTarifa").prop("disabled", false);
+
 
   this.submit();
 });

@@ -252,7 +252,7 @@
                   <span class="input-group-addon">
                     <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
                   </span>
-                  <input type="number" class="form-control input-lg" id="editarResTarifa" name="editarResTarifa" placeholder="Ingrese la tarifa" autocomplete="off" required>
+                  <input type="number" class="form-control input-lg" id="editarResTarifa" name="editarResTarifa" placeholder="Ingrese la tarifa" autocomplete="off" required disabled>
                 </div>
               </div>
               <!-- Text -->

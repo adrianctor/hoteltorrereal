@@ -30,47 +30,11 @@ session_start();
         <link rel="stylesheet" href="vistas/plugins/select2-bootstrap4-theme/select2-bootstrap4.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="vistas/adminlte/dist/css/adminlte.css">
-
-        <!--PLUGINS JAVASCRIPT-->
-        <!-- jQuery -->
-        <script src="vistas/plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="vistas/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- DataTables  & Plugins -->
-        <script src="vistas/plugins/datatables/jquery.dataTables.js"></script>
-        <script src="vistas/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-        <script src="vistas/plugins/datatables-responsive/js/dataTables.responsive.js"></script>
-        <script src="vistas/plugins/datatables-responsive/js/responsive.bootstrap4.js"></script>
-        <script src="vistas/plugins/datatables-buttons/js/dataTables.buttons.js"></script>
-        <script src="vistas/plugins/datatables-buttons/js/buttons.bootstrap4.js"></script>
-        <script src="vistas/plugins/datatables-buttons/js/buttons.html5.js"></script>
-        <script src="vistas/plugins/datatables-buttons/js/buttons.print.js"></script>
-        <script src="vistas/plugins/datatables-buttons/js/buttons.colVis.js"></script>
-        <script src="vistas/plugins/jszip/jszip.js"></script>
-        <script src="vistas/plugins/pdfmake/pdfmake.js"></script>
-        <script src="vistas/plugins/pdfmake/vfs_fonts.js"></script>
-        <!-- SweetAlert2 -->
-        <script src="vistas/plugins/sweetalert2/sweetalert2.js"></script>
-        <script src='vistas/plugins/fullcalendar/index.moment.js'></script>
-        <script src='vistas/plugins/fullcalendar/index.global.scheudler.js'></script>
-        <!-- moment lib -->
-        
-        <script src='vistas/plugins/moment/locale/es.js'></script>
-        <!-- the moment-to-fullcalendar connector. must go AFTER the moment lib -->
-        <script src='vistas/plugins/fullcalendar/index.global.moment.js'></script>
-        
-        <!-- FullCalendar -->
-        <!-- <script src='vistas/plugins/fullcalendar/index.global.js'></script> -->
-        <!-- ChartJS -->
-        <script src="vistas/plugins/chart.js/Chart.js"></script>
-        <!-- Tempusdominus -->
-        <script src="vistas/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js"></script>
-        <!-- Select2 -->
-        <script src="vistas/plugins/select2/js/select2.full.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="vistas/adminlte/dist/js/adminlte.js"></script>
-        
     </head>
+    <!-- SweetAlert2 -->
+    <script src="vistas/plugins/sweetalert2/sweetalert2.js"></script>
+    <script src='vistas/plugins/fullcalendar/index.moment.js'></script>
+    <script src='vistas/plugins/fullcalendar/index.global.scheudler.js'></script>
     <body class="hold-transition sidebar-collapse sidebar-mini login-page layout-fixed">
         <?php
             if (isset($_SESSION["varSesionIniciada"]) && $_SESSION["varSesionIniciada"] == "Verdadero") {
@@ -109,7 +73,41 @@ session_start();
                 include "modulos/login.php";
             }
         ?>
+        <!--PLUGINS JAVASCRIPT-->
+        <!-- jQuery -->
+        <script src="vistas/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="vistas/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- DataTables  & Plugins -->
+        <script src="vistas/plugins/datatables/jquery.dataTables.js"></script>
+        <script src="vistas/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+        <script src="vistas/plugins/datatables-responsive/js/dataTables.responsive.js"></script>
+        <script src="vistas/plugins/datatables-responsive/js/responsive.bootstrap4.js"></script>
+        <script src="vistas/plugins/datatables-buttons/js/dataTables.buttons.js"></script>
+        <script src="vistas/plugins/datatables-buttons/js/buttons.bootstrap4.js"></script>
+        <script src="vistas/plugins/datatables-buttons/js/buttons.html5.js"></script>
+        <script src="vistas/plugins/datatables-buttons/js/buttons.print.js"></script>
+        <script src="vistas/plugins/datatables-buttons/js/buttons.colVis.js"></script>
+        <script src="vistas/plugins/jszip/jszip.js"></script>
+        <script src="vistas/plugins/pdfmake/pdfmake.js"></script>
+        <script src="vistas/plugins/pdfmake/vfs_fonts.js"></script>
         
+        <!-- moment lib -->
+        
+        <script src='vistas/plugins/moment/locale/es.js'></script>
+        <!-- the moment-to-fullcalendar connector. must go AFTER the moment lib -->
+        <script src='vistas/plugins/fullcalendar/index.global.moment.js'></script>
+        
+        <!-- FullCalendar -->
+        <!-- <script src='vistas/plugins/fullcalendar/index.global.js'></script> -->
+        <!-- ChartJS -->
+        <script src="vistas/plugins/chart.js/Chart.js"></script>
+        <!-- Tempusdominus -->
+        <script src="vistas/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js"></script>
+        <!-- Select2 -->
+        <script src="vistas/plugins/select2/js/select2.full.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="vistas/adminlte/dist/js/adminlte.js"></script>
         <script src="vistas/js/plantilla.js"></script>
         <script src="vistas/js/empleados.js"></script>
         <script src="vistas/js/clientes.js"></script>
