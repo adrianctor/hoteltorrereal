@@ -38,7 +38,7 @@ session_start();
     <body class="hold-transition sidebar-collapse sidebar-mini login-page layout-fixed">
         <?php
             if (isset($_SESSION["varSesionIniciada"]) && $_SESSION["varSesionIniciada"] == "Verdadero") {
-                echo '<div class="wrapper">';
+                echo '<div class="wrapper" style="display:block">';
                 include "modulos/header.php";
                 include "modulos/menu.php";
                 if (isset($_GET["ruta"])) {

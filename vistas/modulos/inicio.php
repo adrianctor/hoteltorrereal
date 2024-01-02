@@ -9,7 +9,6 @@
         <div class="card-header">
           <h3 class="card-title">Inicio</h3>
         </div>
-
         <div class="card-body">
           Empecemos
         </div>
