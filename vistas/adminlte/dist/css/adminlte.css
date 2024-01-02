@@ -53174,3 +53174,17 @@ a.text-muted:hover {
   border-color: #4b545c !important;
 }
 /*# sourceMappingURL=adminlte.css.map */
+/* CSS clientes.php */
+.form-group {
+  position: relative;
+}
+
+.form-group label {
+  position: absolute;
+  top: -14px;
+  left: 10px;
+  padding: 0 5px;
+  background-color: white;
+  transition: all 0.3s ease-out;
+  pointer-events: none;
+}

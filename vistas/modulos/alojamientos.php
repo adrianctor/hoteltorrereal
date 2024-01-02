@@ -90,10 +90,9 @@
 
               <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="nav-icon fas fa-book"  style="margin-right: 10px;margin-top: 10px;"></i>
-                  </span>
                   <input type="text" class="form-control input-lg" name="nuevoAlojamiento" placeholder="Ingresar el nombre" required>
+                  <label for="nuevoAlojamiento">
+                        Nombre*</label>
                 </div>
               </div>
 
@@ -113,43 +112,41 @@
   </div>
 
   <div id="mdlEditarAlojamiento" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <form role="form" method="post">
-                  <div class="modal-header">
-                      <h5 class="modal-title">Editar alojamiento</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white;">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <div class="box-body">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form role="form" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar alojamiento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="box-body">
 
-                          <div class="form-group">
-                              <div class="input-group">
-                                  <span class="input-group-addon">
-                                    <i class="nav-icon fas fa-user-tie"  style="margin-right: 10px;margin-top: 10px;"></i>
-                                  </span>
-                                  <input autocomplete="off" type="text" class="form-control input-lg" id="editarAlojamiento" name="editarAlojamiento" value="" required>
-                                  <input type="hidden"  name="idAlojamiento" id="idAlojamiento" required>
-                              </div>
-                          </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input autocomplete="off" type="text" class="form-control input-lg" id="editarAlojamiento" name="editarAlojamiento" value="" required>
+                            <input type="hidden"  name="idAlojamiento" id="idAlojamiento" required>
+                            <label for="editarAlojamiento">Nombre*</label>
+                        </div>
+                    </div>
 
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cerrar</button>
-                      <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                  </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
 
-                  <?php
-                    $editarAlojamiento = new ControladorAlojamientos();
-                    $editarAlojamiento -> ctrEditarAlojamiento();
-                  ?>
+            <?php
+              $editarAlojamiento = new ControladorAlojamientos();
+              $editarAlojamiento -> ctrEditarAlojamiento();
+            ?>
 
-              </form>
-          </div>
+        </form>
       </div>
+    </div>
   </div>
   <?php
     $borrarCategoria = new ControladorAlojamientos();

@@ -67,10 +67,6 @@
                   <!-- Select -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                          <i class="far fa-id-card" style="margin-right: 10px;margin-top: 10px;"></i>
-                        <!--<i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>-->
-                      </span>
                       <select class="form-control input-lg nuevoTipo" name="nuevoTipo" required>
                         <option value="RC">Registro civil</option>
                         <option value="TI">Tarjeta de identidad</option>
@@ -84,6 +80,7 @@
                         <option value="NUIP">NUIP</option>
                         <option value="FOREIGN_NIT">NIT de otro país</option>
                       </select>
+                      <label for="nuevoTipo" >Tipo ID*</label>
                     </div>
                   </div>
                 </div>
@@ -91,11 +88,9 @@
                   <!-- Number -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                          <i class="fas fa-id-card-alt" style="margin-right: 5px;margin-top: 10px;"></i>
-                        <!--<i class="nav-icon fa fa-user-tag" style="margin-right: 5px;margin-top: 10px;"></i>-->
-                      </span>
                       <input type="text" class="form-control input-lg nuevaIdentificacion" name="nuevaIdentificacion" placeholder="Ingresar identificación *" autocomplete="off" min="1" required>
+                      <label for="nuevaIdentificacion">
+                        Identificación*</label>
                     </div>
                   </div>
                 </div>
@@ -103,10 +98,8 @@
                   <!-- Number -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fa fa-user-tag" style="margin-right: 5px;margin-top: 10px;"></i>
-                      </span>
                       <input type="text" class="form-control input-lg nuevoDigito" name="nuevoDigito" placeholder="Ingresar dígito verificación *" autocomplete="off">
+                      <label for="nuevoDigito">Digito*</label>
                     </div>
                   </div>
                 </div>
@@ -116,10 +109,9 @@
                   <!-- Text -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <input type="text" class="form-control input-lg" id="nuevoPrimerNom" name="nuevoPrimerNombre" placeholder="Ingresar el primer nombre *" autocomplete="off" required onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                      <label for="nuevoPrimerNombre">
+                        Nombre 1*</label>
                     </div>
                   </div>
                 </div>
@@ -127,10 +119,9 @@
                   <!-- Text -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <input type="text" class="form-control input-lg" id="nuevoSegundoNom" name="nuevoSegundoNombre" placeholder="Ingresar el segundo nombre" autocomplete="off" onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                      <label for="nuevoSegundoNombre">
+                        Nombre 2</label>
                     </div>
                   </div>
                 </div>
@@ -140,10 +131,9 @@
                   <!-- Text -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <input type="text" class="form-control input-lg" id="nuevoPrimerApe" name="nuevoPrimerApellido" placeholder="Ingresar el primer apellido *" autocomplete="off" required onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                      <label for="nuevoPrimerApellido">
+                        Apellido 1*</label>
                     </div>
                   </div>
                 </div>
@@ -151,10 +141,9 @@
                   <!-- Text -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <input type="text" class="form-control input-lg" id="nuevoSegundoApe" name="nuevoSegundoApellido" placeholder="Ingresar el segundo apellido" autocomplete="off" onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                      <label for="nuevoSegundoApellido">
+                        Apellido 2</label>
                     </div>
                   </div>
                 </div>
@@ -162,10 +151,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
+                    <div class="input-group">                      
                       <select class="form-control input-lg" name="nuevoRegimen" placeholder="Seleccionar el  régimen">
                         <option value="SIMPLIFIED_REGIME">No responsable del IVA</option>
                         <option value="COMMON_REGIME">Responsable del IVA</option>
@@ -174,20 +160,21 @@
                         <option value="NATIONAL_CONSUMPTION_TAX">Impuesto Nacional al Consumo</option>
                         <option value="INC_IVA_RESPONSIBLE">Responsable de IVA e INC</option>
                       </select>
+                      <label for="nuevoRegimen">
+                        Régimen*</label>
                     </div>
                   </div>
                 </div>
 
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
+                    <div class="input-group">                      
                       <select class="form-control input-lg" name="nuevoTipoPersona" placeholder="Seleccionar tipo de persona">
                         <option value="PERSON_ENTITY">Persona natural</option>
                         <option value="LEGAL_ENTITY">Persona jurídica</option>
                       </select>
+                      <label for="nuevoTipoPersona">
+                        Tipo Persona*</label>
                     </div>
                   </div>
                 </div>
@@ -197,11 +184,10 @@
                   <!-- Select -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <select class="form-control input-lg selectPais nuevoPais" id="nuevoPais" name="nuevoPais" required>
                       </select>
+                      <label for="nuevoPais">
+                        Pais*</label>
                     </div>
                   </div>
                 </div>
@@ -210,11 +196,10 @@
                   <!-- Select -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <select class="form-control input-lg selectDepartamento nuevoDepartamento" id="nuevoDepartamento" name="nuevoDepartamento" required>
                       </select>
+                      <label for="nuevoDepartamento">
+                        Departamento*</label>
                     </div>
                   </div>
                 </div>
@@ -223,11 +208,10 @@
                   <!-- Select -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <select class="form-control input-lg selectCiudad nuevoCiudad" id="nuevoCiudad" name="nuevaCiudad" required>
                       </select>
+                      <label for="nuevaCiudad">
+                        Ciudad*</label>
                     </div>
                   </div>
                 </div>
@@ -237,32 +221,28 @@
                   <!-- Text -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <input type="text" class="form-control input-lg" id="nuevaDir" name="nuevaDireccion" placeholder="Ingresar la dirección *" autocomplete="off" required onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                      <label for="nuevaDireccion">
+                        Dirección*</label>
                     </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-phone-alt" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <input style="margin-left: 4px;" type="tel" class="form-control input-lg" name="nuevoTelefono" placeholder="Ingresar el número de telefono *" data-mask autocomplete="off" required>
+                      <label for="nuevoTelefono">
+                        Teléfono*</label>
                     </div>
                   </div>
                 </div>
               </div>
-
               <!-- Text -->
               <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
-                  </span>
                   <input type="email" class="form-control input-lg" name="nuevoCorreo" placeholder="Ingresar el correo electrónico" autocomplete="off">
+                  <label for="nuevoCorreo">
+                        Correo</label>
                 </div>
               </div>
 
@@ -302,9 +282,6 @@
                   <!-- Select -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <select class="form-control input-lg editarTipo" id="editarTipo" name="editarTipo" required>
                         <option value="RC">Registro civil</option>
                         <option value="TI">Tarjeta de identidad</option>
@@ -318,6 +295,8 @@
                         <option value="NUIP">NUIP</option>
                         <option value="FOREIGN_NIT">NIT de otro país</option>
                       </select>
+                      <label for="editarTipo">
+                        Tipo ID*</label>
                     </div>
                   </div>
                 </div>
@@ -325,12 +304,11 @@
                   <!-- Number -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fa fa-user-tag" style="margin-right: 5px;margin-top: 10px;"></i>
-                      </span>
                       <input type="text" class="form-control input-lg editarIdentificacion" id="editarIdentificacion" name="editarIdentificacion" placeholder="Ingresar identificación *" autocomplete="off" min="1" required>
                       <input type="hidden" id="editarId" name="editarId">
                       <input type="hidden" id="editarDirId" name="editarDirId">
+                      <label for="editarIdentificacion">
+                        Identificación*</label>
                     </div>
                   </div>
                 </div>
@@ -338,10 +316,9 @@
                   <!-- Number -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fa fa-user-tag" style="margin-right: 5px;margin-top: 10px;"></i>
-                      </span>
                       <input type="text" class="form-control input-lg editarDigito" id="editarDigito" name="editarDigito" placeholder="Ingresar dígito verificación *" autocomplete="off">
+                      <label for="editarDigito">
+                        Digito*</label>
                     </div>
                   </div>
                 </div>
@@ -351,10 +328,9 @@
                   <!-- Text -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <input type="text" class="form-control input-lg" id="editarPrimerNom" name="editarPrimerNombre" placeholder="Ingresar el primer nombre *" autocomplete="off" required onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                      <label for="editarPrimerNombre">
+                        Nombre 1*</label>
                     </div>
                   </div>
                 </div>
@@ -362,10 +338,9 @@
                   <!-- Text -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <input type="text" class="form-control input-lg" id="editarSegundoNom" name="editarSegundoNombre" placeholder="Ingresar el segundo nombre" autocomplete="off" onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                      <label for="editarSegundoNombre">
+                        Nombre 2</label>
                     </div>
                   </div>
                 </div>
@@ -375,10 +350,9 @@
                   <!-- Text -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <input type="text" class="form-control input-lg" id="editarPrimerApe" name="editarPrimerApellido" placeholder="Ingresar el primer apellido *" autocomplete="off" required onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                      <label for="editarPrimerApellido">
+                        Apellido 1*</label>
                     </div>
                   </div>
                 </div>
@@ -386,10 +360,9 @@
                   <!-- Text -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <input type="text" class="form-control input-lg" id="editarSegundoApe" name="editarSegundoApellido" placeholder="Ingresar el segundo apellido" autocomplete="off" onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                      <label for="editarSegundoApellido">
+                      Apellido 2</label>
                     </div>
                   </div>
                 </div>
@@ -398,9 +371,6 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <select class="form-control input-lg" id="editarRegimen" name="editarRegimen" placeholder="Seleccionar el  régimen">
                         <option value="SIMPLIFIED_REGIME">No responsable del IVA</option>
                         <option value="COMMON_REGIME">Responsable del IVA</option>
@@ -409,6 +379,8 @@
                         <option value="NATIONAL_CONSUMPTION_TAX">Impuesto Nacional al Consumo</option>
                         <option value="INC_IVA_RESPONSIBLE">Responsable de IVA e INC</option>
                       </select>
+                      <label for="editarRegimen">
+                        Régimen*</label>
                     </div>
                   </div>
                 </div>
@@ -416,13 +388,12 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <select class="form-control input-lg" name="editarTipoPersona" placeholder="Seleccionar tipo de persona">
                         <option value="PERSON_ENTITY">Persona natural</option>
                         <option value="LEGAL_ENTITY">Persona jurídica</option>
                       </select>
+                      <label for="editarTipoPersona">
+                        Tipo Persona*</label>
                     </div>
                   </div>
                 </div>
@@ -432,11 +403,10 @@
                   <!-- Select -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <select class="form-control input-lg selectEditarPais editarPais" id="editarPais" name="editarPais" required>
                       </select>
+                      <label for="editarPais">
+                        País*</label>
                     </div>
                   </div>
                 </div>
@@ -445,11 +415,10 @@
                   <!-- Select -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <select class="form-control input-lg selectEditarDepartamento editarDepartamento" id="editarDepartamento" name="editarDepartamento" required>
                       </select>
+                      <label for="editarDepartamento">
+                        Departamento*</label>
                     </div>
                   </div>
                 </div>
@@ -458,11 +427,10 @@
                   <!-- Select -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-book" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <select class="form-control input-lg selectEditarCiudad editarCiudad" id="editarCiudad" name="editarCiudad" required>
                       </select>
+                      <label for="editarCiudad">
+                        Ciudad*</label>
                     </div>
                   </div>
                 </div>
@@ -472,20 +440,18 @@
                   <!-- Text -->
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <input type="text" class="form-control input-lg" id="editarDir" name="editarDireccion" placeholder="Ingresar la dirección *" autocomplete="off" required onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                      <label for="editarDireccion">
+                        Dirección*</label>
                     </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="nav-icon fas fa-phone-alt" style="margin-right: 10px;margin-top: 10px;"></i>
-                      </span>
                       <input style="margin-left: 4px;" type="tel" class="form-control input-lg" id="editarTelefono" name="editarTelefono" placeholder="Ingresar el número de telefono *" data-mask autocomplete="off" required>
+                      <label for="editarTelefono">
+                        Teléfono*</label>
                     </div>
                   </div>
                 </div>
@@ -494,10 +460,9 @@
               <!-- Text -->
               <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
-                  </span>
                   <input type="email" class="form-control input-lg" id="editarCorreo" name="editarCorreo" placeholder="Ingresar el correo electrónico" autocomplete="off">
+                  <label for="editarDepartamento">
+                        Correo</label>
                 </div>
               </div>
 

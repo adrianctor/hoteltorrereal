@@ -26,6 +26,7 @@ $(document).ready(function(){
         "initComplete": function() {
             tabla.buttons().container().appendTo('#tablaVentas_wrapper .col-md-6:eq(0)');
             $("#tablaVentas").show();
+            tabla.order([0, 'desc']).draw();
         },
         "buttons": [
             {
@@ -53,6 +54,7 @@ $(document).ready(function(){
              {"data":"facTotal"},
              {"data":"facCobrado"},
              {"data":"facEstado"},
+             {"data":"facEstadoDian"},
              {"data":"facBotones"}
          ],
         "deferRender": true,

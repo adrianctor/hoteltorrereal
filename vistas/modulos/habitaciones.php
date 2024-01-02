@@ -60,18 +60,13 @@
 
               <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="nav-icon fab fa-product-hunt"  style="margin-right: 10px;margin-top: 10px;"></i>
-                  </span>
                   <input type="text" class="form-control input-lg" id="nuevaDesc" name="nuevaDescripcion" placeholder="Ingresar nombre" autocomplete="off" required onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                  <label for="nuevaDescripcion">Nombre*</label>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="nav-icon fas fa-book"  style="margin-right: 10px;margin-top: 10px;"></i>
-                  </span>
                   <select class="form-control input-lg" name="nuevoAlojamiento">
                     <option value="">Seleccionar alojamiento</option>
                       <?php
@@ -83,6 +78,7 @@
                         }
                       ?>
                   </select>
+                  <label for="nuevoAlojamiento">Tipo*</label>
                 </div>
               </div>
 
@@ -109,67 +105,63 @@
     </div>
   </div>
   <div id="mdlEditarHabitacion"class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <form role="form" method="post" enctype="multipart/form-data">
-                  <div class="modal-header">
-                      <h5 class="modal-title">Editar habitación</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white;">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <div class="box-body">
-
-                          <div class="form-group">
-                              <div class="input-group">
-                                  <span class="input-group-addon">
-                                    <i class="nav-icon fab fa-product-hunt"  style="margin-right: 10px;margin-top: 10px;"></i>
-                                  </span>
-                                  <input type="text" class="form-control input-lg" id="editarDescripcion" name="editarDescripcion" autocomplete="off" required onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
-                                  <input type="hidden" class="form-control input-lg" id="editarId" name="editarId">
-                              </div>
-                          </div>
-
-                          <div class="form-group">
-                              <div class="input-group">
-                                  <span class="input-group-addon">
-                                    <i class="nav-icon fas fa-book"  style="margin-right: 10px;margin-top: 10px;"></i>
-                                  </span>
-                                  <select class="form-control input-lg" name="editarAlojamiento">
-                                    <option id="editarAlojamiento"></option>
-                                    <?php
-                                      $item=null;
-                                      $valor=null;
-                                      $categorias = ControladorAlojamientos::ctrMostrarAlojamiento($item,$valor);
-                                      foreach ($categorias as $key => $value){
-                                            echo '<option value="'.$value["alId"].'">'.$value["alNombre"].'</option>';
-                                      }
-                                    ?>
-                                  </select>
-                              </div>
-                          </div>
-
-                          <div class="form-group">
-                              <div class="panel">SUBIR IMAGEN</div>
-                              <input type="file" class="nuevaImagen" name="editarImagen">
-                              <p class="help-block">Peso maximo de la foto 2 mb</p>
-                              <img src="vistas/img/habitaciones/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
-                              <input type="hidden" name="imagenActual" id="imagenActual">
-                          </div>
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="submit" class="btn btn-primary">Editar</button>
-                  </div>
-              </form>
-              <?php
-              $editarHabitacion = new ControladorHabitaciones();
-              $editarHabitacion -> ctreditarHabitacion();
-              ?>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form role="form" method="post" enctype="multipart/form-data">
+          <div class="modal-header">
+              <h5 class="modal-title">Editar habitación</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white;">
+                  <span aria-hidden="true">&times;</span>
+              </button>
           </div>
+          <div class="modal-body">
+            <div class="box-body">
+
+              <div class="form-group">
+                  <div class="input-group">
+                      <input type="text" class="form-control input-lg" id="editarDescripcion" name="editarDescripcion" autocomplete="off" required onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                      <input type="hidden" class="form-control input-lg" id="editarId" name="editarId">
+                      <label for="editarDescripcion">Nombre*</label>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="input-group">
+                      <select class="form-control input-lg" name="editarAlojamiento">
+                        <option id="editarAlojamiento"></option>
+                        <?php
+                          $item=null;
+                          $valor=null;
+                          $categorias = ControladorAlojamientos::ctrMostrarAlojamiento($item,$valor);
+                          foreach ($categorias as $key => $value){
+                                echo '<option value="'.$value["alId"].'">'.$value["alNombre"].'</option>';
+                          }
+                        ?>
+                      </select>
+                      <label for="editarAlojamiento">Tipo*</label>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="panel">SUBIR IMAGEN</div>
+                  <input type="file" class="nuevaImagen" name="editarImagen">
+                  <p class="help-block">Peso maximo de la foto 2 mb</p>
+                  <img src="vistas/img/habitaciones/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
+                  <input type="hidden" name="imagenActual" id="imagenActual">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Editar</button>
+          </div>
+        </form>
+        <?php
+        $editarHabitacion = new ControladorHabitaciones();
+        $editarHabitacion -> ctreditarHabitacion();
+        ?>
       </div>
+    </div>
   </div>
   <?php
   $borrarProducto = new ControladorHabitaciones();

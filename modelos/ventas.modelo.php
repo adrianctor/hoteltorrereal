@@ -16,16 +16,25 @@ require_once "conexion.php";
                 return $stmt -> fetchAll();
             }
         }
-        static public function mdlIngresarVenta($prmTabla, $prmDatos){
-            $stmt = Conexion::conectar() -> prepare("INSERT INTO $prmTabla(cliId, cliNombre, cliTelefono, cliFecha) VALUES (:cliId, :cliNombre, :cliTelefono, :cliFecha)");
-            $stmt->bindParam(":cliId", $prmDatos["cliId"], PDO::PARAM_INT);
+        static public function mdlIngresarVentaId($prmTabla, $prmDatos){
+            $stmt = Conexion::conectar() -> prepare("INSERT INTO $prmTabla(facId, facReferencia, cliNombre, cliIdentificacion, facSubtotal, facTotal, facCobrado, facEstado, facEstadoDian, factImpuesto, facFecha, facVencimiento) VALUES (:facId, :facReferencia, :cliNombre, :cliIdentificacion, :facSubtotal, :facTotal, :facCobrado, :facEstado, :facEstadoDian, :factImpuesto, :facFecha, :facVencimiento)");
+            $stmt->bindParam(":facId", $prmDatos["facId"], PDO::PARAM_INT);
+            $stmt->bindParam(":facReferencia", $prmDatos["facReferencia"], PDO::PARAM_STR);
             $stmt->bindParam(":cliNombre", $prmDatos["cliNombre"], PDO::PARAM_STR);
-            $stmt->bindParam(":cliTelefono", $prmDatos["cliTelefono"], PDO::PARAM_STR);
-            $stmt->bindParam(":cliFecha", $prmDatos["cliFecha"], PDO::PARAM_STR);
+            $stmt->bindParam(":cliIdentificacion", $prmDatos["cliIdentificacion"], PDO::PARAM_STR);
+            $stmt->bindParam(":facSubtotal", $prmDatos["facSubtotal"], PDO::PARAM_STR);
+            $stmt->bindParam(":facTotal", $prmDatos["facTotal"], PDO::PARAM_STR);
+            $stmt->bindParam(":facCobrado", $prmDatos["facCobrado"], PDO::PARAM_STR);
+            $stmt->bindParam(":facEstado", $prmDatos["facEstado"], PDO::PARAM_STR);
+            $stmt->bindParam(":facEstadoDian", $prmDatos["facEstadoDian"], PDO::PARAM_STR);
+            $stmt->bindParam(":factImpuesto", $prmDatos["factImpuesto"], PDO::PARAM_STR);
+            $stmt->bindParam(":facFecha", $prmDatos["facFecha"], PDO::PARAM_STR);
+            $stmt->bindParam(":facVencimiento", $prmDatos["facVencimiento"], PDO::PARAM_STR);
+            
             if($stmt->execute()){
-                return "verdadero";
+                return true;
             }else{
-                return "falso";
+                return false;
             }
         }
         static public function mdlEditarVenta($tabla, $datos){
@@ -63,5 +72,10 @@ require_once "conexion.php";
             catch(PDOException $e){
                 echo $e->getMessage();
             }
+        }
+        static public function mdlMostrarUltimaVenta($prmTabla){
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $prmTabla ORDER BY facId DESC LIMIT 1");
+            $stmt -> execute();
+            return $stmt -> fetch();
         }
     }
