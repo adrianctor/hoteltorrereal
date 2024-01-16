@@ -1,14 +1,5 @@
 $(function () {
-    /* ChartJS
-     * -------
-     * Here we will create a few charts using ChartJS
-     */
-
-    //--------------
-    //- AREA CHART -
-    //--------------
-
-    // Get context with jQuery - using jQuery's .get() method.
+    // ChartJS
     var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
     var areaChartData = {

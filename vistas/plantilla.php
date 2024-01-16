@@ -30,6 +30,10 @@ session_start();
         <link rel="stylesheet" href="vistas/plugins/select2-bootstrap4-theme/select2-bootstrap4.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="vistas/adminlte/dist/css/adminlte.css">
+        <link rel="stylesheet" href="vistas/plugins/summernote/summernote-bs4.min.css">
+        <link rel="stylesheet" href="vistas/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+        <link rel="stylesheet" href="vistas/plugins/daterangepicker/daterangepicker.css">
+        <link rel="stylesheet" href="vistas/plugins/jqvmap/jqvmap.min.css">
     </head>
     <!-- SweetAlert2 -->
     <script src="vistas/plugins/sweetalert2/sweetalert2.js"></script>
@@ -76,6 +80,7 @@ session_start();
         <!--PLUGINS JAVASCRIPT-->
         <!-- jQuery -->
         <script src="vistas/plugins/jquery/jquery.min.js"></script>
+        <script src="vistas/plugins/jquery-ui/jquery-ui.min.js"></script>
         <!-- Bootstrap -->
         <script src="vistas/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- DataTables  & Plugins -->
@@ -102,6 +107,13 @@ session_start();
         <!-- <script src='vistas/plugins/fullcalendar/index.global.js'></script> -->
         <!-- ChartJS -->
         <script src="vistas/plugins/chart.js/Chart.js"></script>
+        <script src="vistas/plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="vistas/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+        <!-- <script src="vistas/plugins/sparklines/sparkline.js"></script> -->
+        <script src="vistas/plugins/jquery-knob/jquery.knob.min.js"></script>
+        <script src="vistas/plugins/summernote/summernote-bs4.min.js"></script>
+        <script src="vistas/plugins/daterangepicker/daterangepicker.js"></script>
+
         <!-- Tempusdominus -->
         <script src="vistas/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js"></script>
         <!-- Select2 -->
@@ -116,6 +128,7 @@ session_start();
         <script src="vistas/js/ventas.js"></script>
         <script src="vistas/js/ocupacion.js"></script>
         <script src="vistas/js/reportes.js"></script>
+        <script src="vistas/js/inicio.js"></script>
     </body>
 
 </html>
