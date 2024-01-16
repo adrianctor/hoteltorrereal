@@ -115,6 +115,7 @@ session_start();
         <script src="vistas/js/habitaciones.js"></script>
         <script src="vistas/js/ventas.js"></script>
         <script src="vistas/js/ocupacion.js"></script>
+        <script src="vistas/js/reportes.js"></script>
     </body>
 
 </html>

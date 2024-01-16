@@ -368,7 +368,6 @@ $(".formularioReserva").submit(function (event) {
     this.submit();
 });
 
-
 $(".formularioPago").submit(function (event) {
   event.preventDefault();
   var resId = $("#editarResId").val();
