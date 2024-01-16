@@ -27,32 +27,31 @@ class ModeloPagos
     // }
     static public function mdlIngresarPago($prmTabla, $prmDatos)
     {
-        $pdo = new PDO("mysql:host=localhost;dbname=torrereal", "root", "", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
-        $pdo->exec("set names utf8");
+        $pdo = Conexion::conectar();
         $stmt = $pdo->prepare("INSERT INTO $prmTabla(pagTipo, pagTotal, pagObservacion) VALUES (:pagTipo, :pagTotal, :pagObservacion)");
+        //$stmt = $pdo->prepare("INSERT INTO $prmTabla(pagTipo, pagTotal, pagObservacion) VALUES (:pagTipo, :pagTotal, :pagObservacion)");
         $stmt->bindParam(":pagTipo", $prmDatos["pagTipo"], PDO::PARAM_STR);
         $stmt->bindParam(":pagTotal", $prmDatos["pagTotal"], PDO::PARAM_INT);
         $stmt->bindParam(":pagObservacion", $prmDatos["pagObservacion"], PDO::PARAM_STR);
         $num = $stmt->execute();
-        $err = $stmt->errorInfo();
-
         if ($num) {
             $idInsertado = $pdo->lastInsertId();
             $prmTabla = "pago_reserva";
-            $stmt = Conexion::conectar()->prepare("INSERT INTO $prmTabla(resId, pagId) VALUES (:resId, :pagId)");
+            $stmt = $pdo->prepare("INSERT INTO $prmTabla(resId, pagId) VALUES (:resId, :pagId)");
             $stmt->bindParam(":resId", $prmDatos["resId"], PDO::PARAM_INT);
             $stmt->bindParam(":pagId", $idInsertado, PDO::PARAM_INT);
             $num = $stmt->execute();
-            $err = $stmt->errorInfo();
+            $stmt = null;
             if($num){
                 return true;
             }else{
                 return false;
             }
         } else {
+            $stmt = null;
             return false;
         }
-        $stmt = null;
+        
     }
     // static public function mdlEditarPago($tabla, $datos)
     // {

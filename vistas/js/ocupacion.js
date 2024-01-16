@@ -344,14 +344,9 @@ $(".formularioReserva").submit(function (event) {
       alert("La fecha de salida no es válida.");
       return;
     }
-    fechaSalida.subtract(5, 'hours');
+    // fechaSalida.subtract(5, 'hours');
     var sal = fechaSalida.toISOString().replace("T", " ").slice(0, 19);
     $("#nuevaFechaSalida").val(sal);
-
-    // var fechaEntrada = new Date($("#fechaIngreso").val());
-    // if(fechaEntrada.getHours()>=0 && fechaEntrada.getHours()<=6){}
-    // fechaEntrada.setHours(fechaEntrada.getHours() - 5);
-    // if(fechaEntrada.getHours() < 5){}
     
     if (fechaActual.hours() >= 0 
         && fechaActual.hours() <= 5 
@@ -359,16 +354,14 @@ $(".formularioReserva").submit(function (event) {
           fechaEntrada.isAfter(fechaActual,"day")
         )
       ) {
-      // Si la hora actual está entre 12 am y 6 am, permitir la fecha de entrada con un día anterior
       fechaEntrada.subtract(1, 'days');
     } else {
-      // Si es después de las 6 am, validar que la fecha de entrada sea después de la actual
       if (!fechaEntrada.isValid() || fechaEntrada.isBefore(fechaActual, "day")) {
         alert("La fecha de entrada no es válida.");
         return;
       }
     }
-    fechaEntrada.subtract(5, 'hours');
+    // fechaEntrada.subtract(5, 'hours');
     var ent = fechaEntrada.toISOString().replace("T", " ").slice(0, 19);
     $("#nuevaFechaEntrada").val(ent);
 
