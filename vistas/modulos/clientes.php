@@ -89,7 +89,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <input type="text" class="form-control input-lg nuevaIdentificacion" name="nuevaIdentificacion" placeholder="Ingresar identificación *" autocomplete="off" min="1" required>
-                      <label for="nuevaIdentificacion">
+                      <label for="nuevaIdentificacion" >
                         Identificación*</label>
                     </div>
                   </div>
@@ -99,7 +99,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <input type="text" class="form-control input-lg nuevoDigito" name="nuevoDigito" placeholder="Ingresar dígito verificación *" autocomplete="off">
-                      <label for="nuevoDigito">Digito*</label>
+                      <label for="nuevoDigito" >Digito*</label>
                     </div>
                   </div>
                 </div>
@@ -110,7 +110,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <input type="text" class="form-control input-lg" id="nuevoPrimerNom" name="nuevoPrimerNombre" placeholder="Ingresar el primer nombre *" autocomplete="off" required onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
-                      <label for="nuevoPrimerNombre">
+                      <label for="nuevoPrimerNombre" >
                         Nombre 1*</label>
                     </div>
                   </div>
@@ -120,7 +120,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <input type="text" class="form-control input-lg" id="nuevoSegundoNom" name="nuevoSegundoNombre" placeholder="Ingresar el segundo nombre" autocomplete="off" onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
-                      <label for="nuevoSegundoNombre">
+                      <label for="nuevoSegundoNombre" >
                         Nombre 2</label>
                     </div>
                   </div>
@@ -295,8 +295,7 @@
                         <option value="NUIP">NUIP</option>
                         <option value="FOREIGN_NIT">NIT de otro país</option>
                       </select>
-                      <label for="editarTipo">
-                        Tipo ID*</label>
+                      <label for="editarTipo">Tipo ID*</label>
                     </div>
                   </div>
                 </div>
@@ -307,8 +306,7 @@
                       <input type="text" class="form-control input-lg editarIdentificacion" id="editarIdentificacion" name="editarIdentificacion" placeholder="Ingresar identificación *" autocomplete="off" min="1" required>
                       <input type="hidden" id="editarId" name="editarId">
                       <input type="hidden" id="editarDirId" name="editarDirId">
-                      <label for="editarIdentificacion">
-                        Identificación*</label>
+                      <label for="editarIdentificacion">Identificación*</label>
                     </div>
                   </div>
                 </div>

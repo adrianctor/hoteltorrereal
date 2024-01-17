@@ -103,43 +103,35 @@
 
               <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="nav-icon fas fa-user-tie"  style="margin-right: 10px;margin-top: 10px;"></i>
-                  </span>
                   <input autocomplete="off" type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" value="" onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" required>
+                  <label for="editarNombre">Nombre</label>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="nav-icon fa fa-user-tag"  style="margin-right: 10px;margin-top: 10px;"></i>
-                  </span>
                   <input autocomplete="off" type="text" class="form-control input-lg" id="editarApodo" name="editarApodo" value="" readonly>
+                  <label for="editarApodo">Usuario</label>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="nav-icon fa fa-key"  style="margin-right: 10px;margin-top: 10px;"></i>
-                  </span>
-                    <input type="password" class="form-control input-lg" name="editarContrasenia" placeholder="Digite una nueva contrasenia">
-                    <input type="hidden" id="contraseniaActual" name="contraseniaActual">
+                  <input type="password" class="form-control input-lg" name="editarContrasenia" placeholder="Digite una nueva contrasenia">
+                  <input type="hidden" id="contraseniaActual" name="contraseniaActual">
+                  <label for="editarContrasenia">Contraseña</label>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="nav-icon fa fa-users"  style="margin-right: 10px;margin-top: 10px;"></i>
-                  </span>
                     <select class="form-control input-lg" name="editarPerfil">
                         <option value="" id="editarPerfil"></option>
                         <option value="Administrador">Administrador</option>
                         <option value="Recepcionista">Recepcionista</option>
                         <option value="Otro">Otro</option>
                     </select>
+                    <label for="editarPerfil">Perfil</label>
                 </div>
               </div>
 
@@ -182,42 +174,31 @@
                       <div class="box-body">
                           <div class="form-group">
                               <div class="input-group">
-                                  <span class="input-group-addon">
-                                    <i class="nav-icon fas fa-user-tie" style="margin-right: 10px;margin-top: 10px;"></i>
-                                  </span>
-                                  <input autocomplete="off" type="text" class="form-control input-lg" name="nuevoNombre" id="nuevnom"
-                                         placeholder="Ingresar nombre" onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" required>
+                                  <input autocomplete="off" type="text" class="form-control input-lg" name="nuevoNombre" id="nuevnom" placeholder="Ingresar nombre" onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" required>
+                                  <label for="nuevoNombre">Nombre</label>
                               </div>
                           </div>
                           <div class="form-group">
                               <div class="input-group">
-                                  <span class="input-group-addon">
-                                    <i class="nav-icon fa fa-user-tag" style="margin-right: 10px;margin-top: 10px;"></i>
-                                  </span>
-                                  <input autocomplete="off" type="text" class="form-control input-lg" name="nuevoApodo"
-                                         placeholder="Ingresar usuario" id="nuevoApodo" required>
+                                  <input autocomplete="off" type="text" class="form-control input-lg" name="nuevoApodo" placeholder="Ingresar usuario" id="nuevoApodo" required>
+                                  <label for="nuevoApodo">Usuario</label>
                               </div>
                           </div>
                           <div class="form-group">
                               <div class="input-group">
-                                  <span class="input-group-addon">
-                                    <i class="nav-icon fa fa-key" style="margin-right: 10px;margin-top: 10px;"></i>
-                                  </span>
-                                  <input type="password" class="form-control input-lg" name="nuevaContrasenia"
-                                         placeholder="Ingresar contrasenia" required>
+                                  <input type="password" class="form-control input-lg" name="nuevaContrasenia" placeholder="Ingresar contrasenia" required>
+                                  <label for="nuevaContrasenia">Identificación</label>
                               </div>
                           </div>
 
                           <div class="form-group">
                               <div class="input-group">
-                                  <span class="input-group-addon">
-                                    <i class="nav-icon fa fa-users" style="margin-right: 10px;margin-top: 10px;"></i>
-                                  </span>
                                   <select class="form-control input-lg" name="nuevoPerfil">
                                       <option value="Administrador">Administrador</option>
                                       <option value="Recepcionista">Recepcionista</option>
                                       <option value="Otro">Otro</option>
                                   </select>
+                                  <label for="nuevoPerfil">Perfil</label>
                               </div>
                           </div>
                           <div class="form-group">

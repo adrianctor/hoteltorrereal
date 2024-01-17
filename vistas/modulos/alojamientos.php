@@ -91,7 +91,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <input type="text" class="form-control input-lg" name="nuevoAlojamiento" placeholder="Ingresar el nombre" required>
-                  <label for="nuevoAlojamiento">
+                  <label for="nuevoAlojamiento" >
                         Nombre*</label>
                 </div>
               </div>
@@ -128,7 +128,7 @@
                         <div class="input-group">
                             <input autocomplete="off" type="text" class="form-control input-lg" id="editarAlojamiento" name="editarAlojamiento" value="" required>
                             <input type="hidden"  name="idAlojamiento" id="idAlojamiento" required>
-                            <label for="editarAlojamiento">Nombre*</label>
+                            <label for="editarAlojamiento" >Nombre*</label>
                         </div>
                     </div>
 
