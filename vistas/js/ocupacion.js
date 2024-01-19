@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
       stickyHeaderDates: "true",
       timeZone: 'America/Bogota',
       initialView: 'resourceTimelineMonth',
-      slotMinWidth: 100,
+      slotMinWidth: 120,
       initialDate: now,
       eventOverlap: false,
       buttonText: {
@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
         center: 'title',
         right: 'resourceTimelineMonth'
       },
-      editable: false,
+      editable: true,
       locale: 'es',
-      resourceAreaHeaderContent: 'Alojamiento',
+      resourceAreaHeaderContent: 'Habitación',
       resourceOrder: 'title',
       resources: {
         url: 'ajax/resources.ajax.php',
@@ -62,10 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
         varFechaFinal.setDate(varFechaFinal.getDate() + 1);
         varFechaFinal.setHours(14);
         varAhora.setDate(varAhora.getDate() - 1);
-        //if(varFechaInicial.getHours()>=0 &&varFechaInicial.getHours()<=14){
-
-        //}
-        if (varAhora.getDate() <= varFechaInicial.getDate() && (varAhora.getHours() <= 14 || varAhora.getDate() + 1 <= varFechaInicial.getDate())) {
+        if (varAhora.getDate() <= varFechaInicial.getDate() && (varAhora.getHours() <= 6 || varAhora.getDate() + 1 <= varFechaInicial.getDate())) {
           var select = $("#nuevaHab");
           var idHabitacion = "All"
           var datos = new FormData();
@@ -109,30 +106,16 @@ document.addEventListener('DOMContentLoaded', function () {
           });
         }
       },
+      longPressDelay: 400,
       events: {
         url: 'ajax/events.ajax.php',
         method: 'POST',
       },
       eventClick: function (info) {
-        // var start = info.event.start;
-        // start = new Date(start.toISOString().substr(0, 19));
-        // //start.setHours(start.getHours() - 2);
-        // if (info.event.end != null) {
-        //   var end = info.event.end;
-        //   end = new Date(end.toISOString().substr(0, 19));
-        //   end.setDate(end.getDate() + 1);
-        //   //alert('Reserva: ' + start + " - " + end);
-        // }
-        // else {
-        //   var end = info.event._def.extendedProps.endDate;
-        //   end = new Date(end);
-        //   //alert('Reserva: ' + start + " - " + end);
-        // }
         $("#editarResHab").empty();
         $("#editarResIdentificacion").empty();
         $("#editarResNombre").val("");
         $("#editarResTel").val("");
-        //$("#editarResTel").val("");
         $("#editarResCorr").val("");
         $("#editarResDir").val("");
         $("#editarResId").val("");
@@ -202,24 +185,13 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 function cargarRecursosCalendar(recursos) {
-  // Obtener una referencia al objeto FullCalendar
   var calendar = $('#calendar');
-
-  // Limpiar los recursos existentes en FullCalendar
-  //calendar.getResources().forEach(function(eventSource) {
-  //eventSource.remove();
-  //});
-
-  // Agregar los nuevos recursos a FullCalendar
   recursos.forEach((recurso) => {
     calendar.addResource({
       id: recurso.id,
       title: recurso.title
     });
   });
-
-
-  // Renderizar el calendario con los recursos actualizados
   calendar.render();
 }
 
@@ -344,7 +316,7 @@ $(".formularioReserva").submit(function (event) {
       alert("La fecha de salida no es válida.");
       return;
     }
-    // fechaSalida.subtract(5, 'hours');
+    fechaSalida.subtract(5, 'hours');
     var sal = fechaSalida.toISOString().replace("T", " ").slice(0, 19);
     $("#nuevaFechaSalida").val(sal);
     
@@ -361,7 +333,7 @@ $(".formularioReserva").submit(function (event) {
         return;
       }
     }
-    // fechaEntrada.subtract(5, 'hours');
+    fechaEntrada.subtract(5, 'hours');
     var ent = fechaEntrada.toISOString().replace("T", " ").slice(0, 19);
     $("#nuevaFechaEntrada").val(ent);
 

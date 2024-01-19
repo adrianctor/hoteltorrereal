@@ -34,11 +34,13 @@ session_start();
         <link rel="stylesheet" href="vistas/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
         <link rel="stylesheet" href="vistas/plugins/daterangepicker/daterangepicker.css">
         <link rel="stylesheet" href="vistas/plugins/jqvmap/jqvmap.min.css">
+
+        <!-- <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script> -->
+        <script src='vistas/plugins/fullcalendar/index.moment.js'></script>
+        <script src='vistas/plugins/fullcalendar/index.global.scheudler.js'></script>
+        <!-- SweetAlert2 -->
+        <script src="vistas/plugins/sweetalert2/sweetalert2.js"></script>
     </head>
-    <!-- SweetAlert2 -->
-    <script src="vistas/plugins/sweetalert2/sweetalert2.js"></script>
-    <script src='vistas/plugins/fullcalendar/index.moment.js'></script>
-    <script src='vistas/plugins/fullcalendar/index.global.scheudler.js'></script>
     <body class="hold-transition sidebar-collapse sidebar-mini login-page layout-fixed">
         <?php
             if (isset($_SESSION["varSesionIniciada"]) && $_SESSION["varSesionIniciada"] == "Verdadero") {

@@ -3,7 +3,7 @@
     require_once "../modelos/reservas.modelo.php";
 
     class AjaxOcupacion{
-        public function ajaxTraerHabitacion(){
+        public function ajaxGetReservas(){
             $item = null;
             $valor = null;
             $respuesta = ControladorReservas::ctrMostrarReservas($item, $valor);
@@ -39,5 +39,5 @@
             echo $varDatosJSON;
         }
     }
-    $traerHabitacion = new AjaxOcupacion();
-    $traerHabitacion -> ajaxTraerHabitacion();
+    $getReservas = new AjaxOcupacion();
+    $getReservas -> ajaxGetReservas();
