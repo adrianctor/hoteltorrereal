@@ -24,7 +24,7 @@ class AjaxReservas
         $tabla = "reserva";
         $datos = array(
             "resId" => $idReserva,
-            "resFechaIngreso"=>$fechaIngreso,
+            "resFecha"=>$fechaIngreso,
             "resEstado" => $estado
         );
         //echo $valor;
