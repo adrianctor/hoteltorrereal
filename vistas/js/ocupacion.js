@@ -392,6 +392,7 @@ $(".formularioEditarReserva").on("click", "#btnCheckIn", function () {
   if (horaActual >= 0 && horaActual <= 6) {
     fechaActual.subtract(1, 'day');
   }
+  fechaActual.subtract(5, 'hours');
   var fechaFormateada = fechaActual.toISOString().replace("T", " ").slice(0, 19);
   datos.append("editarResId", resId);
   datos.append("estado", "CHECKIN");
@@ -450,6 +451,7 @@ $(".formularioEditarReserva").on("click", "#btnCheckOut", function () {
   if (horaActual >= 0 && horaActual <= 6) {
     fechaActual.subtract(1, 'day');
   }
+  fechaActual.subtract(5, 'hours');
   var fechaFormateada = fechaActual.toISOString().replace("T", " ").slice(0, 19);
   datos.append("editarResId", resId);
   datos.append("estado", "CHECKOUT");
