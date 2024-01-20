@@ -386,8 +386,16 @@ $('#editarFechaSalida').datetimepicker({
 $(".formularioEditarReserva").on("click", "#btnCheckIn", function () {
   var resId = $("#editarResId").val();
   var datos = new FormData();
+  var fechaActual = moment();
+  var horaActual = fechaActual.hours();
+  // Verificar si la hora está entre las 12 am y las 6 am
+  if (horaActual >= 0 && horaActual <= 6) {
+    fechaActual.subtract(1, 'day');
+  }
+  var fechaFormateada = fechaActual.format('YYYY-MM-DD HH:mm:ss');
   datos.append("editarResId", resId);
   datos.append("estado", "CHECKIN");
+  datos.append("fecha",fechaFormateada);
   $.ajax({
     url: "ajax/reservas.ajax.php",
     method: "POST",
@@ -436,9 +444,16 @@ $(".formularioEditarReserva").on("click", "#btnCheckIn", function () {
 $(".formularioEditarReserva").on("click", "#btnCheckOut", function () {
   var resId = $("#editarResId").val();
   var datos = new FormData();
+  var fechaActual = moment();
+  var horaActual = fechaActual.hours();
+  // Verificar si la hora está entre las 12 am y las 6 am
+  if (horaActual >= 0 && horaActual <= 6) {
+    fechaActual.subtract(1, 'day');
+  }
+  var fechaFormateada = fechaActual.format('YYYY-MM-DD HH:mm:ss');
   datos.append("editarResId", resId);
   datos.append("estado", "CHECKOUT");
-
+  datos.append("fecha",fechaFormateada);
   $.ajax({
     url: "ajax/reservas.ajax.php",
     method: "POST",

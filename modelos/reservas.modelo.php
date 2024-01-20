@@ -63,15 +63,16 @@ class ModeloReservas
     static public function mdlEditarReserva($tabla, $prmDatos)
     {
         if ($prmDatos["resEstado"]) {
-            $fechaActual = date("Y-m-d H:i:s");
+            // $fechaActual = date("Y-m-d H:i:s");
             if ($prmDatos["resEstado"] === "CHECKIN") {
-                $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET resEstado = :resEstado, resFechaIngreso = NOW() WHERE resId = :resId");
+                $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET resEstado = :resEstado, resFechaIngreso = :resFecha WHERE resId = :resId");
                 //$stmt->bindParam(":".$prmCampo1, $prmValor1, PDO::PARAM_STR);
                 $stmt->bindParam(":resId", $prmDatos["resId"], PDO::PARAM_INT);
                 $stmt->bindParam(":resEstado", $prmDatos["resEstado"], PDO::PARAM_STR);
+                $stmt->bindParam(":resFecha", $prmDatos["resFecha"], PDO::PARAM_STR);
             }
             if ($prmDatos["resEstado"] === "CHECKOUT") {
-                $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET resEstado = :resEstado, resFechaSalida = NOW() WHERE resId = :resId");
+                $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET resEstado = :resEstado, resFechaSalida = :resFecha WHERE resId = :resId");
                 //$stmt->bindParam(":".$prmCampo1, $prmValor1, PDO::PARAM_STR);
                 $stmt->bindParam(":resId", $prmDatos["resId"], PDO::PARAM_INT);
                 $stmt->bindParam(":resEstado", $prmDatos["resEstado"], PDO::PARAM_STR);

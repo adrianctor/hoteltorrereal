@@ -7,6 +7,7 @@ class AjaxReservas
 {
     public $idReserva;
     public $estado;
+    public $fecha;
     public function ajaxTraerReserva($idReserva)
     {
         $item = "resId";
@@ -15,7 +16,7 @@ class AjaxReservas
         $respuesta = ControladorReservas::ctrMostrarReservas($item, $valor);
         echo json_encode($respuesta);
     }
-    public function ajaxEditarReserva($idReserva, $estado)
+    public function ajaxEditarReserva($idReserva, $estado,$fechaIngreso)
     {
         //$item = "resId";
         //$valor = $idReserva;
@@ -23,6 +24,7 @@ class AjaxReservas
         $tabla = "reserva";
         $datos = array(
             "resId" => $idReserva,
+            "resFechaIngreso"=>$fechaIngreso,
             "resEstado" => $estado
         );
         //echo $valor;
@@ -40,5 +42,6 @@ if (isset($_POST["editarResId"])) {
     $editar = new AjaxReservas();
     $editar->idReserva = $_POST["editarResId"];
     $editar->estado = $_POST["estado"];
-    $editar->ajaxEditarReserva($editar->idReserva, $editar->estado);
+    $editar->fecha = $_POST["fecha"];
+    $editar->ajaxEditarReserva($editar->idReserva, $editar->estado, $editar->fecha);
 }
