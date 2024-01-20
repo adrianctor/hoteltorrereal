@@ -44,7 +44,7 @@ class ModeloReservas
         $fecha2 = date_create($prmDatos["resFechaSalida"]);
         $diferencia = date_diff($fecha1, $fecha2);
         //$stmt->bindColumn(":resTotal",)
-        if ($diferencia->d === 0) {
+        if ($diferencia->d == 0) {
             $total = $prmDatos["resTarifa"];
         } else {
             $total = ($diferencia->d +1)* $prmDatos["resTarifa"];
