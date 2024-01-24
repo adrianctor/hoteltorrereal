@@ -53,8 +53,5 @@ $(document).ready(function(){
 			  }
 		  ]
 	    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)')
-	//Datemask dd/mm/yyyy
-	//$('#datemask').inputmask('yyyy/mm/dd', { 'placeholder': 'aaaa/mm/dd' })
-	//Money Euro
-	//$('[data-mask]').inputmask()
+
 })

@@ -142,4 +142,15 @@ class ModeloReservas
             echo $e->getMessage();
         }
     }
+    static public function mdlGetReservasSinFacturar($tabla){
+        try {
+            $stmt = Conexion::conectar()->prepare("SELECT r.resId, habNombre, r.resFechaIngreso, r.resFechaSalida, c.cliPrimerNombre, c.cliPrimerApellido, r.resEstado, r.resTotal, r.resImpuesto, COALESCE(sum(p.pagTotal),0) as pagado FROM reserva as r inner join cliente as c on r.cliId=c.cliId left join pago_reserva as pr on pr.resId=r.resId left join pago as p on pr.pagId = p.pagId INNER JOIN habitacion AS h ON h.habId = r.habId GROUP BY r.resId, r.resFacturada HAVING r.resFacturada = 0");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        } finally {
+            $stmt = null;
+        }
+    }
 }

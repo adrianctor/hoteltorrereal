@@ -1,24 +1,4 @@
 $(document).ready(function(){
-    // $('#fechaCliente').datetimepicker({
-    //     format:'YYYY-MM-DD',
-    //     locale: 'es',
-    //     icons: {
-    //         time: "far fa-clock",
-    //         date: "fa fa-calendar",
-    //         up: "fa fa-arrow-up",
-    //         down: "fa fa-arrow-down"
-    //     }
-    // })
-    // $('#editarFechaCliente').datetimepicker({
-    //     format:'YYYY-MM-DD',
-    //     locale: 'es',
-    //     icons: {
-    //         time: "far fa-clock",
-    //         date: "fa fa-calendar",
-    //         up: "fa fa-arrow-up",
-    //         down: "fa fa-arrow-down"
-    //     }
-    // })
     var tabla = $('#tablaVentas').DataTable({
         "responsive": true,
         "lengthChange": false,

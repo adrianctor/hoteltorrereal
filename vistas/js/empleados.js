@@ -1,14 +1,4 @@
 $(document).ready(function(){
-    // $('#fechaEmpleado').datetimepicker({
-    //     format:'YYYY/MM/DD HH:mm',
-    //     locale: 'es',
-    //     icons: {
-    //         time: "far fa-clock",
-    //         date: "fa fa-calendar",
-    //         up: "fa fa-arrow-up",
-    //         down: "fa fa-arrow-down"
-    //     }
-    // })
     $(".nuevaFoto").change(function(){
         var imagen = this.files[0];
         if (imagen["type"] != "image/jpeg" && imagen["type"]!="image/png"){

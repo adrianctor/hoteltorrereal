@@ -58,6 +58,7 @@ session_start();
                         $_GET["ruta"]=="distribuidores"||
                         $_GET["ruta"]=="compras"||
                         $_GET["ruta"]=="vender"||
+                        $_GET["ruta"]=="facturacion"||
                         $_GET["ruta"]=="reportes"||
                         $_GET["ruta"]=="salir"
                     ) {
@@ -131,6 +132,7 @@ session_start();
         <script src="vistas/js/ocupacion.js"></script>
         <script src="vistas/js/reportes.js"></script>
         <script src="vistas/js/inicio.js"></script>
+        <script src="vistas/js/facturacion.js"></script>
     </body>
 
 </html>

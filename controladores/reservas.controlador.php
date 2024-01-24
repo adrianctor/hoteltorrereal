@@ -1,10 +1,11 @@
 <?php
 class ControladorReservas
 {
+    private static $tabla = "reserva";
     static public function ctrMostrarReservas($prmItem, $prmValor)
     {
-        $tabla = "reserva";
-        $respuesta = ModeloReservas::mdlMostrarReservas($tabla, $prmItem, $prmValor);
+        // $tabla = "reserva";
+        $respuesta = ModeloReservas::mdlMostrarReservas(self::$tabla, $prmItem, $prmValor);
         return $respuesta;
     }
     static public function ctrCrearReserva()
@@ -161,5 +162,10 @@ class ControladorReservas
 				</script>';
             }
         }
+    }
+    static public function ctrGetReservasSinFacturar(){
+        // $tabla = "reserva";
+        $respuesta = ModeloReservas::mdlGetReservasSinFacturar(self::$tabla);
+        return $respuesta;
     }
 }
