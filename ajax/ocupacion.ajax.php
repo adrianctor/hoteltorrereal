@@ -3,6 +3,8 @@
     require_once "../modelos/clientes.modelo.php";
     require_once "../controladores/habitaciones.controlador.php";
     require_once "../modelos/habitaciones.modelo.php";
+    require_once "../controladores/reservas.controlador.php";
+    require_once "../modelos/reservas.modelo.php";
 
     class AjaxOcupacion{
         public $idCliente;
@@ -46,6 +48,14 @@
                 echo json_encode($respuesta);
             }
         }
+        public function ajaxTraerReservas(){
+            $item = "cliIdentificacion";
+            $valor = $this->idCliente;
+
+            $respuesta = ControladorReservas::ctrGetReservasSinFacturar($item, $valor);
+
+            echo json_encode($respuesta);
+        }
     }
     if(isset($_POST["idCliente"])){
         $traerCliente = new AjaxOcupacion();
@@ -56,4 +66,9 @@
         $traerHabitacion = new AjaxOcupacion();
         $traerHabitacion -> idHabitacion = $_POST["idHabitacion"];
         $traerHabitacion -> ajaxTraerHabitacion();
+    }
+    if(isset($_POST["facturaIdCliente"])){
+        $traerReservas = new AjaxOcupacion();
+        $traerReservas -> idCliente = $_POST["facturaIdCliente"];
+        $traerReservas -> ajaxTraerReservas();
     }

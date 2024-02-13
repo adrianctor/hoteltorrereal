@@ -44,10 +44,10 @@ class ModeloReservas
         $fecha2 = date_create($prmDatos["resFechaSalida"]);
         $diferencia = date_diff($fecha1, $fecha2);
         //$stmt->bindColumn(":resTotal",)
-        if ($diferencia->d == 0) {
+        if ($diferencia->d == 1 || $diferencia->d == 0) {
             $total = $prmDatos["resTarifa"];
         } else {
-            $total = ($diferencia->d +1)* $prmDatos["resTarifa"];
+            $total = ($diferencia->d - 1)* $prmDatos["resTarifa"];
         }
         $stmt->bindParam(":resTotal", $total, PDO::PARAM_STR);
         $num = $stmt->execute();
@@ -65,17 +65,43 @@ class ModeloReservas
         if ($prmDatos["resEstado"]) {
             // $fechaActual = date("Y-m-d H:i:s");
             if ($prmDatos["resEstado"] === "CHECKIN") {
-                $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET resEstado = :resEstado, resFechaIngreso = :resFecha WHERE resId = :resId");
+                $stmt = Conexion::conectar()->prepare("SELECT resFechaSalida, resTarifa FROM $tabla WHERE resId = :resId");
+                $stmt->bindParam(":resId", $prmDatos["resId"], PDO::PARAM_INT);
+                $num = $stmt->execute();
+                $respuesta = $stmt->fetch();
+                $fecha1 = date_create($prmDatos["resFecha"]);
+                $fecha2 = date_create($respuesta["resFechaSalida"]);
+                $diferencia = date_diff($fecha1, $fecha2);
+                if ($diferencia->d === 1 || $diferencia->d == 0) {
+                    $total = $respuesta["resTarifa"];
+                } else {
+                    $total = ($diferencia->d) * $respuesta["resTarifa"];
+                }
+                $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET resEstado = :resEstado, resFechaIngreso = :resFecha, resTotal = :resTotal WHERE resId = :resId");
+                $stmt->bindParam(":resId", $prmDatos["resId"], PDO::PARAM_INT);
+                $stmt->bindParam(":resEstado", $prmDatos["resEstado"], PDO::PARAM_STR);
+                $stmt->bindParam(":resFecha", $prmDatos["resFecha"], PDO::PARAM_STR);
+                $stmt->bindParam(":resTotal", $total, PDO::PARAM_STR);
+            }
+            if ($prmDatos["resEstado"] === "CHECKOUT") {
+                $stmt = Conexion::conectar()->prepare("SELECT resFechaIngreso, resTarifa FROM $tabla WHERE resId = :resId");
+                $stmt->bindParam(":resId", $prmDatos["resId"], PDO::PARAM_INT);
+                $num = $stmt->execute();
+                $respuesta = $stmt->fetch();
+                $fecha2 = date_create($prmDatos["resFecha"]);
+                $fecha1 = date_create($respuesta["resFechaIngreso"]);
+                $diferencia = date_diff($fecha1, $fecha2);
+                if ($diferencia->d === 1 || $diferencia->d == 0) {
+                    $total = $respuesta["resTarifa"];
+                } else {
+                    $total = ($diferencia->d) * $respuesta["resTarifa"];
+                }
+                $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET resEstado = :resEstado, resFechaSalida = :resFecha, resTotal = :resTotal WHERE resId = :resId");
                 //$stmt->bindParam(":".$prmCampo1, $prmValor1, PDO::PARAM_STR);
                 $stmt->bindParam(":resId", $prmDatos["resId"], PDO::PARAM_INT);
                 $stmt->bindParam(":resEstado", $prmDatos["resEstado"], PDO::PARAM_STR);
                 $stmt->bindParam(":resFecha", $prmDatos["resFecha"], PDO::PARAM_STR);
-            }
-            if ($prmDatos["resEstado"] === "CHECKOUT") {
-                $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET resEstado = :resEstado, resFechaSalida = :resFecha WHERE resId = :resId");
-                //$stmt->bindParam(":".$prmCampo1, $prmValor1, PDO::PARAM_STR);
-                $stmt->bindParam(":resId", $prmDatos["resId"], PDO::PARAM_INT);
-                $stmt->bindParam(":resEstado", $prmDatos["resEstado"], PDO::PARAM_STR);
+                $stmt->bindParam(":resTotal", $total, PDO::PARAM_STR);
             }
             $num = $stmt->execute();
             $err = $stmt->errorInfo();
@@ -96,10 +122,10 @@ class ModeloReservas
             $fecha2 = date_create($prmDatos["resFechaSalida"]);
             $diferencia = date_diff($fecha1, $fecha2);
             //$stmt->bindColumn(":resTotal",)
-            if ($diferencia->d === 0) {
+            if ($diferencia->d === 1 || $diferencia->d == 0) {
                 $total = $prmDatos["resTarifa"];
             } else {
-                $total = ($diferencia->d + 1) * $prmDatos["resTarifa"];
+                $total = ($diferencia->d - 1) * $prmDatos["resTarifa"];
             }
             $stmt->bindParam(":resTotal", $total, PDO::PARAM_STR);
             $num = $stmt->execute();
@@ -142,9 +168,10 @@ class ModeloReservas
             echo $e->getMessage();
         }
     }
-    static public function mdlGetReservasSinFacturar($tabla){
+    static public function mdlGetReservasSinFacturar($tabla,$item,$valor){
         try {
-            $stmt = Conexion::conectar()->prepare("SELECT r.resId, habNombre, r.resFechaIngreso, r.resFechaSalida, c.cliPrimerNombre, c.cliPrimerApellido, r.resEstado, r.resTotal, r.resImpuesto, COALESCE(sum(p.pagTotal),0) as pagado FROM reserva as r inner join cliente as c on r.cliId=c.cliId left join pago_reserva as pr on pr.resId=r.resId left join pago as p on pr.pagId = p.pagId INNER JOIN habitacion AS h ON h.habId = r.habId GROUP BY r.resId, r.resFacturada HAVING r.resFacturada = 0");
+            $stmt = Conexion::conectar()->prepare("SELECT r.resId, habNombre, r.resFechaIngreso, r.resFechaSalida, c.cliPrimerNombre, c.cliPrimerApellido, r.resEstado, r.resTotal, r.resImpuesto, COALESCE(sum(p.pagTotal),0) as pagado FROM $tabla as r inner join cliente as c on r.cliId=c.cliId left join pago_reserva as pr on pr.resId=r.resId left join pago as p on pr.pagId = p.pagId INNER JOIN habitacion AS h ON h.habId = r.habId GROUP BY r.resId, r.resFacturada, c.cliIdentificacion HAVING r.resFacturada = 0 AND c.$item=:$item");
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetchAll();
         } catch (PDOException $e) {

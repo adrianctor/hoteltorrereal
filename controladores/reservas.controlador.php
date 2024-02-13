@@ -163,9 +163,9 @@ class ControladorReservas
             }
         }
     }
-    static public function ctrGetReservasSinFacturar(){
+    static public function ctrGetReservasSinFacturar($item, $valor){
         // $tabla = "reserva";
-        $respuesta = ModeloReservas::mdlGetReservasSinFacturar(self::$tabla);
+        $respuesta = ModeloReservas::mdlGetReservasSinFacturar(self::$tabla,$item,$valor);
         return $respuesta;
     }
 }
