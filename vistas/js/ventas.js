@@ -6,7 +6,7 @@ $(document).ready(function(){
         "initComplete": function() {
             tabla.buttons().container().appendTo('#tablaVentas_wrapper .col-md-6:eq(0)');
             $("#tablaVentas").show();
-            tabla.order([0, 'desc']).draw();
+            tabla.order([3, 'desc']).draw();
         },
         "buttons": [
             {
@@ -30,7 +30,7 @@ $(document).ready(function(){
              {"data":"cliNombre"},
              {"data":"cliIdentificacion"},
              {"data":"facFecha"},
-             {"data":"facVencimiento"},
+            //  {"data":"facVencimiento"},
              {"data":"facTotal"},
              {"data":"facCobrado"},
              {"data":"facEstado"},
@@ -65,7 +65,7 @@ $(document).ready(function(){
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
         }
-    })
+    });
     // $("#tablaClientes tbody").on("click","button.btnEditarCliente", function(){
     //     var idCliente = $(this).attr("idCliente");
     //     var datos = new FormData();

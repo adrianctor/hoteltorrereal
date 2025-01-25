@@ -1,0 +1,24 @@
+name: Deploy Vue App to Hostinger
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Deploy via FTP to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: hoteltorrereal.com
+          username: ${{ secrets.FTP_USERNAME_TEST }}
+          password: ${{ secrets.FTP_PASSWORD_TEST }}
+          local-dir: ./
+          server-dir: /administracion
+          #dangerous-clean-slate: true

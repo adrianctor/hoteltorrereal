@@ -32,7 +32,7 @@
                 <th>Cliente</th>
                 <th>Identificacion</th>
                 <th>Creacion</th>
-                <th>Vencimiento</th>
+                <!-- <th>Vencimiento</th> -->
                 <th>Total</th>
                 <th>Cobrado</th>
                 <th>Estado</th>

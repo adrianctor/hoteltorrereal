@@ -316,7 +316,7 @@ $(".formularioReserva").submit(function (event) {
     alert("La fecha de salida no es válida.");
     return;
   }
-  fechaSalida.subtract(5, 'hours');
+  // fechaSalida.subtract(5, 'hours');
   var sal = fechaSalida.toISOString().replace("T", " ").slice(0, 19);
   $("#nuevaFechaSalida").val(sal);
 
@@ -333,7 +333,7 @@ $(".formularioReserva").submit(function (event) {
       return;
     }
   }
-  fechaEntrada.subtract(5, 'hours');
+  // fechaEntrada.subtract(5, 'hours');
   var ent = fechaEntrada.toISOString().replace("T", " ").slice(0, 19);
   $("#nuevaFechaEntrada").val(ent);
 
@@ -356,7 +356,7 @@ $(".formularioEditarReserva").submit(function (event) {
     alert("La fecha de entrada no es válida.");
     return;
   }
-  fechaEntrada.subtract(5, 'hours');
+  // fechaEntrada.subtract(5, 'hours');
   var ent = fechaEntrada.toISOString().replace("T", " ").slice(0, 19);
   $("#editarResFechaIngreso").val(ent);
 
@@ -364,7 +364,7 @@ $(".formularioEditarReserva").submit(function (event) {
     alert("La fecha de salida no es válida.");
     return;
   }
-  fechaSalida.subtract(5, 'hours');
+  // fechaSalida.subtract(5, 'hours');
   var sal = fechaSalida.toISOString().replace("T", " ").slice(0, 19);
   $("#editarResFechaSalida").val(sal);
 
@@ -392,7 +392,7 @@ $(".formularioEditarReserva").on("click", "#btnCheckIn", function () {
   if (horaActual >= 0 && horaActual <= 6) {
     fechaActual.subtract(1, 'day');
   }
-  fechaActual.subtract(5, 'hours');
+  // fechaActual.subtract(5, 'hours');
   var fechaFormateada = fechaActual.toISOString().replace("T", " ").slice(0, 19);
   datos.append("editarResId", resId);
   datos.append("estado", "CHECKIN");
@@ -451,7 +451,7 @@ $(".formularioEditarReserva").on("click", "#btnCheckOut", function () {
   if (horaActual >= 0 && horaActual <= 6) {
     fechaActual.subtract(1, 'day');
   }
-  fechaActual.subtract(5, 'hours');
+  // fechaActual.subtract(5, 'hours');
   var fechaFormateada = fechaActual.toISOString().replace("T", " ").slice(0, 19);
   datos.append("editarResId", resId);
   datos.append("estado", "CHECKOUT");
