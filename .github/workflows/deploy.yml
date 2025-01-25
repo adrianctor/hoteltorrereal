@@ -3,7 +3,7 @@ name: Deploy Vue App to Hostinger
 on:
   push:
     branches:
-      - test
+      - main
 
 jobs:
   build:
