@@ -20,5 +20,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME_TEST }}
           password: ${{ secrets.FTP_PASSWORD_TEST }}
           local-dir: ./
-          server-dir: /administracion
+          server-dir: /administracion/
           #dangerous-clean-slate: true
