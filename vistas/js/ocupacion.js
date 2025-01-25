@@ -317,7 +317,7 @@ $(".formularioReserva").submit(function (event) {
     return;
   }
   // fechaSalida.subtract(5, 'hours');
-  var sal = fechaSalida.toISOString().replace("T", " ").slice(0, 19);
+  var sal = fechaSalida.utcOffset("-05:00").format("YYYY-MM-DD HH:mm:ss");
   $("#nuevaFechaSalida").val(sal);
 
   if (fechaActual.hours() >= 0
