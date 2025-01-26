@@ -380,7 +380,9 @@ $(".formularioReserva").submit(function (event) {
     }
   }
   // fechaEntrada.subtract(5, 'hours');
-  var ent = fechaEntrada.toISOString().replace("T", " ").slice(0, 19);
+  // var ent = fechaEntrada.toISOString().replace("T", " ").slice(0, 19);
+  // $("#nuevaFechaEntrada").val(ent);
+  var ent = fechaEntrada.utcOffset("-05:00").format("YYYY-MM-DD HH:mm:ss");
   $("#nuevaFechaEntrada").val(ent);
 
   this.submit();
@@ -409,7 +411,8 @@ $(".formularioEditarReserva").submit(function (event) {
     return;
   }
   // fechaEntrada.subtract(5, 'hours');
-  var ent = fechaEntrada.toISOString().replace("T", " ").slice(0, 19);
+  // var ent = fechaEntrada.toISOString().replace("T", " ").slice(0, 19);
+  var ent = fechaEntrada.utcOffset("-05:00").format("YYYY-MM-DD HH:mm:ss");
   $("#editarResFechaIngreso").val(ent);
 
   if (
@@ -450,10 +453,7 @@ $(".formularioEditarReserva").on("click", "#btnCheckIn", function () {
     fechaActual.subtract(1, "day");
   }
   // fechaActual.subtract(5, 'hours');
-  var fechaFormateada = fechaActual
-    .toISOString()
-    .replace("T", " ")
-    .slice(0, 19);
+  var fechaFormateada = fechaActual.format("YYYY-MM-DD HH:mm:ss");
   datos.append("editarResId", resId);
   datos.append("estado", "CHECKIN");
   datos.append("fecha", fechaFormateada);
@@ -512,10 +512,7 @@ $(".formularioEditarReserva").on("click", "#btnCheckOut", function () {
     fechaActual.subtract(1, "day");
   }
   // fechaActual.subtract(5, 'hours');
-  var fechaFormateada = fechaActual
-    .toISOString()
-    .replace("T", " ")
-    .slice(0, 19);
+  var fechaFormateada = fechaActual.format("YYYY-MM-DD HH:mm:ss");
   datos.append("editarResId", resId);
   datos.append("estado", "CHECKOUT");
   datos.append("fecha", fechaFormateada);

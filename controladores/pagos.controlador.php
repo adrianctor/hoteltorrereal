@@ -41,8 +41,8 @@ class ControladorPagos
                     echo "<script>
                             Swal.fire({
                                 icon: 'error',
-                                title: 'Error de ingreso',
-                                text: '¡Error en la base de datos!',
+                                title: 'Error en base de datos',
+                                text: '¡Por favor revisa el valor del pago!',
                                 showConfirmButton: true,
                                 confirmButtonText: 'Cerrar',
                                 heightAuto: true

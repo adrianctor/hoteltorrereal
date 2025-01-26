@@ -19,10 +19,12 @@ class ModeloPagos
         }
         $resSumPago = (int) $resPagado[0] + (int)$prmDatos["pagTotal"];
         if($resSumPago <= (int)$resTotal[0]){
-            $stmt = $pdo->prepare("INSERT INTO $prmTabla(pagTipo, pagTotal, pagObservacion) VALUES (:pagTipo, :pagTotal, :pagObservacion)");
+            $fechaActual = (new DateTime('now', new DateTimeZone('America/Bogota')))->format('Y-m-d H:i:s');
+            $stmt = $pdo->prepare("INSERT INTO $prmTabla(pagTipo, pagTotal, pagObservacion, pagFecha) VALUES (:pagTipo, :pagTotal, :pagObservacion, :pagFecha)");
             $stmt->bindParam(":pagTipo", $prmDatos["pagTipo"], PDO::PARAM_STR);
             $stmt->bindParam(":pagTotal", $prmDatos["pagTotal"], PDO::PARAM_INT);
             $stmt->bindParam(":pagObservacion", $prmDatos["pagObservacion"], PDO::PARAM_STR);
+            $stmt->bindParam(":pagFecha", $fechaActual, PDO::PARAM_STR);
             $num = $stmt->execute();
             if ($num) {
                 $idInsertado = $pdo->lastInsertId();
