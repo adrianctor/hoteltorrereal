@@ -31,12 +31,14 @@ class ModeloReservas
     }
     static public function mdlIngresarReserva($prmTabla, $prmDatos)
     {
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $prmTabla(cliId, empId, habId, resEstado, resFechaIngreso, resFechaSalida, resTarifa, resObservacion, resTotal) VALUES (:cliId, :empId, :habId, :resEstado, :resFechaIngreso, :resFechaSalida, :resTarifa, :resObservacion, :resTotal)");
+        $fechaActual = new DateTime('now', new DateTimeZone('America/Bogota'));
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $prmTabla(cliId, empId, habId, resEstado, resFechaReserva, resFechaIngreso, resFechaSalida, resTarifa, resObservacion, resTotal) VALUES (:cliId, :empId, :habId, :resEstado, :resFechaIngreso, :resFechaReserva, :resFechaSalida, :resTarifa, :resObservacion, :resTotal)");
         $stmt->bindParam(":cliId", $prmDatos["cliId"], PDO::PARAM_INT);
         $stmt->bindParam(":empId", $prmDatos["empId"], PDO::PARAM_INT);
         $stmt->bindParam(":habId", $prmDatos["habId"], PDO::PARAM_INT);
         $stmt->bindParam(":resEstado", $prmDatos["resEstado"], PDO::PARAM_STR);
         $stmt->bindParam(":resFechaIngreso", $prmDatos["resFechaEntrada"], PDO::PARAM_STR);
+        $stmt->bindParam(":resFechaReserva", $fechaActual, PDO::PARAM_STR);
         $stmt->bindParam(":resFechaSalida", $prmDatos["resFechaSalida"], PDO::PARAM_STR);
         $stmt->bindParam(":resTarifa", $prmDatos["resTarifa"], PDO::PARAM_STR);
         $stmt->bindParam(":resObservacion", $prmDatos["resObservacion"], PDO::PARAM_STR);
