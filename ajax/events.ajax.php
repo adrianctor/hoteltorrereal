@@ -9,8 +9,12 @@
             $respuesta = ControladorReservas::ctrMostrarReservas($item, $valor);
             $varDatosJSON = '[';
             foreach ($respuesta as $reserva){
-                $dateini=date_create($reserva['resFechaIngreso'], new DateTimeZone("America/Bogota"));
-                $datefin=date_create($reserva['resFechaSalida'], new DateTimeZone("America/Bogota"));
+                $dateini=date_create($reserva['resFechaIngreso']);
+                $datefin=date_create($reserva['resFechaSalida']);
+                $hourini= $dateini->format('H');
+                if($hourini>0 && $hourini<=14){
+                    $dateini->modify('-1 day');
+                }
                 $datefin->modify('-1 day');
                 $varDatosJSON .= '{ "id": "'.$reserva['resId'].'", "resourceId": "'.$reserva['habId'].'", "start":"'.date_format($dateini,"Y-m-d\TH:i:s").'","end":"'.date_format($datefin,"Y-m-d\TH:i:s").'","title":"';
                 

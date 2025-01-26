@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         center: "title",
         right: "resourceTimelineMonth",
       },
-      editable: true,
+      // editable: true,
       locale: "es",
       resourceAreaHeaderContent: "Habitación",
       resourceOrder: "title",
