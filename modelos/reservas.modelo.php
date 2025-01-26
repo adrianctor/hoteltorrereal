@@ -31,37 +31,46 @@ class ModeloReservas
     }
     static public function mdlIngresarReserva($prmTabla, $prmDatos)
     {
-        $fechaActual = new DateTime('now', new DateTimeZone('America/Bogota'));
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $prmTabla(cliId, empId, habId, resEstado, resFechaReserva, resFechaIngreso, resFechaSalida, resTarifa, resObservacion, resTotal) VALUES (:cliId, :empId, :habId, :resEstado, :resFechaIngreso, :resFechaReserva, :resFechaSalida, :resTarifa, :resObservacion, :resTotal)");
-        $stmt->bindParam(":cliId", $prmDatos["cliId"], PDO::PARAM_INT);
-        $stmt->bindParam(":empId", $prmDatos["empId"], PDO::PARAM_INT);
-        $stmt->bindParam(":habId", $prmDatos["habId"], PDO::PARAM_INT);
-        $stmt->bindParam(":resEstado", $prmDatos["resEstado"], PDO::PARAM_STR);
-        $stmt->bindParam(":resFechaIngreso", $prmDatos["resFechaEntrada"], PDO::PARAM_STR);
-        $stmt->bindParam(":resFechaReserva", $fechaActual, PDO::PARAM_STR);
-        $stmt->bindParam(":resFechaSalida", $prmDatos["resFechaSalida"], PDO::PARAM_STR);
-        $stmt->bindParam(":resTarifa", $prmDatos["resTarifa"], PDO::PARAM_STR);
-        $stmt->bindParam(":resObservacion", $prmDatos["resObservacion"], PDO::PARAM_STR);
-        $fecha1 = date_create($prmDatos["resFechaEntrada"]);
-        $fecha2 = date_create($prmDatos["resFechaSalida"]);
-        $diferencia = date_diff($fecha1, $fecha2);
-        //$stmt->bindColumn(":resTotal",)
-        if ($diferencia->d == 1 || $diferencia->d == 0) {
-            $total = $prmDatos["resTarifa"];
-        } else {
-            $total = ($diferencia->d - 1)* $prmDatos["resTarifa"];
-        }
-        $stmt->bindParam(":resTotal", $total, PDO::PARAM_STR);
-        $num = $stmt->execute();
-        $err = $stmt->errorInfo();
+        try {
+            $fechaActual = (new DateTime('now', new DateTimeZone('America/Bogota')))->format('Y-m-d H:i:s');
 
-        if ($num) {
-            return true;
-        } else {
+            $stmt = Conexion::conectar()->prepare(
+                "INSERT INTO $prmTabla(cliId, empId, habId, resEstado, resFechaReserva, resFechaIngreso, resFechaSalida, resTarifa, resObservacion, resTotal) 
+             VALUES (:cliId, :empId, :habId, :resEstado, :resFechaReserva, :resFechaIngreso, :resFechaSalida, :resTarifa, :resObservacion, :resTotal)"
+            );
+
+            // Bind de los parámetros
+            $stmt->bindParam(":cliId", $prmDatos["cliId"], PDO::PARAM_INT);
+            $stmt->bindParam(":empId", $prmDatos["empId"], PDO::PARAM_INT);
+            $stmt->bindParam(":habId", $prmDatos["habId"], PDO::PARAM_INT);
+            $stmt->bindParam(":resEstado", $prmDatos["resEstado"], PDO::PARAM_STR);
+            $stmt->bindParam(":resFechaIngreso", $prmDatos["resFechaEntrada"], PDO::PARAM_STR);
+            $stmt->bindParam(":resFechaReserva", $fechaActual, PDO::PARAM_STR);
+            $stmt->bindParam(":resFechaSalida", $prmDatos["resFechaSalida"], PDO::PARAM_STR);
+            $stmt->bindParam(":resTarifa", $prmDatos["resTarifa"], PDO::PARAM_STR);
+            $stmt->bindParam(":resObservacion", $prmDatos["resObservacion"], PDO::PARAM_STR);
+
+            // Cálculo del total
+            $fecha1 = date_create($prmDatos["resFechaEntrada"]);
+            $fecha2 = date_create($prmDatos["resFechaSalida"]);
+            $diferencia = date_diff($fecha1, $fecha2);
+            $total = ($diferencia->d <= 1) ? $prmDatos["resTarifa"] : ($diferencia->d - 1) * $prmDatos["resTarifa"];
+            $stmt->bindParam(":resTotal", $total, PDO::PARAM_STR);
+
+            // Ejecutar la consulta
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            // error_log("Error en mdlIngresarReserva: " . $e->getMessage());
             return false;
+        } finally {
+            $stmt = null;
         }
-        $stmt = null;
     }
+
     static public function mdlEditarReserva($tabla, $prmDatos)
     {
         if ($prmDatos["resEstado"]) {
@@ -170,7 +179,8 @@ class ModeloReservas
             echo $e->getMessage();
         }
     }
-    static public function mdlGetReservasSinFacturar($tabla,$item,$valor){
+    static public function mdlGetReservasSinFacturar($tabla, $item, $valor)
+    {
         try {
             $stmt = Conexion::conectar()->prepare("SELECT r.resId, habNombre, r.resFechaIngreso, r.resFechaSalida, c.cliPrimerNombre, c.cliPrimerApellido, r.resEstado, r.resTotal, r.resImpuesto, COALESCE(sum(p.pagTotal),0) as pagado FROM $tabla as r inner join cliente as c on r.cliId=c.cliId left join pago_reserva as pr on pr.resId=r.resId left join pago as p on pr.pagId = p.pagId INNER JOIN habitacion AS h ON h.habId = r.habId GROUP BY r.resId, r.resFacturada, c.cliIdentificacion HAVING r.resFacturada = 0 AND c.$item=:$item");
             $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
