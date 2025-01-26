@@ -45,7 +45,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <input type="text" class="form-control input-lg" id="nuevoNom" name="nuevoNombre" placeholder="Nombre del cliente" disabled>
-                  <label for="nuevoNombre" >Cliente</label>
+                  <label for="nuevoNombre">Cliente</label>
                 </div>
               </div>
 
@@ -53,7 +53,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <input type="text" class="form-control input-lg" id="nuevoTel" name="nuevoTelefono" placeholder="Teléfono del cliente" disabled>
-                  <label for="nuevoTelefono" >Teléfono</label>
+                  <label for="nuevoTelefono">Teléfono</label>
                 </div>
               </div>
 
@@ -61,7 +61,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <input type="email" class="form-control input-lg" id="nuevoCorr" name="nuevoCorreo" placeholder="Correo electrónico del cliente" disabled>
-                  <label for="nuevoCorreo" >Correo</label>
+                  <label for="nuevoCorreo">Correo</label>
                 </div>
               </div>
 
@@ -69,16 +69,16 @@
               <div class="form-group">
                 <div class="input-group">
                   <input type="text" class="form-control input-lg" id="nuevaDir" name="nuevaDireccion" placeholder="Dirección del cliente" disabled>
-                  <label for="nuevaDireccion" >Dirección</label>
+                  <label for="nuevaDireccion">Dirección</label>
                 </div>
               </div>
 
               <!-- Date -->
               <div class="form-group">
                 <div class="input-group">
-                  <input type="text" class="form-control datetimepicker-input" id="fechaIngreso" data-toggle="datetimepicker" data-target="#fechaIngreso"/>
+                  <input type="text" class="form-control datetimepicker-input" id="fechaIngreso" data-toggle="datetimepicker" data-target="#fechaIngreso" />
                   <input type="hidden" name="nuevaFechaEntrada" id="nuevaFechaEntrada">
-                  <label for="nuevaFechaEntrada" >Fecha ingreso</label>
+                  <label for="nuevaFechaEntrada">Fecha ingreso</label>
                 </div>
               </div>
 
@@ -87,7 +87,7 @@
                 <div class="input-group">
                   <input type="text" class="form-control datetimepicker-input" id="fechaSalida" data-toggle="datetimepicker" data-target="#fechaSalida" />
                   <input type="hidden" name="nuevaFechaSalida" id="nuevaFechaSalida">
-                  <label for="nuevaFechaSalida" >Fecha salida</label>
+                  <label for="nuevaFechaSalida">Fecha salida</label>
                 </div>
               </div>
 
@@ -95,7 +95,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <input type="number" class="form-control input-lg" id="nuevaTarifa" name="nuevaTarifa" placeholder="Ingrese la tarifa" autocomplete="off" required>
-                  <label for="nuevaTarifa" >Tarifa</label>
+                  <label for="nuevaTarifa">Tarifa</label>
                 </div>
               </div>
 
@@ -103,7 +103,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <input type="text" class="form-control input-lg" id="nuevaObservacion" name="nuevaObservacion" placeholder="Ingrese alguna observación" autocomplete="off" onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
-                  <label for="nuevaDescripcion" >Descripción</label>
+                  <label for="nuevaDescripcion">Descripción</label>
                 </div>
               </div>
 
@@ -149,7 +149,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <select class="form-control input-lg editarResIdentificacion" id="editarResIdentificacion" name="editarResIdentificacion" disabled required></select>
-                  <label for="editarResIdentificacion" >Identificación</label>
+                  <label for="editarResIdentificacion">Identificación</label>
                 </div>
               </div>
 
@@ -157,7 +157,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <input type="text" class="form-control input-lg" id="editarResNombre" name="editarResNom" placeholder="Nombre del cliente" disabled>
-                  <label for="editarResNombre" >Cliente</label>
+                  <label for="editarResNombre">Cliente</label>
                 </div>
               </div>
 
@@ -165,7 +165,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <input type="text" class="form-control input-lg" id="editarResTel" name="editarResTelefono" placeholder="Teléfono del cliente" disabled>
-                  <label for="editarResTelefono" >Teléfono</label>
+                  <label for="editarResTelefono">Teléfono</label>
                 </div>
               </div>
               <div class="row">
@@ -174,7 +174,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <input type="email" class="form-control input-lg" id="editarResCorr" name="editarResCorreo" placeholder="Correo electrónico del cliente" disabled>
-                      <label for="editarResCorreo" >Correo</label>
+                      <label for="editarResCorreo">Correo</label>
                     </div>
                   </div>
                 </div>
@@ -183,7 +183,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <input type="text" class="form-control input-lg" id="editarResDir" name="editarResDireccion" placeholder="Dirección del cliente" disabled>
-                      <label for="editarResDireccion" >Direccion</label>
+                      <label for="editarResDireccion">Direccion</label>
                     </div>
                   </div>
                 </div>
@@ -195,7 +195,7 @@
                     <div class="input-group">
                       <input type="text" class="form-control datetimepicker-input" id="editarFechaIngreso" data-toggle="datetimepicker" data-target="#editarFechaIngreso" disabled />
                       <input type="hidden" name="editarResFechaIngreso" id="editarResFechaIngreso">
-                      <label for="editarResFechaIngreso" >Fecha ingreso</label>
+                      <label for="editarResFechaIngreso">Fecha ingreso</label>
                     </div>
                   </div>
                 </div>
@@ -205,30 +205,44 @@
                     <div class="input-group">
                       <input type="text" class="form-control datetimepicker-input" id="editarFechaSalida" data-toggle="datetimepicker" data-target="#editarFechaSalida" />
                       <input type="hidden" name="editarResFechaSalida" id="editarResFechaSalida">
-                      <label for="editarResFechaSalida" >Fecha salida</label>
+                      <label for="editarResFechaSalida">Fecha salida</label>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- Text -->
-              <div class="form-group">
-                <div class="input-group">
-                  <input type="number" class="form-control input-lg" id="editarResTarifa" name="editarResTarifa" placeholder="Ingrese la tarifa" autocomplete="off" required disabled>
-                  <label for="editarResTarifa" >Tarifa</label>
+              <div class="row">
+                <div class="col-lg-6">
+                  <!-- Text -->
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="number" class="form-control input-lg" id="editarResTarifa" name="editarResTarifa" placeholder="Ingrese la tarifa" autocomplete="off" required disabled>
+                      <label for="editarResTarifa">Tarifa</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <!-- Text -->
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="number" class="form-control input-lg" id="editarResTotal" name="editarResTotal" placeholder="Ingrese el total" autocomplete="off" required disabled>
+                      <label for="editarResTotal">Total</label>
+                    </div>
+                  </div>
                 </div>
               </div>
+
               <!-- Text -->
               <div class="form-group">
                 <div class="input-group">
                   <input type="text" class="form-control input-lg" id="editarResObservacion" name="editarResObservacion" placeholder="Ingrese alguna observación" autocomplete="off" onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
-                  <label for="editarResObservacion" >Observación</label>
+                  <label for="editarResObservacion">Observación</label>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="input-group">
                   <input type="number" class="form-control input-lg" id="editarResPagado" name="editarResPagado" placeholder="Cantidad pagada" autocomplete="off" disabled>
-                  <label for="editarResPagado" >Cobrado</label>
+                  <label for="editarResPagado">Cobrado</label>
                 </div>
               </div>
 
@@ -276,7 +290,7 @@
                         <option value="transfer">Transferencia</option>
                       </select>
                       <input type="hidden" id="pagoResId" name="pagoResId">
-                      <label for="nuevoTipoPago" >Método de pago</label>
+                      <label for="nuevoTipoPago">Método de pago</label>
                     </div>
                   </div>
                 </div>
@@ -285,7 +299,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <input type="number" class="form-control input-lg" id="nuevoTotalPago" name="nuevoTotalPago" placeholder="Ingrese el valor a pagar" required>
-                      <label for="nuevoTotalPago" >Valor</label>
+                      <label for="nuevoTotalPago">Valor</label>
                     </div>
                   </div>
                 </div>
@@ -293,7 +307,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <input type="text" class="form-control input-lg" id="nuevaObservacionPago" name="nuevaObservacionPago" placeholder="Ingrese la observación">
-                      <label for="nuevaObservacionPago" >Observación</label>
+                      <label for="nuevaObservacionPago">Observación</label>
                     </div>
                   </div>
                 </div>

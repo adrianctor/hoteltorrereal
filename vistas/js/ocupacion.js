@@ -134,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
         $("#editarResDir").val("");
         $("#editarResId").val("");
         $("#editarResTarifa").val("");
+        $("#editarResTotal").val("");
         $("#editarFechaIngreso").datetimepicker(
           "date",
           new Date("0001-01-01 00:00:00")
@@ -184,6 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
             $("#editarResCorr").val(respuesta["cliCorreo"]);
             $("#editarResDir").val(respuesta["dirDireccion"]);
             $("#editarResTarifa").val(respuesta["resTarifa"]);
+            $("#editarResTotal").val(respuesta["resTotal"]);
             $("#editarFechaIngreso").datetimepicker(
               "date",
               new Date(respuesta["resFechaIngreso"])

@@ -129,14 +129,43 @@ class ModeloReservas
             $stmt->bindParam(":resFechaSalida", $prmDatos["resFechaSalida"], PDO::PARAM_STR);
             $stmt->bindParam(":resTarifa", $prmDatos["resTarifa"], PDO::PARAM_STR);
             $stmt->bindParam(":resObservacion", $prmDatos["resObservacion"], PDO::PARAM_STR);
-            $fecha1 = date_create($prmDatos["resFechaIngreso"]);
+            // $fecha1 = date_create($prmDatos["resFechaIngreso"]);
+            // $fecha2 = date_create($prmDatos["resFechaSalida"]);
+            // $diferencia = date_diff($fecha1, $fecha2);
+            // //$stmt->bindColumn(":resTotal",)
+            // if ($diferencia->d === 1 || $diferencia->d == 0) {
+            //     $total = $prmDatos["resTarifa"];
+            // } else {
+            //     $total = ($diferencia->d - 1) * $prmDatos["resTarifa"];
+            // }
+            $horaCorte = 14; // 2 PM
+            $fecha1 = date_create($prmDatos["resFechaEntrada"]);
             $fecha2 = date_create($prmDatos["resFechaSalida"]);
-            $diferencia = date_diff($fecha1, $fecha2);
-            //$stmt->bindColumn(":resTotal",)
-            if ($diferencia->d === 1 || $diferencia->d == 0) {
-                $total = $prmDatos["resTarifa"];
-            } else {
-                $total = ($diferencia->d - 1) * $prmDatos["resTarifa"];
+
+            // Obtener la hora de ingreso y verificar si está entre 00:00 y 05:00
+            $horaIngreso = (int)$fecha1->format('H');
+            if ($horaIngreso >= 0 && $horaIngreso < 5) {
+                $fecha1->modify('+1 day');
+            }
+
+            // Calcular la diferencia en días (ajustada)
+            $diferencia = $fecha2->diff($fecha1);
+
+            // Inicializar el total con al menos un día de tarifa
+            $total = $prmDatos["resTarifa"];
+
+            // Calcular los días completos y las horas del último día
+            $diasCompletos = $diferencia->d;
+            $horaSalida = (int)$fecha2->format('H');
+
+            // Cobrar un día por cada día completo de la reserva
+            if ($diasCompletos > 0) {
+                $total += $diasCompletos * $prmDatos["resTarifa"];
+            }
+
+            // Cobrar un día adicional si la salida es después de las 2 PM del último día
+            if ($horaSalida > $horaCorte) {
+                $total += $prmDatos["resTarifa"];
             }
             $stmt->bindParam(":resTotal", $total, PDO::PARAM_STR);
             $num = $stmt->execute();

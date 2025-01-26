@@ -20,7 +20,7 @@ class ControladorEmpleados{
                         $_SESSION["varUsuario"] =$respuesta["empApodo"];
                         $_SESSION["varFoto"] =$respuesta["empFoto"];
                         $_SESSION["varPerfil"] =$respuesta["empPerfil"];
-                        date_default_timezone_set("America/Bogota");
+                        // date_default_timezone_set("America/Bogota");
                         $fecha = date("Y-m-d");
                         $hora = date("H:i:s");
                         $fechaActual = $fecha .' '.$hora;
