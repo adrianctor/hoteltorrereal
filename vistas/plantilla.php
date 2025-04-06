@@ -47,6 +47,15 @@ session_start();
     <!-- jQuery -->
     <script src="vistas/plugins/jquery/jquery.min.js"></script>
     <script src="vistas/plugins/jquery-ui/jquery-ui.min.js"></script>
+        <!-- moment lib -->
+
+        <script src='vistas/plugins/moment/locale/es.js'></script>
+    <!-- the moment-to-fullcalendar connector. must go AFTER the moment lib -->
+    <script src='vistas/plugins/fullcalendar/index.global.moment.js'></script>
+    <!-- Tempusdominus -->
+    <script src="vistas/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js"></script>
+    <!-- Select2 -->
+    <script src="vistas/plugins/select2/js/select2.full.min.js"></script>
 </head>
 
 <body class="hold-transition sidebar-collapse sidebar-mini login-page layout-fixed">
@@ -108,12 +117,6 @@ session_start();
     <script src="vistas/plugins/pdfmake/pdfmake.js"></script>
     <script src="vistas/plugins/pdfmake/vfs_fonts.js"></script>
 
-    <!-- moment lib -->
-
-    <script src='vistas/plugins/moment/locale/es.js'></script>
-    <!-- the moment-to-fullcalendar connector. must go AFTER the moment lib -->
-    <script src='vistas/plugins/fullcalendar/index.global.moment.js'></script>
-
     <!-- FullCalendar -->
     <!-- <script src='vistas/plugins/fullcalendar/index.global.js'></script> -->
     <!-- ChartJS -->
@@ -125,10 +128,7 @@ session_start();
     <script src="vistas/plugins/summernote/summernote-bs4.min.js"></script>
     <script src="vistas/plugins/daterangepicker/daterangepicker.js"></script>
 
-    <!-- Tempusdominus -->
-    <script src="vistas/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js"></script>
-    <!-- Select2 -->
-    <script src="vistas/plugins/select2/js/select2.full.min.js"></script>
+    
 
     <!-- AdminLTE App -->
     <script src="vistas/adminlte/dist/js/adminlte.js"></script>
