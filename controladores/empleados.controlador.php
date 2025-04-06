@@ -3,8 +3,8 @@ class ControladorEmpleados{
 	static public function ctrIngresoEmpleado(){
 		if (isset($_POST["ingUsuario"])) {
 			if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"])&&
-				preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingContrasenia"])) {
-                $encriptar = crypt($_POST["ingContrasenia"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevaContrasenia"])) {
+                $encriptar = crypt($_POST["nuevaContrasenia"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 				$tabla="empleado";
 				$item ="empApodo";
 				$valor = $_POST["ingUsuario"];
