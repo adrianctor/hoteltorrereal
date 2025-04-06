@@ -11,17 +11,16 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <?php
-                if ($_SESSION["varFoto"]==""){
-                    echo '<img src="vistas/img/empleados/default/anonymous.png" class="img-circle elevation-2" alt="User Image">';
-                }
-                else{
-                    echo '<img src="'.$_SESSION["varFoto"].'" class="img-circle elevation-2" alt="User Image">';
-                }
-            ?>
+          <?php
+          if ($_SESSION["varFoto"] == "") {
+            echo '<img src="vistas/img/empleados/default/anonymous.png" class="img-circle elevation-2" alt="User Image">';
+          } else {
+            echo '<img src="' . $_SESSION["varFoto"] . '" class="img-circle elevation-2" alt="User Image">';
+          }
+          ?>
         </div>
-        <div class="info" eid="<?php echo $_SESSION["varId"]?>">
-          <a href="#" class="d-block"><?php echo $_SESSION["varNombre"]?></a>
+        <div class="info" eid="<?php echo $_SESSION["varId"] ?>">
+          <a href="#" class="d-block"><?php echo $_SESSION["varNombre"] ?></a>
         </div>
       </div>
 
@@ -39,8 +38,8 @@
             </a>
           </li> <!-- Item solo -->
           <?php
-            if($_SESSION["varPerfil"]=="Administrador"){
-              echo '
+          if ($_SESSION["varPerfil"] == "Administrador") {
+            echo '
               <li class="nav-item">
                 <a href="empleados" class="nav-link">
                   <i class="nav-icon fas fa-user-tie"></i>
@@ -49,22 +48,22 @@
                   </p>
                 </a>
               </li> <!-- Item solo -->';
-            }
+          }
           ?>
-          
+
 
           <li class="nav-item">
-              <a href="clientes" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>
-                      Clientes
-                  </p>
-              </a>
+            <a href="clientes" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Clientes
+              </p>
+            </a>
           </li> <!-- Item solo -->
 
           <?php
-            if($_SESSION["varPerfil"]=="Administrador"){
-              echo '
+          if ($_SESSION["varPerfil"] == "Administrador") {
+            echo '
               <li class="nav-item">
                 <a href="alojamientos" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -73,35 +72,42 @@
                   </p>
                 </a>
               </li> <!-- Item solo -->';
-            }
+          }
           ?>
-
-              <li class="nav-item">
-                <a href="habitaciones" class="nav-link">
-                  <i class="nav-icon fab fa-product-hunt"></i>
-                  <p>
-                    Habitaciones
-                  </p>
-                </a>
-              </li> <!-- Item solo -->
-          
-
           <li class="nav-item">
-              <a href="distribuidores" class="nav-link">
-                  <i class="nav-icon fas fa-truck"></i>
-                  <p>
-                      Distribuidores
-                  </p>
-              </a>
+            <a href="habitaciones" class="nav-link">
+              <i class="nav-icon fab fa-product-hunt"></i>
+              <p>
+                Habitaciones
+              </p>
+            </a>
           </li> <!-- Item solo -->
 
           <li class="nav-item">
-              <a href="compras" class="nav-link">
-                  <i class="nav-icon fab fa-shopify"></i>
-                  <p>
-                      Compras
-                  </p>
-              </a>
+            <a href="nomina" class="nav-link">
+              <i class="nav-icon fas fa-clipboard-list"></i>
+              <p>
+                Nómina
+              </p>
+            </a>
+          </li> <!-- Item solo -->
+
+          <li class="nav-item">
+            <a href="distribuidor" class="nav-link">
+              <i class="nav-icon fas fa-truck"></i>
+              <p>
+                Distribuidores
+              </p>
+            </a>
+          </li> <!-- Item solo -->
+
+          <li class="nav-item">
+            <a href="compras" class="nav-link">
+              <i class="nav-icon fab fa-shopify"></i>
+              <p>
+                Compras
+              </p>
+            </a>
           </li> <!-- Item solo -->
 
           <li class="nav-item">
@@ -136,8 +142,8 @@
           </li> <!-- ventas desplegable -->
 
           <?php
-            if($_SESSION["varPerfil"]=="Administrador"){
-              echo '
+          if ($_SESSION["varPerfil"] == "Administrador") {
+            echo '
               <li class="nav-item">
                 <a href="reportes" class="nav-link">
                     <i class="fas fa-business-time nav-icon"></i>
@@ -146,9 +152,16 @@
                     </p>
                 </a>
               </li>';
-            }
+          }
           ?>
-
+          <li class="nav-item">
+            <a href="configuracion" class="nav-link">
+              <i class="fas fa-cog nav-icon"></i>
+              <p>
+                Configuración
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="salir" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>

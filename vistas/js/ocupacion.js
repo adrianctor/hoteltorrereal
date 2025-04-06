@@ -64,11 +64,50 @@ document.addEventListener("DOMContentLoaded", function () {
         varFechaFinal.setDate(varFechaFinal.getDate() + 1);
         varFechaFinal.setHours(14);
         varAhora.setDate(varAhora.getDate() - 1);
+        let horaInicial = varFechaInicial.getHours();
+        if (horaInicial >= 0 && horaInicial < 14) {
+          varFechaFinal.setDate(varFechaFinal.getDate() - 1);
+        }
         if (
-          varAhora.getDate() <= varFechaInicial.getDate() &&
-          (varAhora.getHours() <= 6 ||
-            varAhora.getDate() + 1 <= varFechaInicial.getDate())
+          varAhora < varFechaInicial
+          // &&(varAhora.getHours() <= 6 ||
+          //   varAhora.getDate() + 1 <= varFechaInicial.getDate())
         ) {
+          var eventosExistentes = calendar.getEvents();
+          if (horaInicial >= 0 && horaInicial < 14) {
+            varFechaFinal.setDate(varFechaFinal.getDate() - 1);
+            varFechaInicial.setDate(varFechaInicial.getDate() - 1);
+          }
+          const solapado = eventosExistentes.some((evento) => {
+            const eventoInicio = new Date(evento.start);
+            const eventoFin = evento.end ? new Date(evento.end) : eventoInicio;
+          // console.log(evento)
+            // Validar que el recurso sea el mismo
+            const tieneRecurso = evento.source.context.dateSelection.resourceId===(info.resource.id);
+          
+            // Validar intersección de fechas
+            const fechasSolapadas =
+              (eventoInicio < varFechaFinal && eventoFin > varFechaInicial) || // Solapamiento parcial
+              (eventoInicio >= varFechaInicial && eventoFin <= varFechaFinal); // Solapamiento completo
+          
+            return tieneRecurso && fechasSolapadas;
+          });
+
+          if (solapado) {
+            Swal.fire({
+              icon: "error",
+              title: "Conflicto de reserva",
+              text: "¡Ya existe una reserva en este rango de tiempo para esta habitación!",
+              showConfirmButton: true,
+              confirmButtonText: "Cerrar",
+              heightAuto: true,
+            });
+            return;
+          }
+          if (horaInicial >= 0 && horaInicial < 14) {
+            varFechaFinal.setDate(varFechaFinal.getDate() + 1);
+            varFechaInicial.setDate(varFechaInicial.getDate() + 1);
+          }
           var select = $("#nuevaHab");
           var idHabitacion = "All";
           var datos = new FormData();
@@ -452,7 +491,7 @@ $(".formularioEditarReserva").on("click", "#btnCheckIn", function () {
   var horaActual = fechaActual.hours();
   // Verificar si la hora está entre las 12 am y las 6 am
   if (horaActual >= 0 && horaActual <= 6) {
-    fechaActual.subtract(1, "day");
+    // fechaActual.subtract(1, "day");
   }
   // fechaActual.subtract(5, 'hours');
   var fechaFormateada = fechaActual.format("YYYY-MM-DD HH:mm:ss");
@@ -593,4 +632,19 @@ $(".pagoTipo").select2({
   theme: "bootstrap4",
   dropdownParent: $("#mdlAgregarPago"),
   placeholder: "Seleccione el tipo de pago",
+});
+
+$(".formularioEditarReserva").on("click", "#btnPasarAFacturar", function () {
+  // Se asume que el campo 'editarResIdentificacion' contiene la cc del cliente.
+  var cc = $("#editarResIdentificacion").val();
+  if (cc && cc.trim() !== "") {
+    window.location.href = "/hoteltorrereal/facturacion?cc=" + encodeURIComponent(cc);
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "No se encontró la identificación del cliente.",
+      confirmButtonText: "Cerrar",
+    });
+  }
 });

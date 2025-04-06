@@ -255,7 +255,7 @@
             <button type="button" class="btn btn-primary" id="btnCheckIn">Check in</button>
             <button type="button" class="btn btn-primary" id="btnCheckOut">Check Out</button>
             <button type="button" class="btn btn-primary" id="btnPagar">Pagar</button>
-
+            <button type="button" class="btn btn-success" id="btnPasarAFacturar">Facturar</button>
           </div>
           <?php
           $editarReserva = new ControladorReservas();

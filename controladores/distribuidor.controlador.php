@@ -1,27 +1,33 @@
 <?php
-class ControladorClientes
+class ControladorDistribuidor
 {
-    static public function ctrMostrarClientes($prmItem, $prmValor)
+    static public function ctrBuscarProveedorPorIdentificacion($term)
     {
-        $tabla = "cliente";
-        $respuesta = ModeloClientes::mdlMostrarClientes($tabla, $prmItem, $prmValor);
+        $tabla = "proveedor";
+        $respuesta = ModeloDistribuidor::mdlBuscarProveedorPorIdentificacion($tabla, $term);
         return $respuesta;
     }
-    static public function ctrCrearCliente()
+    static public function ctrMostrarDistribuidores($prmItem, $prmValor)
+    {
+        $tabla = "proveedor";
+        $respuesta = ModeloDistribuidor::mdlMostrarDistribuidores($tabla, $prmItem, $prmValor);
+        return $respuesta;
+    }
+    static public function ctrCrearProveedor()
     {
         if (isset($_POST["nuevaIdentificacion"])) {
             if (
                 preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoPrimerNombre"]) &&
                 preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoPrimerApellido"]) &&
-                preg_match('/^[0-9]+$/', $_POST["nuevoTelefono"]) &&
+                // preg_match('/^[0-9]+$/', $_POST["nuevoTelefono"]) &&
                 isset($_POST["nuevoTipo"]) &&
                 isset($_POST["nuevoRegimen"]) &&
-                isset($_POST["nuevoPais"]) &&
-                isset($_POST["nuevoDepartamento"]) &&
-                isset($_POST["nuevaCiudad"]) &&
-                isset($_POST["nuevaDireccion"])
+                isset($_POST["nuevoPais"])
+                // isset($_POST["nuevoDepartamento"]) &&
+                // isset($_POST["nuevaCiudad"]) &&
+                // isset($_POST["nuevaDireccion"])
             ) {
-                $tabla = "cliente";
+                $tabla = "proveedor";
                 $datos = array(
                     "cliTipoId" => $_POST["nuevoTipo"],
                     "cliIdentificacion" => $_POST["nuevaIdentificacion"],
@@ -43,7 +49,7 @@ class ControladorClientes
                     "cliId" => "0"
                 );
 
-                $respuestaAL = ModeloClientes::mdlIngresarClienteAlegra($datos);
+                // $respuestaAL = ModeloClientes::mdlIngresarClienteAlegra($datos);
                 // if ($respuestaAL) {
                     // $valor = $respuestaAL->id;
 
@@ -60,7 +66,7 @@ class ControladorClientes
                     if ($datos["cliCorreo"] === "") {
                         $datos["cliCorreo"] = "";
                     }
-                    $respuestaBD = ModeloClientes::mdlIngresarCliente($tabla, $datos);
+                    $respuestaBD = ModeloDistribuidor::mdlIngresarProveedor($tabla, $datos);
                     if ($respuestaBD == true) {
                         echo '<script>
                                     Swal.fire({
@@ -72,7 +78,7 @@ class ControladorClientes
                                         heightAuto: true
                                     }).then(function(result){
                                         if(result.value){
-                                            window.location = "clientes";				
+                                            window.location = "distribuidor";				
                                         }
                                     });
                                 </script>';
@@ -87,7 +93,7 @@ class ControladorClientes
                                         heightAuto: true
                                     }).then(function(result){
                                         if(result.value){
-                                            window.location = "clientes";
+                                            window.location = "distribuidor";
                                         }
                                     });
                                 </script>';
@@ -103,7 +109,7 @@ class ControladorClientes
                 //                 heightAuto: true
                 //             }).then(function(result){
                 //                 if(result.value){
-                //                     window.location = "clientes";
+                //                     window.location = "distribuidor";
                 //                 }
                 //             });
 				//         </script>';
@@ -119,14 +125,14 @@ class ControladorClientes
                                 heightAuto: true
                             }).then(function(result){
                                 if(result.value){
-                                    window.location = "clientes";
+                                    window.location = "distribuidor";
                                 }
                             });
 				        </script>';
             }
         }
     }
-    static public function ctrEditarCliente()
+    static public function ctrEditarProveedor()
     {
         if (isset($_POST["editarId"])) {
             if (
@@ -140,7 +146,7 @@ class ControladorClientes
                 isset($_POST["editarCiudad"]) &&
                 isset($_POST["editarDireccion"])
             ) {
-                $tabla = "cliente";
+                $tabla = "proveedor";
                 // $datos = array("cliId"=>$_POST["editarId"],
                 //     "cliNombre"=>$_POST["editarNombre"],
                 //     "cliTelefono"=>$_POST["editarTelefono"],
@@ -162,7 +168,8 @@ class ControladorClientes
                     "dirDireccion" => $_POST["editarDireccion"],
                     "cliTelefono" => $_POST["editarTelefono"],
                     "cliCorreo" => $_POST["editarCorreo"],
-                    "cliId" => $_POST["editarId"]
+                    "cliId" => $_POST["editarId"],
+                    "cliTipo" => "Proveedor"
                 );
                 // $respuestaAL = ModeloClientes::mdlEditarClienteAlegra($datos);
                 // if ($respuestaAL) {
@@ -179,8 +186,8 @@ class ControladorClientes
                     if ($datos["cliCorreo"] === "") {
                         $datos["cliCorreo"] = "";
                     }
-                    $respuestaBD = ModeloClientes::mdlEditarCliente($tabla, $datos);
-                    if ($respuestaBD = true) {
+                    $respuestaBD = ModeloDistribuidor::mdlEditarProveedor($tabla, $datos);
+                    if ($respuestaBD == true) {
                         echo '<script>
                                         Swal.fire({
                                             icon: "success",
@@ -191,7 +198,7 @@ class ControladorClientes
                                             heightAuto: true
                                         }).then(function(result){
                                             if(result.value){
-                                                window.location = "clientes";				
+                                                window.location = "distribuidor";				
                                             }
                                         });
                                     </script>';
@@ -206,7 +213,7 @@ class ControladorClientes
                                             heightAuto: true
                                         }).then(function(result){
                                             if(result.value){
-                                                window.location = "clientes";
+                                                window.location = "distribuidor";
                                             }
                                         });
                                     </script>';
@@ -222,7 +229,7 @@ class ControladorClientes
                 //                     heightAuto: true
                 //                 }).then(function(result){
                 //                     if(result.value){
-                //                         window.location = "clientes";
+                //                         window.location = "distribuidor";
                 //                     }
                 //                 });
                 //             </script>';
@@ -238,55 +245,55 @@ class ControladorClientes
 						heightAuto: true
                     }).then(function(result){
 						if(result.value){
-							window.location = "clientes";
+							window.location = "distribuidor";
 						}
 					});
 				</script>';
             }
         }
     }
-    static public function ctrBorrarCliente()
+    static public function ctrBorrarProveedor()
     {
         if (isset($_GET["idCliente"]) && isset($_GET["dirId"])) {
-            $tabla = "cliente";
+            $tabla = "proveedor";
             $datos = array(
                 "cliId" => $_GET["idCliente"],
                 "dirId" => $_GET["dirId"]
             );
-            // $respuestaAL = ModeloClientes::mdlBorrarClienteAlegra($datos);
+            // $respuestaAL = ModeloDistribuidor::mdlBorrarClienteAlegra($datos);
             // if ($respuestaAL) {
 
-            $respuesta = ModeloClientes::mdlBorrarCliente($tabla, $datos);
+            $respuesta = ModeloDistribuidor::mdlBorrarProveedor($tabla, $datos);
             if ($respuesta == "verdadero") {
-                echo '<script>
-					Swal.fire({
-                        icon: "success",
-                        title: "Eliminación exitosa",
-                        text: "¡El cliente ha sido borrado con éxito!",
-                        showConfirmButton: true,
-						confirmButtonText: "Cerrar",
-						heightAuto: true
-                    }).then(function(result){
-						if(result.value){
-							window.location = "clientes";				
-						}
-					});
-				</script>';
+                echo '  <script>
+                            Swal.fire({
+                                icon: "success",
+                                title: "Eliminación exitosa",
+                                text: "¡El cliente ha sido borrado con éxito!",
+                                showConfirmButton: true,
+                                confirmButtonText: "Cerrar",
+                                heightAuto: true
+                            }).then(function(result){
+                                if(result.value){
+                                    window.location = "distribuidor";				
+                                }
+                            });
+                        </script>';
             } else {
                 echo '<script>
-                                    Swal.fire({
-                                        icon: "error",
-                                        title: "Error eliminando",
-                                        text: "¡Revisa la información del cliente (BD)!",
-                                        showConfirmButton: true,
-                                        confirmButtonText: "Cerrar",
-                                        heightAuto: true
-                                    }).then(function(result){
-                                        if(result.value){
-                                            window.location = "clientes";
-                                        }
-                                    });
-                                </script>';
+                        Swal.fire({
+                            icon: "error",
+                            title: "Error eliminando",
+                            text: "¡Revisa la información del cliente (BD)!",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            heightAuto: true
+                        }).then(function(result){
+                            if(result.value){
+                                window.location = "distribuidor";
+                            }
+                        });
+                    </script>';
             }
             // } else {
             //     echo '<script>
@@ -299,7 +306,7 @@ class ControladorClientes
             //                     heightAuto: true
             //                 }).then(function(result){
             //                     if(result.value){
-            //                         window.location = "clientes";
+            //                         window.location = "distribuidor";
             //                     }
             //                 });
             //             </script>';

@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Distribuidores</h1>
+            <h1>Nómina</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
-              <li class="breadcrumb-item active">Distribuidores</li>
+              <li class="breadcrumb-item active">Nómina</li>
             </ol>
           </div>
         </div>
@@ -21,7 +21,7 @@
       <!-- Default box -->
       <div class="card" style="margin-top: 7px;">
         <div class="card-header">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#mdlAgregarDistribuidor"> Agregar distribuidor</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#mdlAgregarDistribuidor"> Agregar Nómina</button>
         </div>
         <div class="card-body">
 
@@ -29,9 +29,12 @@
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Nombre</th>
-                <th>Categoria</th>
-                <th>Dirección</th>
+                <th>Año</th>
+                <th>Mes</th>
+                <th>Empleado</th>
+                <th>Tipo contrato</th>
+                <th>Salario</th>
+                <th>Deducciones</th>
                 <th>Acciones</th>
               </tr>
             </thead>

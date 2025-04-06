@@ -174,7 +174,7 @@ class ModeloReservas
             // Obtener la hora de ingreso y verificar si está entre 00:00 y 05:00
             $horaIngreso = (int)$fecha1->format('H');
             if ($horaIngreso >= 0 && $horaIngreso <= 14) {
-                $fecha1->modify('+1 day');
+                // $fecha1->modify('+1 day');
             }
 
             // Calcular la diferencia en días (ajustada)

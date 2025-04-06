@@ -23,7 +23,7 @@ $(document).ready(function () {
                 text: 'Columnas'
             }
         ],
-        "ajax": "ajax/datatable-clientes.ajax.php",
+        "ajax": "ajax/datatable-distribuidores.ajax.php",
         "columns": [
             { "data": "cliTipoId" },
             { "data": "cliId" },
@@ -90,7 +90,7 @@ $(document).ready(function () {
         var datos = new FormData();
         datos.append("idCliente", idCliente);
         $.ajax({
-            url: "ajax/clientes.ajax.php",
+            url: "ajax/distribuidor.ajax.php",
             method: "POST",
             data: datos,
             cache: false,
@@ -1825,67 +1825,6 @@ $(document).ready(function () {
         data: departamentos
     });
 
-    $('.selectPais').on('change', function () {
-        // var countryCode = $('.selectPais').select2('data')[0].id;
-
-        // // Verificar si se seleccionó un país válido
-        // if (countryCode === "") {
-        //     $('.selectDepartamento').empty();
-        //     $('.selectDepartamento').select2('destroy');
-        //     return;
-        // }
-
-        // Realizar la solicitud a la API "Countries" para obtener las subdivisiones del país seleccionado
-        // $.ajax({
-        //     url: 'https://countriesnow.space/api/v0.1/countries/states',
-        //     type: 'POST',
-        //     data: JSON.stringify({
-        //         country: countryCode
-        //     }),
-        //     contentType: 'application/json',
-        //     success: function (response) {
-        //         var subdivisions = response.data;
-
-        //         // Limpiar el select de departamentos
-        //         $('.selectDepartamento').empty();
-        //         $('.selectCiudad').empty();
-
-        //         // Verificar si el país tiene subdivisiones
-        //         if (subdivisions.states.length > 0) {
-        //             // Agregar las opciones de departamentos al select
-        //             $.each(subdivisions.states, function (index, departament) {
-        //                 //departament.name = departament.name.replace("Department","");
-        //                 $('.selectDepartamento').append($('<option></option>').attr('value', departament.name).text(departament.name));
-        //             });
-        //         } else {
-        //             // Mostrar un mensaje si el país no tiene subdivisiones
-        //             $('.selectDepartamento').append($('<option></option>').text('No hay departamentos disponibles'));
-        //         }
-
-        //         // Actualizar el select de departamentos con Select2
-        //         $('.selectDepartamento').select2({
-        //             theme: 'bootstrap4',
-        //             dropdownParent: $('#mdlAgregarCliente'),
-        //             language: {
-        //                 noResults: function () {
-        //                     return "No hay resultados";
-        //                 },
-        //                 searching: function () {
-        //                     return "Buscando..";
-        //                 },
-        //                 inputTooShort: function () {
-        //                     return "Debe ingresar por lo menos un caracter...";
-        //                 }
-        //             },
-        //             placeholder: 'Seleccione el país',
-        //         });
-        //     },
-        //     error: function () {
-        //         alert('Error al cargar los departamentos');
-        //     }
-        //});
-    });
-
     $('.selectCiudad').select2({
         theme: 'bootstrap4',
         dropdownParent: $('#mdlAgregarCliente'),
@@ -1936,53 +1875,6 @@ $(document).ready(function () {
             },
             placeholder: 'Seleccione la ciudad'
         });
-        // Realizar la solicitud a la API "Countries" para obtener las subdivisiones del país seleccionado
-        // $.ajax({
-        //     url: 'https://countriesnow.space/api/v0.1/countries/state/cities',
-        //     type: 'POST',
-        //     data: JSON.stringify({
-        //         country: countryCode, state: department,
-        //         order: "dsc"
-        //     }),
-        //     contentType: 'application/json',
-        //     success: function (response) {
-        //         var subdivisions = response.data;
-        //         // Limpiar el select de ciudades
-        //         $('.selectCiudad').empty();
-        //         // Verificar si el departamento tiene subdivisiones
-        //         if (subdivisions.length > 0) {
-        //             // Agregar las opciones de ciudades al select
-        //             $.each(subdivisions, function (index, ciudad) {
-        //                 //ciudad.name = ciudad.name.replace("Department","");
-        //                 $('.selectCiudad').append($('<option></option>').attr('value', ciudad).text(ciudad));
-        //             });
-        //         } else {
-        //             // Mostrar un mensaje si el departamento no tiene subdivisiones
-        //             $('.selectCiudad').append($('<option></option>').text('No hay ciudades disponibles'));
-        //         }
-
-        //         // Actualizar el select de departamentos con Select2
-        //         $('.selectCiudad').select2({
-        //             theme: 'bootstrap4',
-        //             dropdownParent: $('#mdlAgregarCliente'),
-        //             language: {
-        //                 noResults: function () {
-        //                     return "No hay resultados";
-        //                 },
-        //                 searching: function () {
-        //                     return "Buscando..";
-        //                 },
-        //                 inputTooShort: function () {
-        //                     return "Debe ingresar por lo menos un caracter...";
-        //                 }
-        //             },
-        //             placeholder: 'Seleccione la ciudad',
-        //         });
-        //     },
-        //     error: function () {
-        //         alert('Error al cargar las ciudades');
-        //     }
-        //});
     });
 
     $('.nuevaIdentificacion').on('change', function () {
@@ -1990,7 +1882,7 @@ $(document).ready(function () {
         var datos = new FormData();
         datos.append("identificacionCliente", idCliente);
         $.ajax({
-            url: "ajax/clientes.ajax.php",
+            url: "ajax/distribuidor.ajax.php",
             method: "POST",
             data: datos,
             cache: false,
@@ -2018,6 +1910,7 @@ $(document).ready(function () {
             input.removeAttr('required');
         }
     });
+
     $('.editarTipo').on('change', function () {
         var tipoId = $('.editarTipo').val();
         var dv = $("#edv");
@@ -2067,67 +1960,6 @@ $(document).ready(function () {
         data: departamentos
     });
 
-    $('.selectEditarPais').on('change', function () {
-        // var countryCode = $('.selectEditarPais').select2('data')[0].id;
-
-        // // Verificar si se seleccionó un país válido
-        // if (countryCode === "") {
-        //     $('.selectEditarDepartamento').empty();
-        //     $('.selectEditarDepartamento').select2('destroy');
-        //     return;
-        // }
-
-        // // Realizar la solicitud a la API "Countries" para obtener las subdivisiones del país seleccionado
-        // $.ajax({
-        //     url: 'https://countriesnow.space/api/v0.1/countries/states',
-        //     type: 'POST',
-        //     data: JSON.stringify({
-        //         country: countryCode
-        //     }),
-        //     contentType: 'application/json',
-        //     success: function (response) {
-        //         var subdivisions = response.data;
-
-        //         // Limpiar el select de departamentos
-        //         $('.selectEditarDepartamento').empty();
-        //         $('.selectEditarCiudad').empty();
-
-        //         // Verificar si el país tiene subdivisiones
-        //         if (subdivisions.states.length > 0) {
-        //             // Agregar las opciones de departamentos al select
-        //             $.each(subdivisions.states, function (index, departament) {
-        //                 //departament.name = departament.name.replace("Department","");
-        //                 $('.selectEditarDepartamento').append($('<option></option>').attr('value', departament.name).text(departament.name));
-        //             });
-        //         } else {
-        //             // Mostrar un mensaje si el país no tiene subdivisiones
-        //             $('.selectEditarDepartamento').append($('<option></option>').text('No hay departamentos disponibles'));
-        //         }
-
-        //         // Actualizar el select de departamentos con Select2
-        //         $('.selectEditarDepartamento').select2({
-        //             theme: 'bootstrap4',
-        //             dropdownParent: $('#mdlEditarCliente'),
-        //             language: {
-        //                 noResults: function () {
-        //                     return "No hay resultados";
-        //                 },
-        //                 searching: function () {
-        //                     return "Buscando..";
-        //                 },
-        //                 inputTooShort: function () {
-        //                     return "Debe ingresar por lo menos un caracter...";
-        //                 }
-        //             },
-        //             placeholder: 'Seleccione el país',
-        //         });
-        //     },
-        //     error: function () {
-        //         alert('Error al cargar los departamentos');
-        //     }
-        // });
-    });
-
     $('.selectEditarCiudad').select2({
         theme: 'bootstrap4',
         dropdownParent: $('#mdlEditarCliente'),
@@ -2175,7 +2007,6 @@ $(document).ready(function () {
             },
             placeholder: 'Seleccione la ciudad',
         });
-        // Realizar la solicitud a la API "Countries" para obtener las subdivisiones del país seleccionado
         // $.ajax({
         //     url: 'https://countriesnow.space/api/v0.1/countries/state/cities',
         //     type: 'POST',

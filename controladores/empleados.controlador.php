@@ -74,11 +74,36 @@ class ControladorEmpleados{
                 $tabla = "empleado";
                 
 			    $encriptar = crypt($_POST["nuevaContrasenia"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-                $datos = array( "empNombre" => $_POST["nuevoNombre"],
-                                "empApodo" => $_POST["nuevoApodo"],
-                                "empContrasenia" => $encriptar,
-                                "empPerfil" => $_POST["nuevoPerfil"],
-                                "empFoto" => $ruta);
+                // $datos = array( "empNombre" => $_POST["nuevoNombre"],
+                //                 "empApodo" => $_POST["nuevoApodo"],
+                //                 "empContrasenia" => $encriptar,
+                //                 "empPerfil" => $_POST["nuevoPerfil"],
+                //                 "empFoto" => $ruta);
+                $datos = array(
+                    "empNombre"           => $_POST["nuevoNombre"],
+                    "empApodo"            => $_POST["nuevoApodo"],
+                    "empContrasenia"      => $encriptar,
+                    "empPerfil"           => $_POST["nuevoPerfil"],
+                    "empFoto"             => $ruta,
+                    "empTipoId"           => $_POST["tipoId"],
+                    "empNumeroId"         => $_POST["numeroId"],
+                    "empMunicipio"        => $_POST["municipio"],
+                    "empDireccion"        => $_POST["direccion"],
+                    "empCorreoElectronico"=> $_POST["correoElectronico"],
+                    "empTelefono"         => $_POST["telefono"],
+                    "empTipoContrato"     => $_POST["tipoContrato"],
+                    "empFechaContratacion"=> $_POST["fechaContratacion"],
+                    "empSalario"          => $_POST["salario"],
+                    "empFrecuenciaPago"   => $_POST["frecuenciaPago"],
+                    "empTipoTrabajador"   => $_POST["tipoTrabajador"],
+                    "empAuxilioTransporte"=> $_POST["auxilioTransporte"],
+                    "empAltoRiesgo"       => $_POST["altoRiesgo"],
+                    "empCargo"            => $_POST["cargo"],
+                    "empMetodoPago"       => $_POST["metodoPago"],
+                    "empBanco"            => $_POST["banco"],
+                    "empNumeroCuenta"     => $_POST["numeroCuenta"],
+                    "empTipoCuenta"       => $_POST["tipoCuenta"]
+                );
                 $respuesta = ModeloEmpleados::mdlIngresarEmpleado($tabla,$datos);
                 if ($respuesta = "verdadero"){
                     echo '<script>
@@ -176,13 +201,38 @@ class ControladorEmpleados{
                     $encriptar = $_POST["contraseniaActual"];
                 }
 
-                $datos = array( "empNombre" => $_POST["editarNombre"],
-                    "empApodo" => $_POST["editarApodo"],
-                    "empContrasenia" => $encriptar,
-                    "empPerfil" => $_POST["editarPerfil"],
-                    "empFoto" => $ruta);
+                // $datos = array( "empNombre" => $_POST["editarNombre"],
+                //     "empApodo" => $_POST["editarApodo"],
+                //     "empContrasenia" => $encriptar,
+                //     "empPerfil" => $_POST["editarPerfil"],
+                //     "empFoto" => $ruta);
+                $datos = array(
+                    "empNombre"            => $_POST["editarNombre"],
+                    "empApodo"             => $_POST["editarApodo"],
+                    "empContrasenia"       => $encriptar,
+                    "empPerfil"            => $_POST["editarPerfil"],
+                    "empFoto"              => $ruta,
+                    "empTipoId"            => $_POST["editarTipoId"],
+                    "empNumeroId"          => $_POST["editarNumeroId"],
+                    "empMunicipio"         => $_POST["editarMunicipio"],
+                    "empDireccion"         => $_POST["editarDireccion"],
+                    "empCorreoElectronico" => $_POST["editarCorreoElectronico"],
+                    "empTelefono"          => $_POST["editarTelefono"],
+                    "empTipoContrato"      => $_POST["editarTipoContrato"],
+                    "empFechaContratacion" => $_POST["editarFechaContratacion"],
+                    "empSalario"           => $_POST["editarSalario"],
+                    "empFrecuenciaPago"    => $_POST["editarFrecuenciaPago"],
+                    "empTipoTrabajador"    => $_POST["editarTipoTrabajador"],
+                    "empAuxilioTransporte" => $_POST["editarAuxilioTransporte"],
+                    "empAltoRiesgo"        => $_POST["editarAltoRiesgo"],
+                    "empCargo"             => $_POST["editarCargo"],
+                    "empMetodoPago"        => $_POST["editarMetodoPago"],
+                    "empBanco"             => $_POST["editarBanco"],
+                    "empNumeroCuenta"      => $_POST["editarNumeroCuenta"],
+                    "empTipoCuenta"        => $_POST["editarTipoCuenta"]
+                );    
                 $respuesta = ModeloEmpleados::mdlEditarEmpleado($tabla,$datos);
-                if ($respuesta = "verdadero"){
+                if ($respuesta == "verdadero"){
                     echo '<script>
 					Swal.fire({
                         icon: "success",

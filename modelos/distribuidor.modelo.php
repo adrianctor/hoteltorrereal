@@ -1,8 +1,25 @@
 <?php
 require_once "conexion.php";
-class ModeloClientes
-{
-    static public function mdlMostrarClientes($prmTabla, $prmItem, $prmValor)
+class ModeloDistribuidor{
+    static public function mdlBuscarProveedorPorIdentificacion($tabla, $term)
+    {
+        $stmt = Conexion::conectar()->prepare("SELECT cliId as id, cliIdentificacion, CONCAT(cliPrimerNombre, ' ', cliSegundoNombre, ' ', cliPrimerApellido, ' ', cliSegundoApellido) AS cliNombre 
+                                                FROM $tabla 
+                                                WHERE (cliIdentificacion LIKE :term OR
+                                                 cliPrimerNombre LIKE :term OR
+                                                  cliSegundoNombre LIKE :term OR
+                                                   cliPrimerApellido LIKE :term OR
+                                                    cliSegundoApellido LIKE :term)
+                                                    AND cliTipo = 'Proveedor'
+                                                ");
+        // El término de búsqueda se envuelve en porcentajes para el LIKE
+        $searchTerm = "%" . $term . "%";
+        $stmt->bindParam(":term", $searchTerm, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    static public function mdlMostrarDistribuidores($prmTabla, $prmItem, $prmValor)
     {
         if ($prmItem != null) {
             $stmt = Conexion::conectar()->prepare("SELECT cliId, cliTipoId, cliIdentificacion, cliDigitoVerificacion, cliPrimerNombre, cliSegundoNombre, cliPrimerApellido, cliSegundoApellido, cliRegimen,cliTipoPersona, direccion.dirId, direccion.dirDireccion, direccion.dirPais, direccion.dirDepartamento, direccion.dirCiudad, cliTelefono,cliCorreo FROM $prmTabla INNER JOIN direccion ON $prmTabla.dirId = direccion.dirId WHERE $prmItem = :$prmItem ORDER BY cliId DESC");
@@ -28,114 +45,14 @@ class ModeloClientes
             cliTelefono,
             cliCorreo FROM $prmTabla
              INNER JOIN direccion ON $prmTabla.dirId = direccion.dirId
-             WHERE cliTipo = 'Cliente'");
+             WHERE cliTipo = 'Proveedor'");
             $stmt->execute();
             $error = $stmt->errorInfo();
             return $stmt->fetchAll();
             $stmt = null;
         }
     }
-    static public function mdlMostrarClienteAlegra($prmValor)
-    {
-        if ($prmValor != null) {
-            $curl = curl_init();
 
-            curl_setopt_array($curl, [
-                CURLOPT_URL => "https://api.alegra.com/api/v1/contacts/" . $prmValor,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "GET",
-                CURLOPT_HTTPHEADER => [
-                    "accept: application/json",
-                    "authorization: Basic bGl6Y29yZG9iYWFAaG90bWFpbC5jb206OTE0YzNjMGRhYmJkY2U1NTRiNTI="
-                ],
-            ]);
-
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-
-            curl_close($curl);
-
-            if ($err) {
-                return false;
-            } else {
-                return  json_decode($response);
-            }
-        } else {
-            return false;
-        }
-    }
-    static public function mdlIngresarClienteAlegra($prmDatos)
-    {
-
-        $curl = curl_init();
-
-        curl_setopt_array($curl, [
-            CURLOPT_URL => "https://api.alegra.com/api/v1/contacts",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "{\"nameObject\":{\"firstName\":\"" . $prmDatos["cliPrimerNombre"] . "\",\"lastName\":\"" . $prmDatos["cliPrimerApellido"] . "\",\"secondName\":\"" . $prmDatos["cliSegundoNombre"] . "\",\"secondLastName\":\"" . $prmDatos["cliSegundoApellido"] . "\"},\"identificationObject\":{\"type\":\"" . $prmDatos["cliTipoId"] . "\",\"number\":\"" . $prmDatos["cliIdentificacion"] . "\",\"dv\":" . $prmDatos["cliDigitoVerificacion"] . "},\"kindOfPerson\":\"" . $prmDatos["cliTipoPersona"] . "\",\"regime\":\"" . $prmDatos["cliRegimen"] . "\",\"address\":{\"city\":\"" . $prmDatos["dirCiudad"] . "\",\"department\":\"" . $prmDatos["dirDepartamento"] . "\",\"address\":\"" . $prmDatos["dirDireccion"] . "\",\"country\":\"" . $prmDatos["dirPais"] . "\"},\"phonePrimary\":\"" . $prmDatos["cliTelefono"] . "\",\"email\":\"" . $prmDatos["cliCorreo"] . "\",\"type\":\"client\"}",
-            CURLOPT_HTTPHEADER => [
-                "accept: application/json",
-                "authorization: Basic bGl6Y29yZG9iYWFAaG90bWFpbC5jb206OTE0YzNjMGRhYmJkY2U1NTRiNTI=",
-                "content-type: application/json"
-            ],
-        ]);
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            //echo "cURL Error #:" . $err;
-            return false;
-        } else {
-            //echo $response;
-            return json_decode($response);
-        }
-    }
-    static public function mdlEditarClienteAlegra($prmDatos)
-    {
-
-        $curl = curl_init();
-
-        curl_setopt_array($curl, [
-            CURLOPT_URL => "https://api.alegra.com/api/v1/contacts/" . $prmDatos["cliId"],
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "PUT",
-            CURLOPT_POSTFIELDS => "{\"nameObject\":{\"firstName\":\"" . $prmDatos["cliPrimerNombre"] . "\",\"secondName\":\"" . $prmDatos["cliSegundoNombre"] . "\",\"lastName\":\"" . $prmDatos["cliPrimerApellido"] . "\",\"secondLastName\":\"" . $prmDatos["cliSegundoApellido"] . "\"},\"identificationObject\":{\"type\":\"" . $prmDatos["cliTipoId"] . "\",\"number\":\"" . $prmDatos["cliIdentificacion"] . "\",\"dv\":" . $prmDatos["cliDigitoVerificacion"] . "},\"kindOfPerson\":\"" . $prmDatos["cliTipoPersona"] . "\",\"regime\":\"" . $prmDatos["cliRegimen"] . "\",\"address\":{\"city\":\"" . $prmDatos["dirCiudad"] . "\",\"department\":\"" . $prmDatos["dirDepartamento"] . "\",\"address\":\"" . $prmDatos["dirDireccion"] . "\",\"country\":\"" . $prmDatos["dirPais"] . "\"},\"phonePrimary\":\"" . $prmDatos["cliTelefono"] . "\",\"email\":\"" . $prmDatos["cliCorreo"] . "\"}",
-            CURLOPT_HTTPHEADER => [
-                "accept: application/json",
-                "authorization: Basic bGl6Y29yZG9iYWFAaG90bWFpbC5jb206OTE0YzNjMGRhYmJkY2U1NTRiNTI=",
-                "content-type: application/json"
-            ],
-        ]);
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            //echo "cURL Error #:" . $err;
-            return false;
-        } else {
-            //echo $response;
-            return true;
-        }
-    }
     static public function mdlIngresarDireccion($prmTabla, $prmDatos)
     {
         $stmt = Conexion::conectar()->prepare("INSERT INTO $prmTabla(dirDireccion, dirPais, dirDepartamento, dirCiudad) VALUES (:dirDireccion, :dirPais, :dirDepartamento, :dirCiudad)");
@@ -178,7 +95,8 @@ class ModeloClientes
         }
         $stmt = null;
     }
-    static public function mdlIngresarCliente($prmTabla, $prmDatos)
+
+    static public function mdlIngresarProveedor($prmTabla, $prmDatos)
     {
         $tabla = "direccion";
         $datos = array(
@@ -187,11 +105,11 @@ class ModeloClientes
             "dirDepartamento" => $prmDatos["dirDepartamento"],
             "dirCiudad" => $prmDatos["dirCiudad"]
         );
-        $respuestadir = ModeloClientes::mdlIngresarDireccion($tabla, $datos);
-        $respuestadir = ModeloClientes::mdlObtenerIdDireccion();
+        $respuestadir = ModeloDistribuidor::mdlIngresarDireccion($tabla, $datos);
+        $respuestadir = ModeloDistribuidor::mdlObtenerIdDireccion();
         if ($respuestadir) {
 
-            $stmt = Conexion::conectar()->prepare("INSERT INTO $prmTabla(cliId, cliTipoId, cliIdentificacion, cliDigitoVerificacion,cliPrimerNombre,cliSegundoNombre,cliPrimerApellido,cliSegundoApellido,cliRegimen,cliTipoPersona,dirId,cliTelefono,cliCorreo,cliNacionalidad) VALUES (:cliId, :cliTipoId, :cliIdentificacion, :cliDigitoVerificacion, :cliPrimerNombre, :cliSegundoNombre, :cliPrimerApellido, :cliSegundoApellido, :cliRegimen, :cliTipoPersona, :dirId, :cliTelefono, :cliCorreo, :cliNacionalidad)");
+            $stmt = Conexion::conectar()->prepare("INSERT INTO $prmTabla(cliId, cliTipoId, cliIdentificacion, cliDigitoVerificacion,cliPrimerNombre,cliSegundoNombre,cliPrimerApellido,cliSegundoApellido,cliRegimen,cliTipoPersona,dirId,cliTelefono,cliCorreo,cliNacionalidad, cliTipo) VALUES (:cliId, :cliTipoId, :cliIdentificacion, :cliDigitoVerificacion, :cliPrimerNombre, :cliSegundoNombre, :cliPrimerApellido, :cliSegundoApellido, :cliRegimen, :cliTipoPersona, :dirId, :cliTelefono, :cliCorreo, :cliNacionalidad, 'Proveedor')");
             $prmDatos["dirId"] = $respuestadir["MAX(dirId)"];
             $stmt->bindParam(":cliId", $prmDatos["cliId"], PDO::PARAM_INT);
             $stmt->bindParam(":cliTipoId", $prmDatos["cliTipoId"], PDO::PARAM_STR);
@@ -219,7 +137,7 @@ class ModeloClientes
             return false;
         }
     }
-    static public function mdlEditarCliente($prmTabla, $prmDatos)
+    static public function mdlEditarProveedor($prmTabla, $prmDatos)
     {
         $tabla = "direccion";
         $datos = array(
@@ -229,8 +147,8 @@ class ModeloClientes
             "dirDepartamento" => $prmDatos["dirDepartamento"],
             "dirCiudad" => $prmDatos["dirCiudad"]
         );
-        $respuestadir = ModeloClientes::mdlEditarDireccion($tabla, $datos);
-        //$respuestadir = ModeloClientes::mdlObtenerIdDireccion();
+        $respuestadir = ModeloDistribuidor::mdlEditarDireccion($tabla, $datos);
+        //$respuestadir = ModeloDistribuidor::mdlObtenerIdDireccion();
         if ($respuestadir) {
             $stmt = Conexion::conectar()->prepare("UPDATE $prmTabla SET cliTipoId = :cliTipoId, cliIdentificacion = :cliIdentificacion, cliDigitoVerificacion = :cliDigitoVerificacion, cliPrimerNombre = :cliPrimerNombre,cliSegundoNombre = :cliSegundoNombre,cliPrimerApellido = :cliPrimerApellido,cliSegundoApellido = :cliSegundoApellido,cliRegimen = :cliRegimen,cliTipoPersona = :cliTipoPersona, dirId = :dirId,cliTelefono = :cliTelefono,cliCorreo = :cliCorreo WHERE cliId = :cliId");
             $stmt->bindParam(":cliId", $prmDatos["cliId"], PDO::PARAM_INT);
@@ -257,14 +175,14 @@ class ModeloClientes
             return false;
         }
     }
-    static public function mdlBorrarCliente($prmTabla, $prmDatos)
+    static public function mdlBorrarProveedor($prmTabla, $prmDatos)
     {
         $stmt = Conexion::conectar()->prepare("DELETE FROM $prmTabla WHERE cliId = :cliId");
         $stmt->bindParam(":cliId", $prmDatos["cliId"], PDO::PARAM_INT);
         $num = $stmt->execute();
         if ($num) {
             $prmTabla = "direccion";
-            $num = ModeloClientes::mdlBorrarDireccion($prmTabla, $prmDatos);
+            $num = ModeloDistribuidor::mdlBorrarDireccion($prmTabla, $prmDatos);
             if ($num) {
                 return true;
             } else {
@@ -287,36 +205,7 @@ class ModeloClientes
         }
         $stmt = null;
     }
-    static public function mdlBorrarClienteAlegra($prmDatos)
-    {
-        $curl = curl_init();
-        $url = "https://api.alegra.com/api/v1/contacts/" . $prmDatos["cliId"];
-        curl_setopt_array($curl, [
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "DELETE",
-            CURLOPT_HTTPHEADER => [
-                "accept: application/json",
-                "authorization: Basic bGl6Y29yZG9iYWFAaG90bWFpbC5jb206OTE0YzNjMGRhYmJkY2U1NTRiNTI="
-            ],
-        ]);
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            return false;
-        } else {
-            return json_decode($response);
-        }
-    }
-    static public function mdlActualizarCliente($tabla, $item1, $valor1, $valor)
+    static public function mdlActualizarProveedor($tabla, $item1, $valor1, $valor)
     {
         try {
             $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE cliId = :cliId");

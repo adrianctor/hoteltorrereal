@@ -74,43 +74,43 @@ class tablaVentas
 
 
 
-        $curl = curl_init();
-        curl_setopt_array($curl, [
-        CURLOPT_URL => "https://api.alegra.com/api/v1/invoices?order_direction=desc",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_HTTPHEADER => [
-            "accept: application/json",
-            "authorization: Basic bGl6Y29yZG9iYWFAaG90bWFpbC5jb206OTE0YzNjMGRhYmJkY2U1NTRiNTI="
-        ],
-        ]);
-        $response = curl_exec($curl);
-        $datos = json_decode($response);
-        curl_close($curl);
-        $ultimaVenta = ControladorVentas::ctrMostrarUltimaVenta();
-        foreach($datos as $value){
-            if($value->id > $ultimaVenta["facId"]){
-                $tabla = "factura";
-                $datos = array( "facId" => $value->id,
-                    "facReferencia" => $value->numberTemplate->prefix."".$value->numberTemplate->number,
-                    "cliNombre" => $value->client->name,
-                    "cliIdentificacion" => $value->client->identificationObject->number,
-                    "facSubtotal" => $value->total,
-                    "facTotal" => $value->total,
-                    "facCobrado" => $value->totalPaid,
-                    "facEstado" => $value->status,
-                    "facEstadoDian" => $value->stamp->legalStatus,
-                    "factImpuesto" => 0,
-                    "facFecha" => $value->datetime,
-                    "facVencimiento" => $value->dueDate
-                );
-                ModeloVentas::mdlIngresarVentaId($tabla, $datos);
-            }
-        }
+        // $curl = curl_init();
+        // curl_setopt_array($curl, [
+        // CURLOPT_URL => "https://api.alegra.com/api/v1/invoices?order_direction=desc",
+        // CURLOPT_RETURNTRANSFER => true,
+        // CURLOPT_ENCODING => "",
+        // CURLOPT_MAXREDIRS => 10,
+        // CURLOPT_TIMEOUT => 30,
+        // CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        // CURLOPT_CUSTOMREQUEST => "GET",
+        // CURLOPT_HTTPHEADER => [
+        //     "accept: application/json",
+        //     "authorization: Basic bGl6Y29yZG9iYWFAaG90bWFpbC5jb206OTE0YzNjMGRhYmJkY2U1NTRiNTI="
+        // ],
+        // ]);
+        // $response = curl_exec($curl);
+        // $datos = json_decode($response);
+        // curl_close($curl);
+        // $ultimaVenta = ControladorVentas::ctrMostrarUltimaVenta();
+        // foreach($datos as $value){
+        //     if($value->id > $ultimaVenta["facId"]){
+        //         $tabla = "factura";
+        //         $datos = array( "facId" => $value->id,
+        //             "facReferencia" => $value->numberTemplate->prefix."".$value->numberTemplate->number,
+        //             "cliNombre" => $value->client->name,
+        //             "cliIdentificacion" => $value->client->identificationObject->number,
+        //             "facSubtotal" => $value->total,
+        //             "facTotal" => $value->total,
+        //             "facCobrado" => $value->totalPaid,
+        //             "facEstado" => $value->status,
+        //             "facEstadoDian" => $value->stamp->legalStatus,
+        //             "factImpuesto" => 0,
+        //             "facFecha" => $value->datetime,
+        //             "facVencimiento" => $value->dueDate
+        //         );
+        //         ModeloVentas::mdlIngresarVentaId($tabla, $datos);
+        //     }
+        // }
 
         $varDatosJSON = '{
                 "data": [
@@ -120,7 +120,7 @@ class tablaVentas
         $ventas = ControladorVentas::ctrMostrarVentas($item, $valor);
         
         foreach ($ventas as $value) {
-            $varBotones = "<div class='btn-group'><button class='btn btn-primary btnVerFactura' idFactura='" . $value["facId"] . "' data-toggle='modal' data-target='#mdlVerFactura'><i class='fa fa-eye'></i></button> <button class='btn btn-warning btnImprimirFactura' idFactura='" . $value["facId"] . "' data-toggle='modal' data-target='#mdlImprimirFactura'><i class='fa fa-print' style='color: white;'></i></button><button class='btn btn-danger btnEliminarFactura' idFactura='" . $value["facId"] . "' disabled><i class='fa fa-times'></i></button></div>";
+            $varBotones = "<div class='btn-group'><button class='btn btn-info btnVerFactura' idFactura='" . $value["facId"] . "' data-toggle='modal' data-target='#mdlVerFactura'><i class='fa fa-eye'></i></button> <button class='btn btn-warning btnImprimirFactura' idFactura='" . $value["facId"] . "' data-toggle='modal' data-target='#mdlImprimirFactura'><i class='fa fa-print' style='color: white;'></i></button><button class='btn btn-danger btnEliminarFactura' idFactura='" . $value["facId"] . "' disabled><i class='fa fa-times'></i></button></div>";
             $varReferencia = $value["facReferencia"];
             $varNombre = $value["cliNombre"];
             $varIdentificacion = $value["cliIdentificacion"];
@@ -144,7 +144,7 @@ class tablaVentas
             switch($varEstadoDian){
                 case "PENDING":
                     $varEstadoDian="Sin emitir";
-                    $varBotones = "<div class='btn-group'><button class='btn btn-primary btnVerFactura' idFactura='" . $value["facId"] . "' data-toggle='modal' data-target='#mdlVerFactura'><i class='fa fa-eye'></i></button> <button class='btn btn-warning btnImprimirFactura' idFactura='" . $value["facId"] . "' data-toggle='modal' data-target='#mdlImprimirFactura'><i class='fa fa-print' style='color: white;'></i></button><button class='btn btn-danger btnEliminarFactura' idFactura='" . $value["facId"] . "' ><i class='fa fa-times'></i></button></div>";
+                    $varBotones = "<div class='btn-group'><button class='btn btn-primary btnFacturarElectronicamente' idFactura='" . $value["facId"] . "' data-toggle='modal' data-target='#mdlFacturarElectronicamente'><i class='fa fa-check'></i></button><button class='btn btn-info btnVerFactura' idFactura='" . $value["facId"] . "' data-toggle='modal' data-target='#mdlVerFactura'><i class='fa fa-eye'></i></button><button class='btn btn-warning btnImprimirFactura' idFactura='" . $value["facId"] . "' data-toggle='modal' data-target='#mdlImprimirFactura'><i class='fa fa-print' style='color: white;'></i></button><button class='btn btn-danger btnEliminarFactura' idFactura='" . $value["facId"] . "' ><i class='fa fa-times'></i></button></div>";
                     break;
                 case "STAMPED_AND_WAITING_RESPONSE":
                     $varEstadoDian="Enviada sin respuesta DIAN";

@@ -40,7 +40,7 @@
                 <th>Acciones</th>
               </tr>
             </thead>
-            
+
           </table>
 
         </div>
@@ -50,71 +50,109 @@
     </section>
     <!-- /.content -->
   </div>
+  <!-- Modal para Ver Factura -->
+  <div class="modal fade" id="mdlVerFactura" tabindex="-1" role="dialog" aria-labelledby="mdlVerFacturaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-info text-white">
+          <h5 class="modal-title"><i class="fa fa-eye"></i> Detalle de la Factura</h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Datos del Cliente en Formulario -->
+          <form id="formDetalleCliente">
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="detalleClienteIdentificacion">Identificación</label>
+                <input type="text" class="form-control" id="detalleClienteIdentificacion" readonly>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="detalleClienteNombre">Nombre</label>
+                <input type="text" class="form-control" id="detalleClienteNombre" readonly>
+              </div>
 
-  <div id="mdlEditarCliente"class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <form role="form" method="post" enctype="multipart/form-data">
-                  <div class="modal-header">
-                      <h5 class="modal-title">Editar cliente</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white;">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <div class="box-body">
-
-                          <div class="form-group" style="margin-left: 5px;">
-                              <div class="input-group">
-                                  <span class="input-group-addon">
-                                    <i class="nav-icon fas fa-user-tie"  style="margin-right: 10px;margin-top: 10px;"></i>
-                                  </span>
-                                  <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" autocomplete="off" required>
-                              </div>
-                          </div>
-
-                          <div class="form-group">
-                              <div class="input-group">
-                                  <span class="input-group-addon">
-                                    <i class="nav-icon fa fa-user-tag"  style="margin-right: 10px;margin-top: 10px;"></i>
-                                  </span>
-                                  <input type="number" class="form-control input-lg" id="editarCedula" name="editarCedula" autocomplete="off" min="0" required readonly>
-                              </div>
-                          </div>
-
-                          <div class="form-group">
-                              <div class="input-group">
-                                      <span class="input-group-addon">
-                                        <i class="nav-icon fa fa-user-tag"  style="margin-right: 10px;margin-top: 10px;"></i>
-                                      </span>
-                                  <input type="text" class="form-control input-lg" id="editarTelefono" name="editarTelefono" data-inputmask="'mask': '(399)-999-9999'" data-mask autocomplete="off" min="0" required>
-                              </div>
-                          </div>
-
-                          <div class="form-group">
-                              <div class="input-group date" id="editarFechaCliente" data-target-input="nearest">
-                                  <div class="input-group-append" data-target="#editarFechaCliente" data-toggle="datetimepicker">
-                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                  </div>
-                                  <input type="text" id="editarFecha" name="editarFecha" class="form-control datetimepicker-input" data-target="#editarFechaCliente" placeholder="Fecha de nacimiento" autocomplete="off" required/>
-                              </div>
-                          </div>
-
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                  </div>
-                  <?php
-                    $editarCliente = new ControladorClientes();
-                    $editarCliente -> ctrEditarCliente();
-                  ?>
-              </form>
+              <div class="form-group col-md-4">
+                <label for="detalleClienteTelefono">Teléfono</label>
+                <input type="text" class="form-control" id="detalleClienteTelefono" readonly>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="detalleClienteCorreo">Correo</label>
+                <input type="text" class="form-control" id="detalleClienteCorreo" readonly>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="detalleClienteDireccion">Dirección</label>
+                <input type="text" class="form-control" id="detalleClienteDireccion" readonly>
+              </div>
+            </div>
+          </form>
+          <hr>
+          <!-- Tablas para Ítems, Retenciones y Pagos -->
+          <div class="row">
+            <div class="col-12">
+              <h5>Ítems</h5>
+              <table id="tablaItemsFactura" class="table table-sm table-bordered">
+                <thead>
+                  <tr>
+                    <th>Descripción</th>
+                    <th>Ingreso</th>
+                    <th>Salida</th>
+                    <th>Subtotal</th>
+                    <th>IVA</th>
+                    <th>Descuento</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Se llenarán dinámicamente -->
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12">
+              <h5>Retenciones</h5>
+              <table id="tablaRetencionesFactura" class="table table-sm table-bordered">
+                <thead>
+                  <tr>
+                    <th>Porcentaje</th>
+                    <th>Nombre</th>
+                    <th>Valor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Se llenarán dinámicamente -->
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12">
+              <h5>Pagos</h5>
+              <table id="tablaPagosFactura" class="table table-sm table-bordered">
+                <thead>
+                  <tr>
+                    <th>Tipo</th>
+                    <th>Total</th>
+                    <th>Fecha</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Se llenarán dinámicamente -->
+                </tbody>
+              </table>
+            </div>
           </div>
+          <hr>
+          <!-- Resumen de la Factura -->
+          <div id="resumenFacturaModal" class="bg-light p-3 rounded text-right">
+            <h5>Resumen</h5>
+            <h5>Subtotal: <span id="modalSubtotal" class="font-weight-bold text-primary"></span></h5>
+            <h5>IVA: <span id="modalIVA" class="font-weight-bold text-primary"></span></h5>
+            <h5>Descuento: <span id="modalDescuento" class="font-weight-bold text-primary"></span></h5>
+            <h5>Total: <span id="modalTotal" class="font-weight-bold text-primary"></span></h5>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
       </div>
+    </div>
   </div>
-  <?php
-  $borrarCliente = new ControladorClientes();
-  $borrarCliente -> ctrBorrarCliente();
-  ?>
