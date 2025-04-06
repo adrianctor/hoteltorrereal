@@ -638,7 +638,7 @@ $(".formularioEditarReserva").on("click", "#btnPasarAFacturar", function () {
   // Se asume que el campo 'editarResIdentificacion' contiene la cc del cliente.
   var cc = $("#editarResIdentificacion").val();
   if (cc && cc.trim() !== "") {
-    window.location.href = "/hoteltorrereal/facturacion?cc=" + encodeURIComponent(cc);
+    window.location.href = "/administracion/facturacion?cc=" + encodeURIComponent(cc);
   } else {
     Swal.fire({
       icon: "error",
