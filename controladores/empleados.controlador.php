@@ -73,7 +73,7 @@ class ControladorEmpleados{
                 }
                 $tabla = "empleado";
                 
-			    $encriptar = crypt($_POST["nuevaContrasenia"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+			    $encriptar = crypt($_POST["confirmarContrasenia"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
                 // $datos = array( "empNombre" => $_POST["nuevoNombre"],
                 //                 "empApodo" => $_POST["nuevoApodo"],
                 //                 "empContrasenia" => $encriptar,
