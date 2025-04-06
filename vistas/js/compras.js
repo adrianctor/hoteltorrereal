@@ -195,6 +195,7 @@ $(document).ready(function () {
           <select class="form-control impuesto" name="impuesto[]">
             <option value="0">Ninguno</option>
             <option value="0.19">IVA 19%</option>
+            <option value="0.05">IVA 5%</option>
             <option value="0.08">Impuesto al consumo 8%</option>
           </select>
         </td>
