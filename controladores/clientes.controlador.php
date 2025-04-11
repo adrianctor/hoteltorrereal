@@ -306,4 +306,8 @@ class ControladorClientes
             // }
         }
     }
+    static public function ctrBuscarClientesPorIdentificacion($item, $valor) {
+        $tabla = "cliente";
+        return ModeloClientes::mdlBuscarClientesPorIdentificacion($tabla, $item, $valor);
+    }
 }

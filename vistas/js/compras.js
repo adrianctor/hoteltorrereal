@@ -171,10 +171,27 @@ $(document).ready(function () {
     var localeDateTime = now.toLocaleString("sv-SE", options);
     return localeDateTime.replace(" ", "T");
   }
+  function getMinDatetime30DaysAgoInBogota() {
+    var now = new Date();
+    var bogotaNow = new Date(now.toLocaleString("en-US", { timeZone: "America/Bogota" }));
+    bogotaNow.setDate(bogotaNow.getDate() - 30);
   
+    var options = {
+      timeZone: "America/Bogota",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    };
+    var localeDateTime = bogotaNow.toLocaleString("sv-SE", options);
+    return localeDateTime.replace(" ", "T");
+  }
   var todayBogota = getCurrentDatetimeInBogota();
+  var minDateBogota = getMinDatetime30DaysAgoInBogota();
   document.getElementById("nuevaFecha").value = todayBogota;
-  document.getElementById("nuevaFecha").min = todayBogota;
+  document.getElementById("nuevaFecha").min = minDateBogota;
 
   function agregarFilaItem() {
     var rowId = "item_" + new Date().getTime(); // identificador único para la fila

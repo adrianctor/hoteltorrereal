@@ -308,7 +308,7 @@ $(".formularioReserva").on(
         $(nuevoNombre).val(respuesta.data[0].name);
         $(nuevoTelefono).val(respuesta.data[0].phonePrimary);
         $(nuevoCorreo).val(respuesta.data[0].email);
-        $(nuevaDireccion).val(respuesta.data[0].address.address);
+        $(nuevaDireccion).val(respuesta.data[0].address);
       }, //,
       // complete:function(respuesta){
       //     //actualizarValorServicio($(nuevoValorServicio),$(valorServicio),$(nuevaCantidadServicio));

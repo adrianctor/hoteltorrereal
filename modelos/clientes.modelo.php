@@ -332,4 +332,16 @@ class ModeloClientes
             echo $e->getMessage();
         }
     }
+    static public function mdlBuscarClientesPorIdentificacion($tabla, $item, $valor) {
+        $stmt = Conexion::conectar()->prepare("
+            SELECT cliId, cliIdentificacion, cliPrimerNombre, cliSegundoNombre, cliPrimerApellido, cliSegundoApellido, cliTelefono, cliCorreo, dirDireccion
+            FROM $tabla INNER JOIN direccion ON $tabla.dirId = direccion.dirId
+            WHERE $item LIKE :valor
+            LIMIT 30
+        ");
+        $param = "%$valor%";
+        $stmt->bindParam(":valor", $param, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
