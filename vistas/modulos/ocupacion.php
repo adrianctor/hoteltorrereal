@@ -94,7 +94,8 @@
               <!-- Text -->
               <div class="form-group">
                 <div class="input-group">
-                  <input type="number" class="form-control input-lg" id="nuevaTarifa" name="nuevaTarifa" placeholder="Ingrese la tarifa" autocomplete="off" required>
+                  <!-- <input type="number" class="form-control input-lg" id="nuevaTarifa" name="nuevaTarifa" placeholder="Ingrese la tarifa" autocomplete="off" required> -->
+                  <input type="text" class="form-control input-lg format-number" id="nuevaTarifa" name="nuevaTarifa" placeholder="Ingrese la tarifa" autocomplete="off" required>
                   <label for="nuevaTarifa">Tarifa</label>
                 </div>
               </div>
@@ -215,7 +216,7 @@
                   <!-- Text -->
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="number" class="form-control input-lg" id="editarResTarifa" name="editarResTarifa" placeholder="Ingrese la tarifa" autocomplete="off" required disabled>
+                      <input type="text" class="form-control input-lg format-number" id="editarResTarifa" name="editarResTarifa" placeholder="Ingrese la tarifa" autocomplete="off" required disabled>
                       <label for="editarResTarifa">Tarifa</label>
                     </div>
                   </div>

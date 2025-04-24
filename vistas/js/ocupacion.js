@@ -317,6 +317,33 @@ $(".formularioReserva").on(
     });
   }
 );
+function formatCurrency(input) {
+  // extrae solo dígitos
+  let num = input.replace(/\D/g, '');
+  // inserta puntos de miles
+  return num.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+document.querySelectorAll('.format-number').forEach(el => {
+  el.addEventListener('input', e => {
+    const cursorPos = e.target.selectionStart;
+    const originalLength = e.target.value.length;
+
+    e.target.value = formatCurrency(e.target.value);
+
+    // opcional: conserva posición de cursor
+    const newLength = e.target.value.length;
+    e.target.setSelectionRange(cursorPos + (newLength - originalLength), cursorPos + (newLength - originalLength));
+  });
+});
+document.querySelector('.formularioReserva').addEventListener('submit', function(e) {
+  const campo = document.getElementById('nuevaTarifa');
+  campo.value = campo.value.replace(/\./g, '');
+});
+
+document.querySelector('.formularioEditarReserva').addEventListener('submit', function(e) {
+  const campo = document.getElementById('editarResTarifa');
+  if (campo) campo.value = campo.value.replace(/\./g, '');
+});
 $(".selectCliente").select2({
   theme: "bootstrap4",
   dropdownParent: $("#mdlAgregarReserva"),
