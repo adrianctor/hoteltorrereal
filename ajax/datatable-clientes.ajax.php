@@ -101,7 +101,7 @@ class tablaClientes
         //                 $varRegimen ="Impuesto Nacional al Consumo";
         //                 break;
         //             case "INC_IVA_RESPONSIBLE":
-        //                 $varRegimen ="Responsable de IVA e INC	";
+        //                 $varRegimen ="Responsable de IVA e INC";
         //                 break;
         //             default:
         //                 $varRegimen ="Error: No reconocido";
@@ -179,7 +179,7 @@ class tablaClientes
                     $varRegimen = "Impuesto Nacional al Consumo";
                     break;
                 case "INC_IVA_RESPONSIBLE":
-                    $varRegimen = "Responsable de IVA e INC	";
+                    $varRegimen = "Responsable de IVA e INC";
                     break;
                 default:
                     $varRegimen = "Error: No reconocido";
