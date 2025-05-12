@@ -62,8 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         varFechaInicial.setDate(varFechaInicial.getDate() + 1);
         varFechaFinal.setDate(varFechaFinal.getDate() + 1);
-        varFechaFinal.setHours(13);
-        varFechaFinal.setMinutes(59);
+        varFechaFinal.setHours(14);
         varAhora.setDate(varAhora.getDate() - 1);
         let horaInicial = varFechaInicial.getHours();
         if (horaInicial >= 0 && horaInicial < 14) {

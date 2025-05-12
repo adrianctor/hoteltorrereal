@@ -16,7 +16,7 @@
                     $dateini->modify('-1 day');
                 }
                 $hourfim= $datefin->format('H');
-                if($hourfim>=14){
+                if($hourfim>14){
                     $datefin->modify('+1 day');
                 }
                 $datefin->modify('-1 day');
