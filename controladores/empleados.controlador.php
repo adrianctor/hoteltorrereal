@@ -20,18 +20,18 @@ class ControladorEmpleados{
                         // $_SESSION["varUsuario"] =$respuesta["empApodo"];
                         // $_SESSION["varFoto"] =$respuesta["empFoto"];
                         // $_SESSION["varPerfil"] =$respuesta["empPerfil"];
-                        // date_default_timezone_set("America/Bogota");
-                        // $fecha = date("Y-m-d");
-                        // $hora = date("H:i:s");
-                        // $fechaActual = $fecha .' '.$hora;
-                        // $item1 = "empUltimoLogin";
-                        // $item2 = "empId";
-                        // $valor2 = $respuesta["empId"];
-                        // $ultimoLogin = ModeloEmpleados::mdlActualizarEmpleado($tabla,$item1,$fechaActual,$item2,$valor2);
-                        // if ($ultimoLogin == "verdadero"){
-                        //     echo '<script> window.location = "ocupacion";</script>';
-                        // }
-                        echo '<br><div class ="alert alert-danger">ERROR: El sistema se encuentra deshabilitado. Por favor contacte al administrador.</div>';
+                        date_default_timezone_set("America/Bogota");
+                        $fecha = date("Y-m-d");
+                        $hora = date("H:i:s");
+                        $fechaActual = $fecha .' '.$hora;
+                        $item1 = "empUltimoLogin";
+                        $item2 = "empId";
+                        $valor2 = $respuesta["empId"];
+                        $ultimoLogin = ModeloEmpleados::mdlActualizarEmpleado($tabla,$item1,$fechaActual,$item2,$valor2);
+                        if ($ultimoLogin == "verdadero"){
+                            echo '<script> window.location = "ocupacion";</script>';
+                        }
+                        // echo '<br><div class ="alert alert-danger">ERROR: El sistema se encuentra deshabilitado. Por favor contacte al administrador.</div>';
                     }
 					else{
 					    
