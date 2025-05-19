@@ -13,13 +13,13 @@ class ControladorEmpleados{
 
 				if (isset($respuesta["empApodo"]) && $respuesta["empApodo"] == $_POST["ingUsuario"] && $respuesta["empContrasenia"] == $encriptar) {
 				    if ($respuesta["empEstado"]!=0){
-                        // echo '<br><div class ="alert alert-success">Bienvenido al Hotel Torre real.</div>';
-                        // $_SESSION["varSesionIniciada"] ="Verdadero";
-                        // $_SESSION["varId"] =$respuesta["empId"];
-                        // $_SESSION["varNombre"] =$respuesta["empNombre"];
-                        // $_SESSION["varUsuario"] =$respuesta["empApodo"];
-                        // $_SESSION["varFoto"] =$respuesta["empFoto"];
-                        // $_SESSION["varPerfil"] =$respuesta["empPerfil"];
+                        echo '<br><div class ="alert alert-success">Bienvenido al Hotel Torre real.</div>';
+                        $_SESSION["varSesionIniciada"] ="Verdadero";
+                        $_SESSION["varId"] =$respuesta["empId"];
+                        $_SESSION["varNombre"] =$respuesta["empNombre"];
+                        $_SESSION["varUsuario"] =$respuesta["empApodo"];
+                        $_SESSION["varFoto"] =$respuesta["empFoto"];
+                        $_SESSION["varPerfil"] =$respuesta["empPerfil"];
                         date_default_timezone_set("America/Bogota");
                         $fecha = date("Y-m-d");
                         $hora = date("H:i:s");
